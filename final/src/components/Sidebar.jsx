@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'; // Link 대신 NavLink 사용
 import './Sidebar.css';
-import logo from '../../assets/logo2.png';  // 절대 경로 사용 또는 정확한 상대 경로 설정
+import logo from '../../assets/logo2.png';
 import dashboardIcon from '../../assets/dashboardIcon.png';
 import monitoringIcon from '../../assets/moniteringIcon.png';
 import medicineIcon from '../../assets/medicineIcon.png';
@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src={logo} alt="Logo" /> {/* 이미지 경로 수정 */}
+        <img src={logo} alt="Logo" />
       </div>
 
       <hr className="divider" />
@@ -20,22 +20,22 @@ const Sidebar = () => {
       <div className="sidebar-nav">
         <ul>
           <li>
-            <Link to="/dashboard" className="active">
+            <NavLink to="/dashboard" activeClassName="active">
               <img src={dashboardIcon} alt="Dashboard Icon" />
               대시보드
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/monitoring">
+            <NavLink to="/monitoring" activeClassName="active">
               <img src={monitoringIcon} alt="Monitoring Icon" />
               낙상 관리
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/medication">
+            <NavLink to="/medication" activeClassName="active">
               <img src={medicineIcon} alt="Medicine Icon" />
               복약 안내
-            </Link>
+            </NavLink>
           </li>
         </ul>
 
@@ -43,16 +43,16 @@ const Sidebar = () => {
 
         <ul>
           <li>
-            <Link to="/customer-management">
+            <NavLink to="/customer-management" activeClassName="active">
               <img src={usersIcon} alt="Customer Management Icon" />
               고객 관리
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/settings">
+            <NavLink to="/settings" activeClassName="active">
               <img src={settingsIcon} alt="Settings Icon" />
               설정
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
