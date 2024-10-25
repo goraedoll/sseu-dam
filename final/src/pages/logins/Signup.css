@@ -1,0 +1,87 @@
+body {
+  font-family: 'Pretendard', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.signup-container {
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 16px; /* 추가: signup-container에도 radius 적용 */
+}
+
+.signup-container h2 {
+  font-size: 44px;
+  font-weight: bold;
+  color: #2569ED;
+  margin-bottom: 2rem;
+}
+
+.signup-container label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.signup-container input,
+.signup-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-radius: 16px; /* 모든 input과 textarea에 radius 통일 */
+  border: 1px solid #ccc;
+  font-family: 'Pretendard', Arial, sans-serif;
+  box-sizing: border-box;
+  resize: none; /* textarea 크기 조절 방지 */
+}
+
+.signup-container textarea {
+  height: 100px; /* 높이를 조절하여 입력란을 더 넓게 */
+  line-height: 1.5;
+}
+
+.signup-button {
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: #2569ED;
+  color: white;
+  border: none;
+  border-radius: 16px; /* 버튼의 radius 통일 */
+  cursor: pointer;
+}
+
+.signup-button:hover {
+  background-color: #2569ED;
+}
+
+.signup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.home-button {
+  font-size: 20px;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-weight: 700;
+  align-content: center;
+  color: #2569ED;
+  text-decoration: none;
+  border: 1px solid #2569ED;
+  border-radius: 16px; /* 홈 버튼도 radius 통일 */
+  padding: 1rem;
+}
+
+.home-button:hover {
+  background-color: #2569ED;
+  color: white;
+}

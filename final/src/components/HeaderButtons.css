@@ -1,0 +1,88 @@
+.header-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 422px;
+    height: 61px;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 0 10px;
+}
+
+.search-bar {
+    width: 214px;
+    height: 41px;
+    background-color: #eef7ff;
+    border: none;
+    border-radius: 30px;
+    padding-left: 30px;
+    font-family: 'Pretendard', Arial, sans-serif;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #8f9bba;
+    outline: None;
+}
+
+.search-bar:focus {
+    border: 2px solid #0062e5;
+}
+
+.icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 41px;
+    height: 41px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 8px;
+    position: relative;
+    border-radius: 50%;
+}
+
+.icon-button:hover {
+    background-color: #8f9bba; /* 호버 시 배경색 */
+}
+
+/* 다크 모드 아이콘 크기 및 위치 미세 조정 */
+.dark-mode-icon img {
+    width: 20px; /* 크기 줄이기 */
+    height: 20px;
+    position: relative;
+    top: 2px; /* 위아래 위치 미세 조정 */
+    left: 1px; /* 좌우 위치 미세 조정 */
+}
+
+.profile-button {
+    width: 41px;
+    height: 41px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease; /* 배경색 전환 부드럽게 */
+}
+
+.profile-button img {
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+}
+
+.profile-button:hover {
+    background-color: #CBE8FF; /* 호버 시 배경색 */
+}
+
+.dark-mode-icon img {
+    width: 20px;
+    height: 20px;
+    position: relative; /* 위치 조정을 위해 relative 속성 사용 */
+    top: -0px; /* 이미지 자체를 위로 1px 이동 */
+}

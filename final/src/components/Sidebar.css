@@ -1,0 +1,82 @@
+body {
+    font-family: 'Pretendard', Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    background-color: #fff; /* 배경색: 흰색 */
+    padding: 0;
+    box-shadow: 1px 0 1px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 22px;
+    margin-top: 22px;
+}
+
+.logo img {
+    width: 167px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* 기본 마진 없애기 */
+}
+
+.sidebar-nav ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar-nav ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #A3AED0; /* 기본 텍스트 색상 */
+    display: flex;
+    align-items: center;
+    padding: 10px 33px;
+    border-radius: 10px; /* 둥근 테두리 */
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 */
+    position: relative; /* ::after를 위치시키기 위해 relative로 설정 */
+}
+
+.sidebar-nav ul li a.active {
+    color: #072182; /* 활성화된 링크 텍스트 색상 */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 우측에 4px x 36px 바 추가 */
+.sidebar-nav ul li a.active::after {
+    content: "";
+    position: absolute;
+    right: 0; /* 우측 끝에 배치 */
+    top: 50%; /* 수직 중앙에 배치 */
+    transform: translateY(-50%); /* 수직 중앙 정렬 */
+    width: 4px;
+    height: 36px;
+    background-color: #0062E5; /* 바의 색상 */
+    border-radius: 2px; /* 바의 모서리를 둥글게 */
+}
+
+.sidebar-nav ul li a:hover {
+    background-color: #EEF7FF;
+    color: #072182; /* 호버 시 텍스트 색상 */
+}
+
+.sidebar-nav ul li a img {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px; /* 아이콘과 텍스트 사이 간격 */
+}
+
+/* 세트 간 구분선 */
+.divider {
+    border: none;
+    border-top: 1px solid #EEF7FF;
+    margin: 20px 0; /* 세트 사이의 간격 */
+}

@@ -1,0 +1,39 @@
+.dashboard-container {
+  max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
+  margin: 55px auto 0 auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
+  padding-left: 80px; /* 내부 여백을 추가할 경우 */
+  padding-right: 80px;
+  background-color: transparent; /* 배경색을 설정할 경우 */
+}
+
+
+.upper-section {
+  flex: 1; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+  margin-top: 36px;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+.left-content {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+  padding: 0px;
+  margin-right: 10px;
+}
+
+.right-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+  padding: 20px;
+  margin-left: 10px;
+}
