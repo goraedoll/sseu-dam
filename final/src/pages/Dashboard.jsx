@@ -20,6 +20,10 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="lower-section">
+<<<<<<< HEAD
+=======
+        <TodoList />
+>>>>>>> 876d9b8e031bb048e07b448d9615e15cfad86ed0
         {/* 하단 구역에 추가할 컴포넌트 */}
         <TodoList />
       </div>

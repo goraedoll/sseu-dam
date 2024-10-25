@@ -17,6 +17,7 @@ function App() {
       <div className="app-container">
         <Routes>
           {/* 로그인, 회원가입, 비밀번호 찾기 경로 */}
+          {/* 커밋용 수정 문구 */}
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
