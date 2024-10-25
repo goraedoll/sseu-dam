@@ -29,7 +29,7 @@ body {
 }
 
 .sidebar-nav ul li {
-    margin-bottom: 20px;
+    margin-bottom: px;
 }
 
 .sidebar-nav ul li a {
@@ -42,6 +42,8 @@ body {
     border-radius: 10px; /* 둥근 테두리 */
     transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 */
     position: relative; /* ::after를 위치시키기 위해 relative로 설정 */
+    width: 250px;
+    box-sizing: border-box;
 }
 
 .sidebar-nav ul li a.active {

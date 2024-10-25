@@ -8,6 +8,7 @@ import alertIcon2_1 from '../../assets/alertIcon2_1.png';
 import alertIcon2_2 from '../../assets/alertIcon2_2.png';
 import alertIcon2_3 from '../../assets/alertIcon2_3.png';
 import alertIcon2_4 from '../../assets/alertIcon2_4.png';
+import threeDot from '../../assets/threeDot.svg';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -65,7 +66,9 @@ const AlertMessages = () => {
         <>
           <div className="alert-header">
             <h1>실시간 알림 메시지</h1>
-            <button className="refresh-button">새로고침</button> {/* 버튼 추가 */}
+            <button className="refresh-button">
+              <img src={threeDot} alt="새로고침" />
+            </button>
           </div>
           <table>
             <thead>

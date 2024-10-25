@@ -38,6 +38,11 @@ table {
     cursor: pointer;
   }
   
+  .refresh-button img {
+    width: 24px;
+    height: 24px;
+  }
+  
 
 th {
     border-bottom: 1px solid #E9EDF7;
