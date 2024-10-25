@@ -33,8 +33,9 @@ body {
     align-items: center;
     width: 100%;
     max-width: 1920px;
-    height: 1080px;
-    margin: 0 auto;
+    height: 100vh;
+    min-height: 900px;
+    margin: 0px;
   }
   
   .login-form {
@@ -92,17 +93,18 @@ body {
   .form-options .left-group input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    margin-right: 0.5rem; /* 체크박스와 레이블 사이 간격 */
+    margin-right: 11px; /* 체크박스와 레이블 사이 간격 */
   }
   
   .form-options .left-group label {
     height: 12px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: medium;
+    align-items: center;
   }
   
   .form-options a {
-    margin-left: auto; /* 링크를 오른쪽에 붙이기 */
+    margin-right: 20px;
     text-decoration: none; /* 필요에 따라 밑줄 제거 */
     color: #2569ED; /* 링크 색상 설정 */
   }
