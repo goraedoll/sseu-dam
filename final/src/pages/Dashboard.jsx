@@ -4,11 +4,7 @@ import Workspace from '../components/Workspace';
 import VideoStream from '../components/VideoStream';
 import AlertMessages from '../components/AlertMessages'; // AlertMessages 컴포넌트 import
 import TodoList from '../components/TodoList';
-<<<<<<< Updated upstream
-import Calendar from '../components/Calendar';
-=======
 import CustomCalendar from '../components/Calendar/CustomCalendar';
->>>>>>> Stashed changes
 
 const Dashboard = () => {
   return (
@@ -26,10 +22,6 @@ const Dashboard = () => {
       </div>
       <div className="lower-section">
         {/* 하단 구역에 추가할 컴포넌트 */}
-<<<<<<< Updated upstream
-        <Calendar />
-        <TodoList />
-=======
         <div>
           <h1 className='lower-section-title'>간편 일지 관리</h1>
         </div>
@@ -37,7 +29,6 @@ const Dashboard = () => {
           <CustomCalendar />
           <TodoList />
         </div>
->>>>>>> Stashed changes
       </div>
     </div>
   );
