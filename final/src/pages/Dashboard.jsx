@@ -3,6 +3,7 @@ import './Dashboard.css';
 import Workspace from '../components/Workspace';
 import VideoStream from '../components/VideoStream';
 import AlertMessages from '../components/AlertMessages'; // AlertMessages 컴포넌트 import
+import TodoList from '../components/TodoList';
 
 const Dashboard = () => {
   return (
@@ -19,7 +20,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="lower-section">
-        <h1>하단 구역</h1>
+        <TodoList />
         {/* 하단 구역에 추가할 컴포넌트 */}
       </div>
     </div>
