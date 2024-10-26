@@ -24,7 +24,8 @@ const CustomCalendar = () => {
         displayStaticWrapperAs="desktop"
         value={selectedDate}
         onChange={handleDateChange} // 날짜 변경 시 모달 열기
-        renderInput={(params) => <TextField {...params} />}
+        // renderInput 제거하고 textField 사용
+        slots={{ textField: (params) => <TextField {...params} /> }}
         sx={{
           padding: '0px',
           borderRadius: '20px',

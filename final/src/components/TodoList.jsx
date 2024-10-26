@@ -1,28 +1,60 @@
-import React, { useState } from "react";
-import notesIcon from "../../assets/notes.svg"; // notes 아이콘
-import moreIcon from "../../assets/more_horiz.svg"; // 옵션 아이콘
-import checkBoxChecked from "../../assets/check_box.svg"; // 체크된 체크박스
-import checkBoxUnchecked from "../../assets/check_box_outline_blank.svg"; // 체크되지 않은 체크박스
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // 페이지 이동을 위한 useNavigate import
+import notesIcon from "../../assets/notes.svg";
+import moreIcon from "../../assets/more_horiz.svg";
+import checkBoxChecked from "../../assets/check_box.svg";
+import checkBoxUnchecked from "../../assets/check_box_outline_blank.svg";
 import "./TodoList.css";
 
 const TodoList = () => {
-  // 할일 목록 상태
-  const [tasks, setTasks] = useState([
-    { id: 1, text: "오전 인사교 병원 방문", completed: false },
-    { id: 2, text: "성인용 중형 기저귀 구매", completed: false },
-    { id: 3, text: "오전 요양 보호사 방문", completed: false },
-    { id: 4, text: "보험 연장 증빙서류 제출 준비", completed: true },
-    { id: 5, text: "엘리스 원무과 진료비 수납", completed: true },
-    { id: 6, text: "오전 요양 보호사 방문", completed: false },
-  ]);
+  const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 사용
 
-  // 체크박스 상태를 토글하는 함수
-  const toggleTask = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+  // 서버에서 tasks 데이터를 가져옴
+  useEffect(() => {
+    fetch("http://localhost:3001/api/tasks")
+      .then((response) => response.json())
+      .then((data) => {
+        // 가장 최근 8개의 데이터를 가져오기 위해 slice 사용
+        const recentTasks = data.slice(-6); // 배열의 마지막 8개 요소 선택
+        setTasks(recentTasks);
+      })
+      .catch((error) => console.error("Error fetching tasks:", error));
+  }, []);
+
+  // Task 완료 상태를 토글하는 함수
+  const toggleTask = (id, completed) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !completed } : task
     );
+    setTasks(updatedTasks);
+
+    // 서버에 업데이트 요청 보내기
+    fetch(`http://localhost:3001/api/tasks/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ completed: !completed }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Task updated successfully:", data);
+      })
+      .catch((error) => {
+        console.error("Error updating task:", error);
+        setTasks(tasks); // 오류 발생 시 상태 롤백
+      });
+  };
+
+  // 'more-options' 클릭 시 페이지 이동
+  const goToAllTasks = () => {
+    navigate("/all-tasks"); // 모든 할일 페이지로 이동
   };
 
   return (
@@ -40,7 +72,7 @@ const TodoList = () => {
             />
             <h2>오늘의 기록</h2>
           </div>
-          <div className="more-options">
+          <div className="more-options" onClick={goToAllTasks}> {/* 클릭 이벤트 추가 */}
             <img
               src={moreIcon}
               alt="더보기 아이콘"
@@ -57,10 +89,9 @@ const TodoList = () => {
             <li key={task.id} className={task.completed ? "completed" : ""}>
               <div
                 className="checkbox-icon"
-                onClick={() => toggleTask(task.id)} // 클릭하면 체크 상태 변경
+                onClick={() => toggleTask(task.id, task.completed)}
                 style={{ cursor: "pointer" }}
               >
-                {/* 체크 상태에 따라 이미지 변경 */}
                 <img
                   src={task.completed ? checkBoxChecked : checkBoxUnchecked}
                   alt={task.completed ? "Checked" : "Unchecked"}

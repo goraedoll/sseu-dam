@@ -37,6 +37,11 @@ const Sidebar = () => {
               복약 안내
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/all-tasks" className={({ isActive }) => (isActive ? "active" : "")}>
+              모든 할일 {/* 경로 추가 */}
+            </NavLink>
+          </li>
         </ul>
 
         <hr className="divider" />
