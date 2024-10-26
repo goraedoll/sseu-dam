@@ -1,8 +1,12 @@
+html {
+  overflow-y: scroll;
+}
+
 .dashboard-container {
   max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
   margin: 55px auto 0 auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
-  padding-left: 80px; /* 내부 여백을 추가할 경우 */
-  padding-right: 80px;
+  padding-left: 70px; /* 내부 여백을 추가할 경우 */
+  padding-right: 70px;
   background-color: transparent; /* 배경색을 설정할 경우 */
 }
 
@@ -69,11 +73,3 @@
   font-weight: Bold;
 }
 
-@media (min-width: 1920px) {
-  .dashboard-container {
-    max-width: 1920px; /* 화면 크기에 맞추어 최대 너비를 확장 */
-    margin: 55px 0 0 0; /* 좌측에 붙도록 설정 */
-    padding-left: 100px; /* 좌우 패딩을 100px로 고정 */
-    padding-right: 100px;
-  }
-}
