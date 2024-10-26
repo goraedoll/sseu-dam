@@ -6,12 +6,11 @@
   background-color: transparent; /* 배경색을 설정할 경우 */
 }
 
-
 .upper-section {
-  flex: 1; 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: transparent; /* 배경색을 투명으로 설정 */
   margin-top: 36px;
   padding: 0px;
@@ -19,7 +18,7 @@
 }
 
 .left-content {
-  flex: 1; 
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,4 +67,13 @@
   margin-top: 23px;
   margin-bottom: 34px;
   font-weight: Bold;
+}
+
+@media (min-width: 1920px) {
+  .dashboard-container {
+    max-width: 1920px; /* 화면 크기에 맞추어 최대 너비를 확장 */
+    margin: 55px 0 0 0; /* 좌측에 붙도록 설정 */
+    padding-left: 100px; /* 좌우 패딩을 100px로 고정 */
+    padding-right: 100px;
+  }
 }

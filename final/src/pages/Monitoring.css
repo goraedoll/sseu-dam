@@ -1,6 +1,6 @@
 .monitoring-container {
   max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
-  margin-top: 55px; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
+  margin: 55px auto 0 auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
   padding-left: 80px; /* 내부 여백을 추가할 경우 */
   padding-right: 80px;
   background-color: transparent; /* 배경색을 설정할 경우 */
@@ -13,6 +13,7 @@
   display: flex; /* 좌우 배치를 위한 flexbox */
   flex-direction: row; /* 좌우 배치 */
   justify-content: space-between; /* 두 섹션을 좌우 끝에 배치 */
+  width: 100%;
   gap: 20px; /* 좌우 섹션 간의 간격 */
 }
 
@@ -22,4 +23,13 @@
 
 .right-section-monitoring {
   width: 502px; /* 오른쪽 섹션의 너비 */
+}
+
+@media (min-width: 1920px) {
+  .monitoring-container {
+    max-width: 1920px; /* 화면 크기에 맞추어 최대 너비를 확장 */
+    margin: 55px 0 0 0; /* 좌측에 붙도록 설정 */
+    padding-left: 100px; /* 좌우 패딩을 100px로 고정 */
+    padding-right: 100px;
+  }
 }
