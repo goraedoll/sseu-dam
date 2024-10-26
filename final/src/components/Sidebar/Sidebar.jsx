@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
-import logo from '../../assets/logo2.png';
-import dashboardIcon from '../../assets/dashboardIcon.png';
-import monitoringIcon from '../../assets/moniteringIcon.png';
-import medicineIcon from '../../assets/medicineIcon.png';
-import usersIcon from '../../assets/usersIcon.png';
-import settingsIcon from '../../assets/SettingIcon.png';
+import logo from '../../../assets/logo2.png';
+import dashboardIcon from '../../../assets/dashboardIcon.png';
+import monitoringIcon from '../../../assets/moniteringIcon.png';
+import medicineIcon from '../../../assets/medicineIcon.png';
+import usersIcon from '../../../assets/usersIcon.png';
+import settingsIcon from '../../../assets/SettingIcon.png';
 
 const Sidebar = () => {
   return (
@@ -39,7 +39,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink to="/all-tasks" className={({ isActive }) => (isActive ? "active" : "")}>
-              모든 할일 {/* 경로 추가 */}
+              상세 정보 {/* 경로 추가 */}
             </NavLink>
           </li>
         </ul>

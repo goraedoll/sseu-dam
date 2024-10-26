@@ -9,7 +9,7 @@ import CustomCalendar from '../components/Calendar/CustomCalendar';
 const Dashboard = () => {
   return (
     <div className="dashboard-container">
-      <Workspace />
+      <Workspace pageText="페이지/모니터링" mainText="모니터링 대시보드" />
       <div className="upper-section">
         <div className="left-content">
           {/* 좌측 구역에 추가할 컴포넌트 */}

@@ -1,0 +1,80 @@
+.mini-video-stream-container {
+    width: 826px;
+    height: 692x;
+    border-radius: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px;
+    box-sizing: border-box;
+  }
+  
+  .video-stream-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    height: 28px;
+  }
+  
+  .stream-title {
+    color: #0231A6;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: normal;
+    font-weight: 600;
+    line-height: 100%;
+  }
+  
+  .mode-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mode-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .stream-mode {
+    font-size: 20px;
+    color: #8f95b5;
+  }
+  
+  .video-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 770px;
+    height: 571px;
+    border-radius: 20px;
+    background-color: #cccccc;
+    object-fit: cover;
+    position: relative;
+    
+  }
+  
+  .video-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .no-signal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #cccccc; /* 신호 없을 때의 배경색 */
+    color: #ffffff; /* 신호 없음 텍스트 색상 */
+    font-size: 24px;
+}
+
+  
+
+  

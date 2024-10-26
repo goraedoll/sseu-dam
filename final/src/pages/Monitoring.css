@@ -1,11 +1,25 @@
-body {
-    background-color: #f4f7fe;
-    margin: 0;
-    padding: 0;
-    font-family: 'Pretendard', sans-serif; /* 폰트 설정 */
-  }
-  
-  .app-container {
-    min-height: 100vh; /* 페이지 전체 높이 채우기 */
-  }
-  
+.monitoring-container {
+  max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
+  margin-top: 55px; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
+  padding-left: 80px; /* 내부 여백을 추가할 경우 */
+  padding-right: 80px;
+  background-color: transparent; /* 배경색을 설정할 경우 */
+  display: flex;
+  flex-direction: column; /* 세로로 배치 */
+  gap: 36px; /* 섹션 사이 간격 */
+}
+
+.content-section-monitoring {
+  display: flex; /* 좌우 배치를 위한 flexbox */
+  flex-direction: row; /* 좌우 배치 */
+  justify-content: space-between; /* 두 섹션을 좌우 끝에 배치 */
+  gap: 20px; /* 좌우 섹션 간의 간격 */
+}
+
+.left-section-monitoring {
+  width: 826px; /* 왼쪽 섹션의 너비 */
+}
+
+.right-section-monitoring {
+  width: 502px; /* 오른쪽 섹션의 너비 */
+}

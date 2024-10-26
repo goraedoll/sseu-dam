@@ -1,10 +1,10 @@
 import React from 'react';
 import './HeaderButtons.css';
-import searchIcon from '../../assets/buttonIcon0.png'; // 검색 아이콘 경로
-import alarmIcon from '../../assets/buttonIcon1.png'; // 알람 아이콘 경로
-import darkModeIcon from '../../assets/buttonIcon2.png'; // 다크모드 아이콘 경로
-import infoIcon from '../../assets/buttonIcon3.png'; // 정보 아이콘 경로
-import profileIcon from '../../assets/Avatar1.png'; // 프로필 이미지 경로
+import searchIcon from '../../../assets/buttonIcon0.png'; // 검색 아이콘 경로
+import alarmIcon from '../../../assets/buttonIcon1.png'; // 알람 아이콘 경로
+import darkModeIcon from '../../../assets/buttonIcon2.png'; // 다크모드 아이콘 경로
+import infoIcon from '../../../assets/buttonIcon3.png'; // 정보 아이콘 경로
+import profileIcon from '../../../assets/Avatar1.png'; // 프로필 이미지 경로
 
 const HeaderButtons = () => {
   return (
