@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './AlertMessages.css';
-import alertIcon1_1 from '../../assets/alertIcon1_1.png'; // example icon import
+import alertIcon1_1 from '../../assets/alertIcon1_1.png'; 
 import alertIcon1_2 from '../../assets/alertIcon1_2.png';
 import alertIcon1_3 from '../../assets/alertIcon1_3.png';
 import alertIcon2_1 from '../../assets/alertIcon2_1.png';
@@ -12,13 +12,9 @@ import threeDot from '../../assets/threeDot.svg';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-
-  // 첫 번째 구역: 년도 2글자, 월 2글자, 일 2글자
   const year = date.getFullYear().toString().slice(-2); 
   const month = ('0' + (date.getMonth() + 1)).slice(-2); 
   const day = ('0' + date.getDate()).slice(-2); 
-
-  // 두 번째 구역: 24시간 단위 시간과 분
   const hours = ('0' + date.getHours()).slice(-2); 
   const minutes = ('0' + date.getMinutes()).slice(-2); 
 
@@ -32,7 +28,15 @@ const AlertMessages = () => {
   useEffect(() => {
     axios.get('http://localhost:3001/alerts')
       .then(response => {
-        setAlerts(response.data);
+        const data = response.data;
+
+        // 'is_deleted'가 0인 항목만 필터링하고 최신 순으로 정렬
+        const filteredAlerts = data
+          .filter(alert => alert.is_deleted === 0) // 삭제되지 않은 항목만
+          .sort((a, b) => new Date(b.date) - new Date(a.date)) // 날짜 내림차순 정렬
+          .slice(0, 7); // 상위 7개만 가져오기
+
+        setAlerts(filteredAlerts);
         setDbError(false);
       })
       .catch(error => {
@@ -54,9 +58,6 @@ const AlertMessages = () => {
         return alertIcon2_4;
     }
   };
-
-  // 최근 8개의 알람만 표시하기 위해 데이터를 slice 처리
-  const recentAlerts = alerts.slice(0, 7);
 
   return (
     <div className="alert-container">
@@ -80,7 +81,7 @@ const AlertMessages = () => {
             </thead>
             
             <tbody>
-              {recentAlerts.map((alert) => (
+              {alerts.map((alert) => (
                 <tr key={alert.id}>
                   <td className="status-cell">
                     <img src={getStatusIcon(alert.status)} alt="alert icon" />
