@@ -1,0 +1,33 @@
+.web-link-container {
+    width: 826px;
+    height: 400px;
+    display: flex;
+    justify-content: space-between; /* To create a gap between cards */
+  }
+  
+  .card-button {
+    width: 262px;
+    height: 400px;
+    background-color: #fff; /* Placeholder color */
+    border-radius: 20px; /* Optional: to round the corners */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    padding-top: 20px;
+    text-decoration: none;
+  }
+
+  .card-button h1 {
+    margin-top: 10px;
+  }
+
+  .card-button h4 {
+    margin: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #A3AED0;
+    font-weight: 400;
+  }
+  

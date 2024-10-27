@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Workspace from "../components/Workspace";
+import './AllTasks.css'
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -11,12 +13,12 @@ const AllTasks = () => {
   }, []);
 
   return (
-    <div>
-      <h1>모든 할일 목록</h1>
-      <ul>
+    <div className="alltasks-container">
+      <Workspace pageText="상세 정보/모든 정보" mainText="상세 정보" />
+      <ul className="tasks-list">
         {tasks.map((task) => (
-          <li key={task.id}>
-            {task.text} - {task.completed ? "완료됨" : "미완료"}
+          <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+            {task.text} - <span>{task.completed ? "완료됨" : "미완료"}</span>
           </li>
         ))}
       </ul>

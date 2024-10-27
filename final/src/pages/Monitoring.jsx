@@ -4,6 +4,7 @@ import Workspace from '../components/Workspace';
 import MiniVideoStream from '../components/MiniVideoStream/MiniVideoStream';
 import IconMessage from '../components/IconMessage/IconMessage';
 import MiniAlertMessages from '../components/MiniAlertMessages/MiniAlertMesages'
+import WebLink from '../components/WebLink/WebLink';
 
 const Monitoring = () => {
   return (
@@ -13,6 +14,7 @@ const Monitoring = () => {
       <div className="content-section-monitoring">
         <div className="left-section-monitoring">
           <MiniVideoStream />
+          <WebLink />
         </div>
         <div className="right-section-monitoring">
           <IconMessage />

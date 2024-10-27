@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
-import logo from '../../../assets/logo2.png';
-import dashboardIcon from '../../../assets/dashboardIcon.png';
-import monitoringIcon from '../../../assets/moniteringIcon.png';
-import medicineIcon from '../../../assets/medicineIcon.png';
-import usersIcon from '../../../assets/usersIcon.png';
-import settingsIcon from '../../../assets/SettingIcon.png';
+import logo from '../../../assets/SidebarIcons/logo2.png';
+import dashboardIcon from '../../../assets/SidebarIcons/dashboardIcon.svg';
+import monitoringIcon from '../../../assets/SidebarIcons/moniteringIcon.svg';
+import medicineIcon from '../../../assets/SidebarIcons/medicineIcon.svg';
+import usersIcon from '../../../assets/SidebarIcons/usersIcon.svg';
+import settingsIcon from '../../../assets/SidebarIcons/SettingIcon.svg';
+import approveIcon from '../../../assets/SidebarIcons/approveIcon.svg';
 
 const Sidebar = () => {
   return (
@@ -39,6 +40,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink to="/all-tasks" className={({ isActive }) => (isActive ? "active" : "")}>
+              <img src={approveIcon} alt="Approve Icon" />
               상세 정보 {/* 경로 추가 */}
             </NavLink>
           </li>

@@ -22,12 +22,37 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+html, body {
+  height: 100%; /* html과 body의 높이를 100%로 설정 */
   margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', sans-serif; /* 폰트 변경 */
+}
+
+#root, .app-container {
+  height: 100%;
+  display: flex; /* 부모 컨테이너의 전체 높이 설정 */
+  flex-direction: column;
+}
+
+.layout {
   display: flex;
-  place-items: center;
+  min-height: 100vh; /* 레이아웃이 전체 화면을 차지하도록 설정 */
+}
+
+.sidebar {
+  min-height: 100vh; /* 사이드바의 최소 높이를 전체 화면으로 설정 */
+  flex-shrink: 0;
+}
+
+body {
   min-width: 320px;
   min-height: 100vh;
+  background-color: #f4f7fe; /* 백그라운드 색상 */
+}
+
+.content {
+  flex-grow: 1; /* 콘텐츠 영역이 나머지 공간을 차지하도록 설정 */
 }
 
 h1 {

@@ -1,35 +1,20 @@
-/* 전체 화면을 flex 레이아웃으로 설정 */
-.app-container {
-    display: flex;
-    flex-direction: column; /* 수직 정렬 */
-    height: 100vh;
-  }
-  
-  /* 사이드바와 콘텐츠를 나란히 배치하는 레이아웃 */
-  .layout {
-    display: flex; /* 사이드바와 대시보드를 나란히 배치 */
-    height: 100vh; /* 화면 전체 높이 */
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #fff;
-    padding: 0px;
-  }
-  
-  .content {
-    flex: 1; /* 나머지 공간을 대시보드가 채우도록 */
-    padding: 0px;
-  }
-  
-  body {
-    background-color: #f4f7fe;
-    margin: 0px;
-    padding: 0px;
-    font-family:  'Pretendard', sans-serif;
-  }
+html, body, #root, .app-container {
+  height: 100%; /* 전체 높이를 100%로 설정 */
+  margin: 0;
+  padding: 0;
+}
 
-  .app-container {
-    min-height: 100vh;
-  }
-  
+.layout {
+  display: flex;
+  height: 120%; /* 부모 컨테이너의 전체 높이를 차지하도록 설정 */
+}
+
+.content {
+  flex-grow: 1; /* 나머지 공간을 콘텐츠가 채우도록 설정 */
+  padding: 0;
+}
+
+body {
+  background-color: #f4f7fe;
+  font-family: 'Pretendard', sans-serif;
+}
