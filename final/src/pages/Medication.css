@@ -1,11 +1,48 @@
-body {
-    background-color: #f4f7fe;
-    margin: 0;
-    padding: 0;
-    font-family: 'Pretendard', sans-serif; /* 폰트 설정 */
-  }
-  
-  .app-container {
-    min-height: 100vh; /* 페이지 전체 높이 채우기 */
-  }
-  
+html {
+  overflow-y: scroll;
+}
+
+.medication-management {
+  max-width: 1350px;
+  margin: 55px auto 0px auto;
+  padding-left: 320px;
+  padding-right: 70px;
+  background-color: transparent;
+}
+
+.medication-upper-section {
+  display: flex;
+  background-color: #fff;
+  border-radius: 20px;
+  flex-direction: column; /* 위에서 아래로 정렬 */
+  width: 1348px;
+  height: 472px;
+  align-items: flex-start; /* 상단에 맞추어 정렬 */
+  gap: 0px; /* 위와 아래 요소들 간의 간격 */
+  flex-shrink: 0;
+}
+
+.medication-upper-section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0231A6;
+  margin-bottom: 20px;
+}
+
+.medication-content-section {
+  display: flex;
+  gap: 20px;
+}
+
+.medication-lower-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; /* 요소들을 왼쪽부터 정렬 */
+  align-items: flex-start; /* 요소들을 상단에서부터 정렬 */
+  gap: 20px; /* 요소 간의 간격 설정 */
+  background-color: transparent;
+  margin-top: 36px;
+  padding: 0px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* 요소들이 여러 줄로 배치되게 함 */
+}

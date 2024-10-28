@@ -9,8 +9,8 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
-    z-index: 9999; /* 최상단 레이어로 설정 */
-}
+    z-index: 999; /* 최상단 레이어로 설정 */
+}i
 
 .notification.show {
     opacity: 1;

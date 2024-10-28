@@ -6,7 +6,7 @@ html, body, #root, .app-container {
 
 .layout {
   display: flex;
-  height: 120%; /* 부모 컨테이너의 전체 높이를 차지하도록 설정 */
+  height: 100%; /* 부모 컨테이너의 전체 높이를 차지하도록 설정 */
 }
 
 .content {

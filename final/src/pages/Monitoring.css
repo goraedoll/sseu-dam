@@ -4,8 +4,8 @@ html {
 
 .monitoring-container {
   max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
-  margin: 55px auto 0 auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
-  padding-left: 70px; /* 내부 여백을 추가할 경우 */
+  margin: 55px auto 0px auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
+  padding-left: 320px; /* 내부 여백을 추가할 경우 */
   padding-right: 70px;
   background-color: transparent; /* 배경색을 설정할 경우 */
   display: flex;
