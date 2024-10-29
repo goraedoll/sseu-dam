@@ -7,7 +7,7 @@ import MedicationInfo from '../components/MedicationInfo/MedicationInfo';
 
 const Medication = () => {
   return (
-    <div className="medication-management">
+    <div className="medication-container">
       <Workspace pageText="페이지/모니터링" mainText="모니터링 대시보드" />
       <div className="medication-upper-section">
         <div>

@@ -43,7 +43,7 @@ const Sidebar = () => {
           <li>
             <NavLink to="/all-tasks" className={({ isActive }) => (isActive ? "active" : "")}>
               <img src={approveIcon} alt="Approve Icon" />
-              상세 정보 {/* 경로 추가 */}
+              전체 할일 {/* 경로 추가 */}
             </NavLink>
           </li>
         </ul>

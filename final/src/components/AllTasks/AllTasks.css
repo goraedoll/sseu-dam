@@ -1,0 +1,116 @@
+.alltasks-container {
+  margin: 0px;
+}
+
+.alltasks-container-title {
+  margin: 0px;
+  padding: 28px; 
+}
+
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tasks-table th,
+.tasks-table td {
+  padding: 24x;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 헤더 스타일 설정 */
+.tasks-table th.column-id {
+  width: 50px; 
+}
+
+.tasks-table th.column-text {
+  width: 500px;
+  text-align: left;
+}
+
+.tasks-table th.column-completed {
+  width: 50px; 
+}
+
+.tasks-table th.column-date {
+  width: 100px; 
+}
+
+/* thead 스타일 */
+.tasks-table th {
+  font-weight: bold;
+  color: #A3AED0;
+  border-bottom: 1px solid #E9EDF7;
+}
+
+/* tbody 각 열 스타일 */
+.tasks-tbody .row-id {
+  width: 50px;
+  color: #0231A6;
+}
+
+.tasks-tbody .row-text {
+  width: 500px;
+  text-align: left;
+  color: #072182;
+}
+
+.tasks-tbody .row-completed {
+  width: 100%;
+  color: #28A745;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tasks-tbody .row-date {
+  width: 100px;
+}
+
+/* 완료된 항목 스타일 */
+.task-item.completed td {
+  background-color: #e0ffe0;
+}
+
+/* 페이지네이션 버튼 스타일 */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #072182;
+  color: white;
+  border-color: #072182;
+}
+
+.pagination button:hover {
+  background-color: #e9edf7;
+}
+
+.checkbox-icon {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.checkbox-icon img {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

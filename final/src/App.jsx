@@ -9,7 +9,7 @@ import Monitoring from './pages/Monitoring';
 import Medication from './pages/Medication';
 import CustomerManagement from './pages/CustomerManagement';
 import Settings from './pages/Settings';
-import AllTasks from './pages/AllTasks';
+import AllTasks from './pages/AllTasksPage';
 import Notification from './components/Notification/Notification'; // 알림 컴포넌트 import
 import './App.css';
 

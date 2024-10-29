@@ -99,3 +99,10 @@ li.completed span {
   display: flex;
   align-items: center; /* 아이템을 수직으로 중앙 정렬 */
 }
+
+.checkbox-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
