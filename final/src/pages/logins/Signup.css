@@ -1,5 +1,5 @@
 body {
-  font-family: 'Pretendard', Arial, sans-serif;
+  font-family: "Pretendard", Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,27 +14,29 @@ body {
 }
 
 .signup-container h2 {
-  font-size: 44px;
+  font-size: 36px;
   font-weight: bold;
-  color: #2569ED;
+  color: #2569ed;
   margin-bottom: 2rem;
 }
 
 .signup-container label {
   font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
   display: block;
+  color: #2b3674;
 }
 
 .signup-container input,
 .signup-container textarea {
   width: 100%;
   padding: 0.75rem;
+  padding-left: 24px; /* 플레이스홀더를 오른쪽으로 살짝 이동 */
   margin-bottom: 1.5rem;
   border-radius: 16px; /* 모든 input과 textarea에 radius 통일 */
-  border: 1px solid #ccc;
-  font-family: 'Pretendard', Arial, sans-serif;
+  border: 1px solid #e0e5f2;
+  font-family: "Pretendard", Arial, sans-serif;
   box-sizing: border-box;
   resize: none; /* textarea 크기 조절 방지 */
 }
@@ -45,13 +47,13 @@ body {
 }
 
 .signup-button {
-  font-family: 'Pretendard', Arial, sans-serif;
+  font-family: "Pretendard", Arial, sans-serif;
   font-size: 20px;
   font-weight: 600;
   width: 100%;
   padding: 1rem;
   border-radius: 16px;
-  background-color: #2569ED;
+  background-color: #2569ed;
   color: white;
   border: none;
   border-radius: 16px; /* 버튼의 radius 통일 */
@@ -59,7 +61,7 @@ body {
 }
 
 .signup-button:hover {
-  background-color: #2569ED;
+  background-color: #2569ed;
 }
 
 .signup-header {
@@ -71,17 +73,24 @@ body {
 
 .home-button {
   font-size: 20px;
-  font-family: 'Pretendard', Arial, sans-serif;
-  font-weight: 700;
+  font-family: "Pretendard", Arial, sans-serif;
+  font-weight: 500;
   align-content: center;
-  color: #2569ED;
+  color: #2569ed;
   text-decoration: none;
-  border: 1px solid #2569ED;
+  border: 1px solid #2569ed;
   border-radius: 16px; /* 홈 버튼도 radius 통일 */
-  padding: 1rem;
+  padding: 0.8rem;
 }
 
 .home-button:hover {
-  background-color: #2569ED;
+  background-color: #2569ed;
   color: white;
+}
+
+/* 모든 input과 textarea의 placeholder 색상 변경 */
+.signup-container input::placeholder,
+.signup-container textarea::placeholder {
+  color: #a3aed0; /* 원하는 색상으로 변경 */
+  opacity: 1; /* 필요 시 플레이스홀더의 투명도를 조절 (기본값은 약간 투명함) */
 }
