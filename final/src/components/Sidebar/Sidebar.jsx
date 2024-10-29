@@ -13,7 +13,9 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <NavLink to='/dashboard'>
+          <img src={logo} alt="Logo" />
+        </NavLink>
       </div>
 
       <hr className="divider" />

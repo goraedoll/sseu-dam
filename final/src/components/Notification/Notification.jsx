@@ -1,14 +1,19 @@
-// Notification.jsx
 import React, { useEffect } from 'react';
 import './Notification.css';
-import notificationSound from '../../../assets/notification-sound.mp3'; // 소리 파일 추가
+import notificationSound from '../../../assets/notification-sound.mp3';
 
 const Notification = ({ message }) => {
   useEffect(() => {
     if (message) {
-      // 알림 소리 재생
       const audio = new Audio(notificationSound);
       audio.play();
+
+      // 일정 시간 후 알림 제거
+      const timer = setTimeout(() => {
+        document.querySelector('.notification').classList.remove('show');
+      }, 5000); // 5초 후에 알림 숨기기
+
+      return () => clearTimeout(timer);
     }
   }, [message]);
 

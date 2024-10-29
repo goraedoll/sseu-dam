@@ -2,40 +2,37 @@ import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import Workspace from '../components/Workspace';
 import VideoStream from '../components/VideoStream';
-import AlertMessages from '../components/AlertMessages';
+import AlertMessages from '../components/AlertMessages/AlertMessages';
 import TodoList from '../components/TodoList';
 import CustomCalendar from '../components/Calendar/CustomCalendar';
-import axios from 'axios'; // axios로 API 호출
+import Notification from '../components/Notification/Notification';
+import axios from 'axios';
 
-const Dashboard = ({ showNotification }) => {
-  const [latestAlert, setLatestAlert] = useState(null);
+const Dashboard = () => {
+  const [latestAlert, setLatestAlert] = useState('');
 
   useEffect(() => {
-    // 주기적으로 최신 알림을 가져오는 함수
     const fetchLatestAlert = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/latest-alert'); // 최신 알림 가져오기
+        const response = await axios.get('http://localhost:3001/latest-alert');
         const alertData = response.data;
 
-        // 알림의 상태가 '응급 상황'이면 알림을 표시
         if (alertData && alertData.status === '응급 상황') {
-          showNotification('응급 상황 발생! 주의하세요.');
-        } else {
-          showNotification(''); // 다른 상태면 알림을 제거
-        }
+          setLatestAlert('응급 상황 발생! 주의하세요.');
 
-        setLatestAlert(alertData);
+          // 일정 시간 후에 알림 초기화
+          setTimeout(() => {
+            setLatestAlert('');
+          }, 5000); // 5초 후에 알림 지우기
+        }
       } catch (error) {
         console.error('최신 알림 가져오기 실패:', error);
       }
     };
 
-    // 5초마다 최신 알림을 가져오는 주기 설정
     const interval = setInterval(fetchLatestAlert, 5000);
-
-    // 컴포넌트가 unmount될 때 interval 정리
     return () => clearInterval(interval);
-  }, [showNotification]);
+  }, []);
 
   return (
     <div className="dashboard-container">
@@ -57,6 +54,7 @@ const Dashboard = ({ showNotification }) => {
           <TodoList />
         </div>
       </div>
+      <Notification message={latestAlert} /> {/* Notification 컴포넌트에 latestAlert 전달 */}
     </div>
   );
 };

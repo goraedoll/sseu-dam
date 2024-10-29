@@ -1,11 +1,9 @@
+// src/components/MiniAlertMessages/MiniAlertMessages.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './MiniAlertMessages.css';
-import alertIcon1_1 from '../../../assets/alertIcon1_1.png';
-import alertIcon1_2 from '../../../assets/alertIcon1_2.png';
-import alertIcon1_3 from '../../../assets/alertIcon1_3.png';
-import alertIcon2_4 from '../../../assets/alertIcon2_4.png';
-import threeDot from '../../../assets/threeDot.svg';
+import threeDot from '../../../assets/AlertMessages/threeDot.svg';
+import getStatusIcon from './utils/iconMapper';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -33,20 +31,6 @@ const MiniAlertMessages = () => {
         setDbError(true);
       });
   }, []);
-
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case '낙상 사고':
-        return alertIcon1_1;
-      case '낙상 주의':
-        return alertIcon1_2;
-      case '복약 시간':
-      case '요청 사항':
-        return alertIcon1_3;
-      default:
-        return alertIcon2_4;
-    }
-  };
 
   const recentAlerts = alerts.slice(0, 3);
 

@@ -1,6 +1,6 @@
 import React from "react";
 import './IconMessage.css';
-import threeDot from '../../../assets/threeDot.svg'
+import threeDot from '../../../assets/AlertMessages/threeDot.svg'
 import cautionSign from '../../../assets/Caution Sign.png'; // 이미지를 import로 명시적으로 가져옴
 
 const IconMessage = () => {
