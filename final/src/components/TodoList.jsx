@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // 페이지 이동을 위한 useNavigate import
+import { useNavigate } from "react-router-dom";
 import notesIcon from "../../assets/notes.svg";
 import moreIcon from "../../assets/more_horiz.svg";
 import checkBoxChecked from "../../assets/check_box.svg";
@@ -8,29 +8,31 @@ import "./TodoList.css";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
-  const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 사용
+  const navigate = useNavigate();
 
   // 서버에서 tasks 데이터를 가져옴
   useEffect(() => {
     fetch("http://localhost:3001/api/tasks")
       .then((response) => response.json())
       .then((data) => {
-        // 가장 최근 8개의 데이터를 가져오기 위해 slice 사용
-        const recentTasks = data.slice(-6); // 배열의 마지막 8개 요소 선택
-        setTasks(recentTasks);
+        // 데이터를 ID 기준으로 역순 정렬하여 가져옴
+        const sortedTasks = data.sort((a, b) => b.id - a.id);
+        // 최근 6개의 데이터만 가져오기
+        setTasks(sortedTasks.slice(0, 6));
       })
       .catch((error) => console.error("Error fetching tasks:", error));
   }, []);
 
   // Task 완료 상태를 토글하는 함수
   const toggleTask = (id, completed) => {
+    // 임시로 상태 업데이트
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, completed: !completed } : task
     );
     setTasks(updatedTasks);
 
     // 서버에 업데이트 요청 보내기
-    fetch(`http://localhost:3001/api/tasks/${id}`, {
+    fetch(`http://localhost:3001/api/tasks/${id}/completed`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +56,7 @@ const TodoList = () => {
 
   // 'more-options' 클릭 시 페이지 이동
   const goToAllTasks = () => {
-    navigate("/all-tasks"); // 모든 할일 페이지로 이동
+    navigate("/all-tasks");
   };
 
   return (
@@ -72,7 +74,7 @@ const TodoList = () => {
             />
             <h2>오늘의 기록</h2>
           </div>
-          <div className="more-options" onClick={goToAllTasks}> {/* 클릭 이벤트 추가 */}
+          <div className="more-options" onClick={goToAllTasks}>
             <img
               src={moreIcon}
               alt="더보기 아이콘"
