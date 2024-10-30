@@ -1,6 +1,6 @@
-.mini-video-stream-container {
+.video-stream-container {
   width: 826px;
-  height: 692x;
+  height: 520px;
   border-radius: 20px;
   background-color: #fff;
   display: flex;
@@ -10,21 +10,22 @@
   box-sizing: border-box;
 }
 
+/* 위 구역 */
 .video-stream-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
   height: 28px;
 }
 
 .stream-title {
-  color: #0231a6;
+  color: var(--blue-800, #0231a6);
   font-family: Pretendard;
   font-size: 24px;
-  font-weight: normal;
+  font-style: normal;
   font-weight: 600;
-  line-height: 100%;
+  line-height: 100%; /* 24px */
 }
 
 .mode-container {
@@ -37,29 +38,30 @@
   height: 24px;
   margin-left: 8px;
 }
-
 .stream-mode {
   font-size: 20px;
-  color: #8f95b5;
+  color: #8f95b5; /* 예시 색상 */
+  margin: 0;
 }
 
+/* 아래 구역 */
 .video-display {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 770px;
-  height: 571px;
+  height: 403px;
   border-radius: 20px;
-  background-color: #cccccc;
+  background-color: #cccccc; /* 기본 회색 배경 */
   object-fit: cover;
   position: relative;
 }
 
 .video-image {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
-  object-fit: cover;
+  object-fit: cover; /* 이미지가 공간을 채우도록 설정 */
 }
 
 .no-signal {

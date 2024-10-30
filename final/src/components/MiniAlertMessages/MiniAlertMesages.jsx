@@ -1,17 +1,17 @@
 // src/components/MiniAlertMessages/MiniAlertMessages.jsx
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './MiniAlertMessages.css';
-import threeDot from '../../../assets/AlertMessages/threeDot.svg';
-import getStatusIcon from './utils/iconMapper';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./MiniAlertMessages.css";
+import threeDot from "../../assets/icons/alert-threeDot.svg";
+import getStatusIcon from "./utils/iconMapper";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const year = date.getFullYear().toString().slice(-2); 
-  const month = ('0' + (date.getMonth() + 1)).slice(-2); 
-  const day = ('0' + date.getDate()).slice(-2); 
-  const hours = ('0' + date.getHours()).slice(-2); 
-  const minutes = ('0' + date.getMinutes()).slice(-2); 
+  const year = date.getFullYear().toString().slice(-2);
+  const month = ("0" + (date.getMonth() + 1)).slice(-2);
+  const day = ("0" + date.getDate()).slice(-2);
+  const hours = ("0" + date.getHours()).slice(-2);
+  const minutes = ("0" + date.getMinutes()).slice(-2);
 
   return `${year}.${month}.${day} ${hours}:${minutes}`;
 };
@@ -21,13 +21,14 @@ const MiniAlertMessages = () => {
   const [dbError, setDbError] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/alerts')
-      .then(response => {
+    axios
+      .get("http://localhost:3001/alerts")
+      .then((response) => {
         setAlerts(response.data);
         setDbError(false);
       })
-      .catch(error => {
-        console.error('Failed to load data:', error);
+      .catch((error) => {
+        console.error("Failed to load data:", error);
         setDbError(true);
       });
   }, []);
@@ -37,7 +38,9 @@ const MiniAlertMessages = () => {
   return (
     <div className="mini-alert-container">
       {dbError ? (
-        <div className="mini-alert-error">데이터베이스에 연결할 수 없습니다.</div>
+        <div className="mini-alert-error">
+          데이터베이스에 연결할 수 없습니다.
+        </div>
       ) : (
         <>
           <div className="mini-alert-header">
@@ -48,7 +51,7 @@ const MiniAlertMessages = () => {
           </div>
 
           <hr className="mini-divider" />
-          
+
           <table className="mini-table">
             <tbody>
               {recentAlerts.map((alert) => (

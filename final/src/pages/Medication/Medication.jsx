@@ -1,9 +1,9 @@
-import React from 'react';
-import './Medication.css';
-import Workspace from '../components/Workspace';
-import CustomCalendar from '../components/Calendar/CustomCalendar';
-import TodoList from '../components/TodoList';
-import MedicationInfo from '../components/MedicationInfo/MedicationInfo';
+import React from "react";
+import "./Medication.css";
+import Workspace from "../../components/Workspace/Workspace";
+import CustomCalendar from "../../components/Calendar/CustomCalendar";
+import TodoList from "../../components/TodoList/TodoList";
+import MedicationInfo from "../../components/MedicationInfo/MedicationInfo";
 
 const Medication = () => {
   return (
