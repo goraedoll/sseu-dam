@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import "./Login.css";
-import logo from "../../../assets/logo.png";
+import logo from "../../assets/images/login-logo.png"; // logo.png를 import
 import { Link } from "react-router-dom";
-import { API_BASE_URL } from "../../config"; // config.js 경로에 맞게 수정
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -49,8 +47,6 @@ const Login = () => {
             name="username"
             required
             placeholder="아이디를 입력해주세요."
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
           />
 
           <label htmlFor="password">비밀번호</label>
@@ -60,18 +56,11 @@ const Login = () => {
             name="password"
             required
             placeholder="비밀번호를 입력해 주세요."
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
 
           <div className="form-options">
             <div className="left-group">
-              <input
-                type="checkbox"
-                id="remember-me"
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-              />
+              <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">로그인 상태 유지하기</label>
             </div>
             <Link to="/forgot-password" className="forgot-password-link">

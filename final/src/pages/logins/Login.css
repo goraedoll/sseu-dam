@@ -149,7 +149,7 @@ body {
 
 .login-image {
   flex: 1;
-  background-image: url("../assets/login-page-image.png"); /* 이미지 경로 설정 */
+  background-image: url("../../assets/images/login-cloud.png"); /* 이미지 경로 설정 */
   background-size: cover;
   background-position: center;
   width: 965px;

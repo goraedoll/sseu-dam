@@ -1,7 +1,7 @@
 import React from "react";
 import "./AllTasksPage.css";
-import Workspace from "../components/Workspace.jsx";
-import AllTasks from "../components/AllTasks/AllTasks.jsx";
+import Workspace from "../../components/Workspace/Workspace.jsx";
+import AllTasks from "../../components/AllTasks/AllTasks.jsx";
 
 const AllTaskPage = () => {
   return (

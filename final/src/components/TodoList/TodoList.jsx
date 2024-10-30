@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import notesIcon from "../../assets/notes.svg";
-import moreIcon from "../../assets/more_horiz.svg";
-import checkBoxChecked from "../../assets/check_box.svg";
-import checkBoxUnchecked from "../../assets/check_box_outline_blank.svg";
+import notesIcon from "../../assets/icons/todo-note.svg";
+import moreIcon from "../../assets/icons/todo-threedot.svg";
+import checkBoxChecked from "../../assets/icons/todo-check.svg";
+import checkBoxUnchecked from "../../assets/icons/todo-noncheck.svg";
 import "./TodoList.css";
 
 const TodoList = () => {

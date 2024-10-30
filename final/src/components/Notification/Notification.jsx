@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import './Notification.css';
-import notificationSound from '../../../assets/notification-sound.mp3';
+import React, { useEffect } from "react";
+import "./Notification.css";
+import notificationSound from "../../assets/sounds/notification-sound.mp3";
 
 const Notification = ({ message }) => {
   useEffect(() => {
@@ -10,7 +10,7 @@ const Notification = ({ message }) => {
 
       // 일정 시간 후 알림 제거
       const timer = setTimeout(() => {
-        document.querySelector('.notification').classList.remove('show');
+        document.querySelector(".notification").classList.remove("show");
       }, 5000); // 5초 후에 알림 숨기기
 
       return () => clearTimeout(timer);
@@ -18,9 +18,7 @@ const Notification = ({ message }) => {
   }, [message]);
 
   return (
-    <div className={`notification ${message ? 'show' : ''}`}>
-      {message}
-    </div>
+    <div className={`notification ${message ? "show" : ""}`}>{message}</div>
   );
 };
 

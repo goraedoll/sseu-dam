@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import checkBoxChecked from "../../../assets/check_box.svg";
-import checkBoxUnchecked from "../../../assets/check_box_outline_blank.svg";
-import correctionIcon from "../../../assets/AllTasks/correctionIcon.svg"; // 수정 및 저장 아이콘
-import deleteIcon from "../../../assets/AllTasks/deleteIcon.svg"; // 삭제 아이콘
-import './AllTasks.css';
+import checkBoxChecked from "../../assets/icons/alltask-check.svg";
+import checkBoxUnchecked from "../../assets/icons/todo-noncheck.svg";
+import correctionIcon from "../../assets/icons/alltask-correction.svg"; // 수정 및 저장 아이콘
+import deleteIcon from "../../assets/icons/alltask-delete.svg"; // 삭제 아이콘
+import "./AllTasks.css";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [editMode, setEditMode] = useState(null); // 현재 수정 중인 항목의 ID
-  const [editText, setEditText] = useState(''); // 수정할 텍스트 저장
+  const [editText, setEditText] = useState(""); // 수정할 텍스트 저장
   const [deleteConfirm, setDeleteConfirm] = useState(null); // 삭제 확인 모달 상태
   const tasksPerPage = 9;
 
@@ -58,7 +58,7 @@ const AllTasks = () => {
         body: JSON.stringify({ text: editText }),
       });
       setEditMode(null);
-      setEditText('');
+      setEditText("");
       fetchTasks();
     } catch (error) {
       console.error("Error editing task:", error);
@@ -94,7 +94,10 @@ const AllTasks = () => {
         </thead>
         <tbody className="tasks-tbody">
           {currentTasks.map((task) => (
-            <tr key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+            <tr
+              key={task.id}
+              className={`task-item ${task.completed ? "completed" : ""}`}
+            >
               <td className="row-id">{task.id}</td>
               <td className="row-text">
                 {editMode === task.id ? (
@@ -123,7 +126,9 @@ const AllTasks = () => {
                   />
                 </div>
               </td>
-              <td className="row-date">{new Date(task.CreatedAt).toLocaleDateString()}</td>
+              <td className="row-date">
+                {new Date(task.CreatedAt).toLocaleDateString()}
+              </td>
               <td className="row-tools">
                 <div className="tool-icons">
                   {editMode === task.id ? (
@@ -159,7 +164,7 @@ const AllTasks = () => {
           <button
             key={index + 1}
             onClick={() => handlePageChange(index + 1)}
-            className={currentPage === index + 1 ? 'active' : ''}
+            className={currentPage === index + 1 ? "active" : ""}
           >
             {index + 1}
           </button>
