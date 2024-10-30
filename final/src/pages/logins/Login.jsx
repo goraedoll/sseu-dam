@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Login.css";
-import logo from "../../../assets/logo.png"; // logo.png를 import
+import logo from "../../../assets/logo.png";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../config"; // config.js 경로에 맞게 수정
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [rememberMe, setRememberMe] = useState(false); // 로그인 상태 유지 상태 추가
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${API_BASE_URL}/login`, {
+        UserID: username,
+        PasswordHash: password,
+      });
+      if (response.data.message === "로그인 성공") {
+        alert("로그인 성공!");
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 400) {
+        const errorDetail = err.response.data.detail;
+        if (errorDetail.includes("아이디")) {
+          setError("아이디가 틀렸습니다.");
+        } else if (errorDetail.includes("비밀번호")) {
+          setError("비밀번호가 틀렸습니다.");
+        }
+      } else {
+        setError("로그인 중 오류가 발생했습니다.");
+      }
+    }
+  };
+
   return (
     <div className="login-container">
       <div className="login-form">
         <button className="back-button">←ㅤ뒤로 돌아가기</button>
         <h2>로그인</h2>
-        <form>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
           <label htmlFor="username">아이디</label>
           <input
             type="text"
@@ -17,6 +49,8 @@ const Login = () => {
             name="username"
             required
             placeholder="아이디를 입력해주세요."
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
 
           <label htmlFor="password">비밀번호</label>
@@ -26,14 +60,23 @@ const Login = () => {
             name="password"
             required
             placeholder="비밀번호를 입력해 주세요."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <div className="form-options">
             <div className="left-group">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
               <label htmlFor="remember-me">로그인 상태 유지하기</label>
             </div>
-            <a href="/forgot-password">비밀번호 찾기</a>
+            <Link to="/forgot-password" className="forgot-password-link">
+              비밀번호 찾기
+            </Link>
           </div>
 
           <button type="submit" className="login-button">
