@@ -1,6 +1,10 @@
 import React from "react";
 import "./Login.css";
+<<<<<<< HEAD
 import logo from "../../../assets/logo.png"; // logo.png를 import
+=======
+import logo from "../../assets/images/login-logo.png"; // logo.png를 import
+>>>>>>> b59debd8dac238ab71494191e8ccac4ab8146a17
 import { Link } from "react-router-dom";
 
 const Login = () => {

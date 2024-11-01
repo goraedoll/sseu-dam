@@ -1,6 +1,6 @@
-import React from 'react';
-import './MiniVideoStream.css'; // 새로운 스타일 파일 import
-import dashboardIcon from '../../../assets/helpIcon.png';
+import React from "react";
+import "./MiniVideoStream.css"; // 새로운 스타일 파일 import
+import dashboardIcon from "../../assets/icons/video-help.svg";
 
 const MiniVideoStream = ({ videoStreamUrl }) => {
   return (
@@ -8,16 +8,16 @@ const MiniVideoStream = ({ videoStreamUrl }) => {
       <div className="video-stream-header">
         <p className="stream-title">실시간 돌봄 관리</p>
         <div className="mode-container">
-            <img src={dashboardIcon} alt="모든 아이콘" className='mode-icon' />
-            <p className='stream-mode'>흐림모드</p>
+          <p className="stream-mode">흐림모드</p>
+          <img src={dashboardIcon} alt="모든 아이콘" className="mode-icon" />
         </div>
       </div>
 
       <div className="video-display">
         {videoStreamUrl ? (
-          <img 
-            src={videoStreamUrl} 
-            alt="Video Stream" 
+          <img
+            src={videoStreamUrl}
+            alt="Video Stream"
             className="video-image"
           />
         ) : (

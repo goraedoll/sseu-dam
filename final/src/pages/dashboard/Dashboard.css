@@ -1,0 +1,74 @@
+html {
+  overflow-y: scroll;
+}
+
+.dashboard-container {
+  max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
+  margin: 55px auto 0 auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
+  padding-left: 320px; /* 내부 여백을 추가할 경우 */
+  padding-right: 70px;
+  background-color: transparent; /* 배경색을 설정할 경우 */
+}
+
+.upper-section {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+  margin-top: 36px;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+.left-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+  padding: 0px;
+  margin-right: 10px;
+}
+
+.right-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+  padding: 0px;
+  margin-left: 10px;
+}
+
+.lower-section {
+  display: flex;
+  background-color: #fff;
+  border-radius: 20px;
+  flex-direction: column; /* 위에서 아래로 정렬 */
+  width: 1348px;
+  height: 472px;
+  align-items: flex-start; /* 상단에 맞추어 정렬 */
+  gap: 0px; /* 위와 아래 요소들 간의 간격 */
+  flex-shrink: 0;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: row; /* 좌우로 정렬 */
+  width: 100%; /* 좌우 배치를 위한 너비 */
+  gap: 20px; /* CustomCalendar와 TodoList 사이의 간격 */
+  min-width: 1348px;
+  max-width: 1348px; /* 최대 및 최소 폭을 1348px로 설정 */
+  min-height: 472px;
+  max-height: 472px; /* 최대 및 최소 높이를 472px로 설정 */
+}
+
+.lower-section-title {
+  margin: 0px;
+  padding: 0px;
+  margin-left: 31px;
+  margin-top: 23px;
+  margin-bottom: 34px;
+  font-weight: Bold;
+}
