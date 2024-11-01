@@ -36,7 +36,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <Workspace pageText="페이지/모니터링" mainText="메인 대시보드" />
+      <Workspace pageText="페이지 / 모니터링" mainText="메인 대시보드" />
       <div className="upper-section">
         <div className="left-content">
           <VideoStream />
