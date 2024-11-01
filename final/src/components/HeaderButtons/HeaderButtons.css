@@ -12,7 +12,7 @@
   align-items: center;
   background-color: #eef7ff; /* 검색 바 배경색 */
   border-radius: 30px;
-  padding: 8px 12px;
+  padding: 10px 12px;
 }
 
 .search-icon {
