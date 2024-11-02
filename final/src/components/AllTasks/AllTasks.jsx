@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import checkBoxChecked from "../../assets/icons/alltask-check.svg";
 import checkBoxUnchecked from "../../assets/icons/todo-noncheck.svg";
 import correctionIcon from "../../assets/icons/alltask-correction.svg";
@@ -11,12 +11,13 @@ const AllTasks = () => {
   const [editMode, setEditMode] = useState(null);
   const [editText, setEditText] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState(null);
-  const [loading, setLoading] = useState(false); // 로딩 상태 추가
-  const [error, setError] = useState(null); // 에러 상태 추가
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+  const [newTask, setNewTask] = useState("");
   const tasksPerPage = 9;
 
-  // 데이터 가져오기 함수
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -30,13 +31,30 @@ const AllTasks = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]);
 
-  // 완료 상태 토글 핸들러
+  const addTask = async () => {
+    if (newTask.trim() === "") return;
+
+    try {
+      const response = await fetch("http://localhost:3001/api/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: newTask }),
+      });
+      if (!response.ok) throw new Error("할일 추가 실패");
+      setNewTask("");
+      setShowAddTaskModal(false);
+      fetchTasks();
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
+  };
+
   const toggleTask = async (id, completed) => {
     try {
       await fetch(`http://localhost:3001/api/tasks/${id}/completed`, {
@@ -50,13 +68,11 @@ const AllTasks = () => {
     }
   };
 
-  // 수정 모드 시작
   const startEditing = (id, text) => {
     setEditMode(id);
     setEditText(text);
   };
 
-  // 할 일 텍스트 수정
   const editTask = async (id) => {
     try {
       await fetch(`http://localhost:3001/api/tasks/${id}/text`, {
@@ -72,7 +88,6 @@ const AllTasks = () => {
     }
   };
 
-  // 할 일 삭제
   const deleteTask = async (id) => {
     try {
       await fetch(`http://localhost:3001/api/tasks/${id}`, { method: "DELETE" });
@@ -83,53 +98,50 @@ const AllTasks = () => {
     }
   };
 
-  // 페이지네이션 계산
   const indexOfLastTask = currentPage * tasksPerPage;
   const indexOfFirstTask = indexOfLastTask - tasksPerPage;
   const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
   const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
-  // 페이지네이션 컴포넌트
-  const Pagination = () => (
-    <div className="pagination">
-      {Array.from({ length: totalPages }, (_, index) => (
-        <button
-          key={index + 1}
-          onClick={() => setCurrentPage(index + 1)}
-          className={currentPage === index + 1 ? "active" : ""}
-        >
-          {index + 1}
-        </button>
-      ))}
-    </div>
-  );
+  const paginationButtons = useMemo(() => {
+    return Array.from({ length: totalPages }, (_, index) => (
+      <button
+        key={index + 1}
+        onClick={() => setCurrentPage(index + 1)}
+        className={currentPage === index + 1 ? "active" : ""}
+      >
+        {index + 1}
+      </button>
+    ));
+  }, [totalPages, currentPage]);
 
   return (
     <div className="alltasks-container">
-      <h1 className="alltasks-container-title">할일 목록</h1>
+      <div className="alltasks-header">
+        <h1 className="alltasks-container-title">할일 목록</h1>
+        <button onClick={() => setShowAddTaskModal(true)} className="add-task-button">할일 추가</button>
+      </div>
 
-      {/* 로딩 및 에러 메시지 */}
       {loading && <p>로딩 중...</p>}
       {error && <p className="error-message">{error}</p>}
 
-      {/* 할 일 테이블 */}
       {!loading && !error && (
         <>
           <table className="tasks-table">
             <thead>
               <tr>
-                <th>#</th>
-                <th>내용</th>
-                <th>완료</th>
-                <th>작성일</th>
-                <th>도구</th>
+                <th className="tasks-table-head-id">#</th>
+                <th className="tasks-table-head-text">내용</th>
+                <th className="tasks-table-head-complete">완료</th>
+                <th className="tasks-table-head-date">작성일</th>
+                <th className="tasks-table-head-tools">도구</th>
               </tr>
             </thead>
             <tbody>
               {currentTasks.map((task) => (
                 <tr key={task.id} className={`task-item ${task.completed ? "completed" : ""}`}>
-                  <td>{task.id}</td>
-                  <td>
+                  <td className="tasks-table-body-id">{task.id}</td>
+                  <td className="tasks-table-body-text">
                     {editMode === task.id ? (
                       <input
                         type="text"
@@ -141,16 +153,11 @@ const AllTasks = () => {
                       task.text
                     )}
                   </td>
-                  <td onClick={() => toggleTask(task.id, task.completed)} style={{ cursor: "pointer" }}>
-                    <img
-                      src={task.completed ? checkBoxChecked : checkBoxUnchecked}
-                      alt={task.completed ? "Checked" : "Unchecked"}
-                      width="24"
-                      height="24"
-                    />
+                  <td className="tasks-table-body-complete" onClick={() => toggleTask(task.id, task.completed)}>
+                    <img src={task.completed ? checkBoxChecked : checkBoxUnchecked} alt="완료 상태" />
                   </td>
-                  <td>{new Date(task.CreatedAt).toLocaleDateString()}</td>
-                  <td>
+                  <td className="tasks-table-body-date">{new Date(task.CreatedAt).toLocaleDateString()}</td>
+                  <td className="tasks-table-body-tools tool-icons">
                     {editMode === task.id ? (
                       <img src={correctionIcon} alt="저장" onClick={() => editTask(task.id)} className="tool-icon" />
                     ) : (
@@ -163,13 +170,37 @@ const AllTasks = () => {
             </tbody>
           </table>
 
-          <Pagination />
+          <div className="pagination">
+            {paginationButtons}
+          </div>
 
           {deleteConfirm && (
-            <div className="delete-confirm">
-              <p>정말 삭제하시겠습니까?</p>
-              <button onClick={() => deleteTask(deleteConfirm)} className="confirm-button">확인</button>
-              <button onClick={() => setDeleteConfirm(null)} className="cancel-button">취소</button>
+            <div className="modal-overlay">
+              <div className="delete-confirm">
+                <p>정말 삭제하시겠습니까?</p>
+                <div className="confirm-buttons">
+                  <button onClick={() => deleteTask(deleteConfirm)} className="confirm-button">확인</button>
+                  <button onClick={() => setDeleteConfirm(null)} className="cancel-button">취소</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {showAddTaskModal && (
+            <div className="modal-overlay">
+              <div className="add-task-modal">
+                <h2>새로운 할일 추가</h2>
+                <input
+                  type="text"
+                  value={newTask}
+                  onChange={(e) => setNewTask(e.target.value)}
+                  placeholder="할일을 입력하세요"
+                />
+                <div className="confirm-buttons">
+                  <button onClick={addTask} className="confirm-button">추가</button>
+                  <button onClick={() => setShowAddTaskModal(false)} className="cancel-button">취소</button>
+                </div>
+              </div>
             </div>
           )}
         </>
