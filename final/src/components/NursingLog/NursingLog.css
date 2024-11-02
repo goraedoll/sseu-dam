@@ -1,0 +1,67 @@
+/* NursingLog.css */
+
+.container {
+  display: flex;
+  gap: 20px;
+  background-color: #f5f9ff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.medication,
+.nursing {
+  background-color: #eaf3ff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.medication h3,
+.nursing h3 {
+  color: #1d4ed8;
+  font-size: 18px;
+}
+
+.medication-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.medication-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.medication-checks {
+  display: flex;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.water-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.fixed-table {
+  width: 100%;
+  table-layout: fixed; /* 고정된 너비 */
+}
+
+.fixed-table th,
+.fixed-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  width: 25%; /* 고정된 열 너비 */
+}

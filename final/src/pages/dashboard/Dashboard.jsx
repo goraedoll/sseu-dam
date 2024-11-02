@@ -6,6 +6,7 @@ import AlertMessages from "../../components/AlertMessages/AlertMessages";
 import TodoList from "../../components/TodoList/TodoList";
 import CustomCalendar from "../../components/Calendar/CustomCalendar";
 import Notification from "../../components/Notification/Notification";
+import NursingLog from "../../components/NursingLog/NursingLog";
 import axios from "axios";
 
 const Dashboard = () => {
@@ -51,6 +52,7 @@ const Dashboard = () => {
         </div>
         <div className="content-section">
           <CustomCalendar />
+          <NursingLog />
           <TodoList />
         </div>
       </div>
