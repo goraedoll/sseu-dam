@@ -27,7 +27,7 @@ html {
 .medication-upper-section-title {
   font-size: 24px;
   font-weight: bold;
-  color: #0231A6;
+  color: #0231a6;
   margin-bottom: 20px;
 }
 
@@ -43,7 +43,7 @@ html {
   align-items: flex-start; /* 요소들을 상단에서부터 정렬 */
   gap: 20px; /* 요소 간의 간격 설정 */
   background-color: transparent;
-  margin-top: 36px;
+  margin-top: 20px;
   padding: 0px;
   margin-bottom: 20px;
   flex-wrap: wrap; /* 요소들이 여러 줄로 배치되게 함 */

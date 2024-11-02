@@ -10,36 +10,63 @@
   font-size: 24px;
   font-weight: 600;
   color: #0231a6;
-  margin: 25px 0 28px 31px;
+  margin: 25px 0 25px 31px;
   padding: 0;
+  text-align: left;
 }
 
 .medication-info-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 8px;
 }
 
 .medication-info-table th,
 .medication-info-table td {
-  padding: 10px;
-  text-align: center;
+  padding: 4px 12px;
+  vertical-align: top; /* 상단 정렬 */
 }
 
 .medication-info-table th {
-  border-bottom: 1px solid #e9edf7;
+  /* border-bottom: 1px solid #e9edf7; */
   font-size: 14px;
   color: #a3aed0;
   font-weight: 300;
-  padding: 0 0 8px 0;
+  padding-bottom: 15px;
+  white-space: nowrap; /* 줄바꿈 방지 */
 }
 
-.medication-info-table td img {
+/* .medication-info-table td img {
+
+} */
+
+.pill-img {
+  margin: 0;
   width: 50px;
-  height: 50px;
+  height: auto;
   object-fit: cover;
+  display: block;
 }
 
 /* 약품명/성분 및 복약 안내 컬럼에 적용할 왼쪽 정렬 */
 .medication-info-left-align {
   text-align: left;
+}
+
+.medication-info-table tbody td {
+  font-size: 12px; /* 원하는 폰트 크기로 변경 */
+  font-weight: 300; /* 원하는 폰트 굵기로 변경 */
+  color: #2b3674; /* 원하는 폰트 색상으로 변경 */
+  line-height: 1.5;
+}
+
+.pill-name {
+  font-weight: 400 !important;
+  color: #2b3674 !important;
+  font-size: 14px !important;
+}
+
+.pill-count {
+  text-align: center;
+  vertical-align: top; /* 상단 정렬 */
 }
