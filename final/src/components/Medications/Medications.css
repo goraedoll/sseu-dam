@@ -1,0 +1,78 @@
+.medications-container {
+  background-color: #f0f8ff;
+  width: 237px;
+  height: 245px;
+  padding: 0 !important;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #eef7ff;
+
+  h2 {
+    color: #072182;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 22.4px */
+    letter-spacing: -0.32px;
+    margin-top: 21px;
+    margin-bottom: 12px;
+    margin-left: 24px;
+  }
+}
+
+.medication-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 12px;
+  margin-right: 12px;
+  width: 193px;
+  height: 30px;
+}
+
+.medication-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.medication-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.medication-name {
+  color: #072182;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 16.8px */
+  letter-spacing: -0.28px;
+}
+
+.medication-frequency {
+  color: #a3aed0;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 12px */
+  letter-spacing: -0.2px;
+}
+
+.medication-checks {
+  display: flex;
+  gap: 8px;
+}
+
+.medication-check-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
