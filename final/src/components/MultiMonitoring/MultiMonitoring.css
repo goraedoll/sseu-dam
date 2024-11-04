@@ -1,0 +1,46 @@
+.multi-monitoring-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.multi-monitoring-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.monitor {
+    width: 150px; /* 작은 모니터의 너비 */
+    height: 84px; /* 16:9 비율 */
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.monitor:hover {
+    transform: scale(1.05);
+}
+
+.monitor-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.large-monitor {
+    width: 600px; /* 큰 모니터의 너비 */
+    height: 337px; /* 16:9 비율 */
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #000;
+}
+
+.large-monitor-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}

@@ -10,6 +10,7 @@ import Medication from "./pages/Medication/Medication";
 import CustomerManagement from "./pages/CustomerManagement/CustomerManagement";
 import Settings from "./pages/SettingPage/Settings";
 import AllTasks from "./pages/AllTasksPage/AllTasksPage";
+import MultiMonitoringPage from "./pages/MultiMonitoringPage/MultiMonitoringPage";
 import Notification from "./components/Notification/Notification"; // 알림 컴포넌트 import
 import "./App.css";
 
@@ -20,7 +21,7 @@ function App() {
   const showNotification = (message) => {
     setNotification(message);
     setTimeout(() => {
-      setNotification(""); // 3초 후 알림 자동 사라짐
+      setNotification(""); // 10초 후 알림 자동 사라짐
     }, 10000);
   };
 
@@ -105,6 +106,18 @@ function App() {
                 <Sidebar />
                 <div className="content">
                   <AllTasks showNotification={showNotification} />
+                </div>
+              </div>
+            }
+          />
+
+          <Route
+            path="/MultiMonitoringPage"
+            element={
+              <div className="layout">
+                <Sidebar />
+                <div className="content">
+                  <MultiMonitoringPage showNotification={showNotification} />
                 </div>
               </div>
             }

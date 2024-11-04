@@ -8,6 +8,7 @@ import medicineIcon from "../../assets/icons/side-pill.svg";
 import usersIcon from "../../assets/icons/side-customers.svg";
 import settingsIcon from "../../assets/icons/side-setting.svg";
 import approveIcon from "../../assets/icons/side-alltask.svg";
+import multiMonitorIcon from "../../assets/icons/side-window.svg/"; // 새로운 아이콘 추가
 
 const Sidebar = () => {
   return (
@@ -55,7 +56,16 @@ const Sidebar = () => {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <img src={approveIcon} alt="Approve Icon" />
-              전체 할일 {/* 경로 추가 */}
+              전체 할일
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/MultiMonitoringPage"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <img src={multiMonitorIcon} alt="Multi Monitoring Icon" />
+              멀티 모니터링
             </NavLink>
           </li>
         </ul>

@@ -13,6 +13,23 @@ router.get('/tasks', (req, res) => {
   });
 });
 
+// 새로운 Task를 추가하는 라우트 (POST 요청)
+router.post('/tasks', (req, res) => {
+  const { text } = req.body;
+
+  if (!text) {
+    return res.status(400).json({ error: "할일 내용을 입력해주세요." });
+  }
+
+  const query = 'INSERT INTO todo_test (text, completed, CreatedAt) VALUES (?, 0, NOW())';
+  db.query(query, [text], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: err });
+    }
+    res.status(201).json({ success: true, id: result.insertId });
+  });
+});
+
 // Task의 'completed' 상태를 업데이트하는 라우트 (PUT 요청)
 router.put('/tasks/:id/completed', (req, res) => {
   const taskId = req.params.id;
