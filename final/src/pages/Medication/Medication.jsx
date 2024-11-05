@@ -4,6 +4,8 @@ import Workspace from "../../components/Workspace/Workspace";
 import CustomCalendar from "../../components/Calendar/CustomCalendar";
 import TodoList from "../../components/TodoList/TodoList";
 import MedicationInfo from "../../components/MedicationInfo/MedicationInfo";
+import NursingLog from "../../components/NursingLog/NursingLog";
+import Precautions from "../../components/Precautions/Precautions";
 
 const Medication = () => {
   return (
@@ -15,11 +17,13 @@ const Medication = () => {
         </div>
         <div className="medication-content-section">
           <CustomCalendar />
+          <NursingLog />
           <TodoList />
         </div>
       </div>
       <div className="medication-lower-section">
         <MedicationInfo />
+        <Precautions />
       </div>
     </div>
   );

@@ -1,0 +1,40 @@
+.precautions-container {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px 25px 0px 30px;
+  width: 366px;
+  height: 455px;
+}
+.precautions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 43px;
+}
+
+.precautions-title {
+  color: #0231a6;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: -0.48px;
+  margin: 0;
+}
+
+.precautions-list {
+  list-style-type: disc;
+  display: block; /* 불릿이 제대로 표시되도록 설정 */
+  margin: 0 13px;
+}
+
+.precautions-list li {
+  margin-bottom: 24px;
+  color: #2b3674;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px; /* 171.429% */
+  display: list-item; /* 불릿 표시를 강제 설정 */
+}
