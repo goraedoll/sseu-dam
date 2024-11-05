@@ -5,6 +5,7 @@
   padding: 10px;
   border-radius: 30px;
   background-color: #fff; /* 컨테이너의 배경색 */
+  margin-right: 14px;
 }
 
 .search-bar {
