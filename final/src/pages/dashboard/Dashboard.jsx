@@ -6,6 +6,7 @@ import AlertMessages from "../../components/AlertMessages/AlertMessages";
 import TodoList from "../../components/TodoList/TodoList";
 import CustomCalendar from "../../components/Calendar/CustomCalendar";
 import Notification from "../../components/Notification/Notification";
+import NursingLog from "../../components/NursingLog/NursingLog";
 import axios from "axios";
 
 const Dashboard = () => {
@@ -39,7 +40,7 @@ const Dashboard = () => {
       <Workspace pageText="페이지 / 모니터링" mainText="메인 대시보드" />
       <div className="upper-section">
         <div className="left-content">
-          <VideoStream />
+          <VideoStream videoStreamUrl="http://192.168.21.205:1997/video_feed" />
         </div>
         <div className="right-content">
           <AlertMessages />
@@ -51,6 +52,7 @@ const Dashboard = () => {
         </div>
         <div className="content-section">
           <CustomCalendar />
+          <NursingLog />
           <TodoList />
         </div>
       </div>

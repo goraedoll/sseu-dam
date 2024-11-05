@@ -44,7 +44,7 @@ const MiniAlertMessages = () => {
       ) : (
         <>
           <div className="mini-alert-header">
-            <h1 className="mini-h1">실시간 알림 메시지</h1>
+            <h1 className="mini-h1">알림 현황</h1>
             <button className="mini-refresh-button">
               <img src={threeDot} alt="새로고침" />
             </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-import logo from "../../assets/images/side-logo.png";
+import logo from "../../assets/icons/side-logo.svg";
 import dashboardIcon from "../../assets/icons/side-home.svg";
 import monitoringIcon from "../../assets/icons/side-monitor.svg";
 import medicineIcon from "../../assets/icons/side-pill.svg";

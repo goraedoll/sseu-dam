@@ -2,20 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #fff; /* 컨테이너 배경색 */
+    border-radius: 20px; /* 컨테이너 라운드 처리 */
+    padding: 20px; /* 컨테이너 내부 여백 */
 }
 
 .multi-monitoring-container {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* 각 모니터 사이의 간격 */
     margin-bottom: 20px;
 }
 
 .monitor {
-    width: 150px; /* 작은 모니터의 너비 */
-    height: 84px; /* 16:9 비율 */
+    width: calc((1350px - 100px) / 4); /* 4개의 모니터가 1350px 내에 배치되도록 계산 */
+    height: calc(((1350px - 60px) / 4) * 9 / 16); /* 16:9 비율 */
     overflow: hidden;
     border-radius: 10px;
     cursor: pointer;
+    position: relative; /* 번호 표시 위치 조정을 위해 추가 */
     transition: transform 0.2s;
 }
 
@@ -30,12 +34,24 @@
     border-radius: 10px;
 }
 
+.monitor-number {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
 .large-monitor {
-    width: 600px; /* 큰 모니터의 너비 */
-    height: 337px; /* 16:9 비율 */
+    width: 1310px; /* 큰 모니터의 너비 */
+    height: calc(1310px * 9 / 16); /* 16:9 비율 */
     overflow: hidden;
     border-radius: 20px;
     background-color: #000;
+    position: relative; /* 큰 모니터 번호 표시 위치 조정을 위해 추가 */
 }
 
 .large-monitor-video {
@@ -43,4 +59,15 @@
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
+}
+
+.large-monitor-number {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 16px;
 }

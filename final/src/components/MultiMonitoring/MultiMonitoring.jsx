@@ -12,12 +12,14 @@ const MultiMonitoring = () => {
         "http://192.168.21.205:1997/video_feed", // 네 번째 모니터 URL
     ];
 
-    // 큰 모니터에 표시할 비디오의 URL을 저장하는 상태
+    // 큰 모니터에 표시할 비디오의 URL과 인덱스를 저장하는 상태
     const [selectedVideo, setSelectedVideo] = useState(videoSources[0]);
+    const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
 
     // 모니터를 클릭할 때 호출되는 함수
-    const handleMonitorClick = (src) => {
+    const handleMonitorClick = (src, index) => {
         setSelectedVideo(src);
+        setSelectedVideoIndex(index);
     };
 
     return (
@@ -25,13 +27,14 @@ const MultiMonitoring = () => {
             {/* 작은 모니터 4개 */}
             <div className="multi-monitoring-container">
                 {videoSources.map((src, index) => (
-                    <div key={index} className="monitor" onClick={() => handleMonitorClick(src)}>
+                    <div key={index} className="monitor" onClick={() => handleMonitorClick(src, index)}>
                         <img 
                             src={src}
                             alt={`Monitor ${index + 1}`}
                             className="monitor-video"
                             onError={(e) => e.target.src = placeholderImage} // 대체 이미지로 변경
                         />
+                        <div className="monitor-number">{index + 1}</div> {/* 모니터 번호 표시 */}
                     </div>
                 ))}
             </div>
@@ -44,6 +47,7 @@ const MultiMonitoring = () => {
                     className="large-monitor-video"
                     onError={(e) => e.target.src = placeholderImage} // 대체 이미지로 변경
                 />
+                <div className="large-monitor-number">{selectedVideoIndex + 1}</div> {/* 큰 모니터 번호 표시 */}
             </div>
         </div>
     );

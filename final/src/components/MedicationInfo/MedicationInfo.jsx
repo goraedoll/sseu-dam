@@ -17,7 +17,7 @@ const MedicationInfo = () => {
           <tr>
             <th></th>
             <th>약품 이미지</th>
-            <th className="medication-info-left-align">약품명/성분</th>
+            <th className="medication-info-left-align">약품명</th>
             <th className="medication-info-left-align">복약 안내</th>
             <th>투약량</th>
             <th>횟수</th>
@@ -49,7 +49,7 @@ const MedicationInfo = () => {
             <td className="pill-img">
               <img src={pill2} alt="글루코파지정500mg" />
             </td>
-            <td className="pill-name">글루코파지정500mg</td>
+            <td className="pill-name">글루코파지정</td>
             <td className="medication-info-left-align">
               식사와 함께 또는 식사 직후 복용하세요. 위장장애 및 저혈당 증상 시
               사탕 등을 섭취하세요. 드물게 극심한 증상 발생 시 복용을 중단하고
@@ -66,12 +66,12 @@ const MedicationInfo = () => {
             <td className="pill-img">
               <img src={pill3} alt="노바스크정2.5mg" />
             </td>
-            <td className="pill-name">노바스크정2.5mg</td>
+            <td className="pill-name">노바스크정</td>
             <td className="medication-info-left-align">
               증상이 나아져도 전문가와 상의 후 투약 중단하세요. 천천히 일어나며,
               말초 부종이나 두통 시 상담이 필요합니다. 자몽주스는 피하세요.
             </td>
-            <td className="pill-count">500mg</td>
+            <td className="pill-count">2.5mg</td>
             <td className="pill-count">2회</td>
             <td className="pill-count">5일</td>
             <td></td>
@@ -88,7 +88,7 @@ const MedicationInfo = () => {
               위험한 작업 시 주의하세요. 술은 저혈당 위험을 높이므로 피하고,
               저혈당 증상 시 사탕이나 과일주스를 복용합니다.
             </td>
-            <td className="pill-count">500mg</td>
+            <td className="pill-count">4mg</td>
             <td className="pill-count">2회</td>
             <td className="pill-count">5일</td>
             <td></td>
@@ -99,20 +99,19 @@ const MedicationInfo = () => {
             <td className="pill-img">
               <img src={pill5} alt="아모잘탄정5/50mg" />
             </td>
-            <td className="pill-name">아모잘탄정5/50mg</td>
+            <td className="pill-name">아모잘탄정5</td>
             <td className="medication-info-left-align">
               증상이 나아져도 전문가와 상의 없이 중단하지 마세요. 장시간 누운
               후에는 천천히 일어나세요. 투약 중에는 금주하며, 두통 등 부작용이
               있을 수 있습니다.
             </td>
-            <td className="pill-count">500mg</td>
+            <td className="pill-count">50mg</td>
             <td className="pill-count">2회</td>
             <td className="pill-count">5일</td>
             <td></td>
           </tr>
-          <tr>
+          {/* <tr>
             <td></td>
-
             <td className="pill-img">
               <img src={pill6} alt="훼스탈골드정" />
             </td>
@@ -125,7 +124,7 @@ const MedicationInfo = () => {
             <td className="pill-count">2회</td>
             <td className="pill-count">5일</td>
             <td></td>
-          </tr>
+          </tr> */}
           <tr>
             <td></td>
 

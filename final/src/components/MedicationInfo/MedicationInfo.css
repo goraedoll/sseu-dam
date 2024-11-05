@@ -34,18 +34,25 @@
   font-weight: 300;
   padding-bottom: 15px;
   white-space: nowrap; /* 줄바꿈 방지 */
+  text-align: left;
 }
 
-/* .medication-info-table td img {
-
-} */
-
-.pill-img {
-  margin: 0;
+.pill-img img {
   width: 50px;
   height: auto;
-  object-fit: cover;
-  display: block;
+  object-fit: contain;
+  padding-left: 4px;
+  padding-top: px;
+}
+
+.pill-img {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: flex-start;
+  /* justify-content: center; */
+  margin: 0;
+  padding: 0;
 }
 
 /* 약품명/성분 및 복약 안내 컬럼에 적용할 왼쪽 정렬 */

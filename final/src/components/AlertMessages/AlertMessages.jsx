@@ -47,7 +47,7 @@ const AlertMessages = () => {
       ) : (
         <>
           <div className="alert-header">
-            <h1>실시간 알림 메시지</h1>
+            <h1>알림 현황</h1>
             <button className="refresh-button">
               <img src={threeDot} alt="새로고침" />
             </button>
