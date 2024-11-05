@@ -87,7 +87,7 @@
 .large-cell {
   width: 82px;
   height: 36px;
-  padding: 0;
+  padding: 0 17px;
   text-align: center;
   border: 1px solid #e6e6e6;
   overflow: hidden;
@@ -112,9 +112,16 @@ input {
   padding: 0;
 }
 
+.water-intake-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 /* 수분 섭취 아이콘 스타일 */
 .water-intake img {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   margin: 0; /* 이미지 간의 margin을 제거 */
+  cursor: pointer;
 }
