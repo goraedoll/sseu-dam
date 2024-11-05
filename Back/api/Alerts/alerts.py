@@ -59,12 +59,12 @@ def get_fall(request: Request, db: Session = Depends(get_db)):
     user_id = session["user_id"]
     
     # DB에서 user_id에 해당하는 데이터 조회
-    user = db.query(SA_orm).filter(SA_orm.UserID == user_id).first()
+    user = db.query(SA_orm).filter(SA_orm.UserID == user_id).order_by(SA_orm.SensedAt.desc()).limit(7).all()
     if not user:
         raise HTTPException(status_code=400, detail=f"{user_id}가 없어요")
     
-    return {
-        "SensingDetails": user.SensingDetails,
-        "AlertType": user.AlertType,
-        "SensedAt": user.SensedAt
-    }
+    return [ {
+        "SensingDetails": data.SensingDetails,
+        "AlertType": data.AlertType,
+        "SensedAt": data.SensedAt
+    } for data in user ]

@@ -95,26 +95,39 @@ def update_todo(
     
 @router.get("/get", tags=["to_do_list"])
 def get_to_do(request: Request, db: Session = Depends(get_db)):
-    session_id = request.cookies.get("session_id")
-        # session_id를 통해 메모리 내 세션 데이터 조회
-    session = session_store.get(session_id)
-    if not session:
-        raise HTTPException(status_code=403, detail="세션 인증 실패")
-    user_id = session["user_id"]
+    try:
+        session_id = request.cookies.get("session_id")
+            # session_id를 통해 메모리 내 세션 데이터 조회
+        session = session_store.get(session_id)
+        if not session:
+            raise HTTPException(status_code=403, detail="세션 인증 실패")
+        user_id = session["user_id"]
 
-    if not user_id:
-        raise HTTPException(status_code=401, detail="인증되지 않은 사용자입니다.")
-    
-    user_tasks = db.query(orm).filter(orm.UserID == user_id).order_by(orm.created_at.desc()).limit(6).all()  # 5개만 반환
-    return [
-        {
-            "created_at" : task.created_at,
-            "task_description": task.task_description,
-            "completed": task.completed,
-            "id": task.id
-        }
-        for task in user_tasks
-    ]
+        if not user_id:
+            raise HTTPException(status_code=401, detail="인증되지 않은 사용자입니다.")
+        
+        user_tasks = db.query(orm).filter(orm.UserID == user_id).order_by(orm.created_at.desc()).limit(6).all()  # 5개만 반환
+        return [
+            {
+                "created_at" : task.created_at,
+                "task_description": task.task_description,
+                "completed": task.completed,
+                "id": task.id
+            }
+            for task in user_tasks
+        ]
+    except HTTPException as e:
+        # HTTPException 발생 시 그대로 반환
+        raise e
+
+    except SQLAlchemyError:
+        # 데이터베이스 오류 발생 시 롤백하고 오류 메시지 반환
+        db.rollback()
+        raise HTTPException(status_code=500, detail="데이터베이스 오류 발생")
+
+    except Exception as e:
+        # 기타 예상치 못한 오류 처리
+        raise HTTPException(status_code=500, detail=f"예상치 못한 오류 발생: {str(e)}")
 
 #삭제
 @router.delete("/delete", tags=["to_do_list"])

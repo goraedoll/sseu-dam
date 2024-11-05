@@ -1,4 +1,4 @@
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, Field
 from datetime import date, datetime
 from typing import Optional
 
@@ -19,7 +19,7 @@ class Signup_Schema(BaseModel):
 
 class LoginSchema(BaseModel):
     UserID: str
-    PasswordHash: str
+    PasswordHash: str = Field(..., alias="Password")
 
 class pr_schema_SensingAlert(BaseModel):
     DeviceIdx: int
