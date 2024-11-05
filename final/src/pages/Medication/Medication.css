@@ -46,5 +46,5 @@ html {
   margin-top: 20px;
   padding: 0px;
   margin-bottom: 20px;
-  flex-wrap: wrap; /* 요소들이 여러 줄로 배치되게 함 */
+  flex-wrap: nowrap; /* 요소들이 여러 줄로 배치되게 함 */
 }
