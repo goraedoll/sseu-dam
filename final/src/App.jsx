@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./pages/Logins/Login";
-import Signup from "./pages/Logins/Signup";
+import Login from "./pages/logins/Login";
+import Signup from "./pages/logins/Signup";
 import ForgotPassword from "./pages/Logins/ForgotPassword";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Dashboard from "./pages/dashboard/Dashboard";

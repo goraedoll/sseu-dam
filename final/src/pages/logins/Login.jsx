@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import "./Login.css";
-<<<<<<< HEAD
 import logo from "../../assets/images/login-logo.png"; // logo.png를 import
-=======
-<<<<<<< HEAD
-import logo from "../../../assets/logo.png"; // logo.png를 import
-=======
-import logo from "../../assets/images/login-logo.png"; // logo.png를 import
->>>>>>> b59debd8dac238ab71494191e8ccac4ab8146a17
->>>>>>> origin/BJP
 import { Link } from "react-router-dom";
 
 const Login = () => {
