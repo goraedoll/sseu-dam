@@ -1,11 +1,180 @@
+html {
+  overflow-y: scroll;
+}
+
 body {
-    background-color: #f4f7fe;
+  background-color: #f4f7fe;
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard", sans-serif; /* 폰트 설정 */
+}
+
+.Customers-container {
+  max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
+  margin: 55px auto 0 auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
+  padding-left: 320px; /* 내부 여백을 추가할 경우 */
+  padding-right: 70px;
+  background-color: transparent; /* 배경색을 설정할 경우 */
+}
+
+/* 여기부터 수정하기 */
+
+.Customers-upper-section {
+  margin-top: 36px;
+  background-color: #fff;
+  padding: 0px 0px 0px 0px;
+  border-radius: 20px;
+  margin-bottom: 86px;
+  width: 1348px;
+  height: 741px;
+}
+
+.inner-container {
+  padding: 30px;
+}
+
+.Customers-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #0231a6;
+
+  h2 {
+    /* Display Text/Extra-Small/ Bold */
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; /* 133.333% */
+    letter-spacing: -0.48px;
     margin: 0;
-    padding: 0;
-    font-family: 'Pretendard', sans-serif; /* 폰트 설정 */
   }
-  
-  .app-container {
-    min-height: 100vh; /* 페이지 전체 높이 채우기 */
-  }
-  
+}
+
+.customers-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 15px; /* 각 행 사이의 간격을 40px로 설정 */
+}
+
+.customers-table th,
+.customers-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.customers-table th {
+  border-bottom: 1px solid #e9edf7;
+  color: #a3aed0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: -0.28px;
+}
+
+.customers-table td {
+  color: #072182;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: -0.28px;
+}
+
+.profile-td {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 50px; /* 프로필 아이콘의 너비 */
+  height: auto; /* 비율에 따라 높이 조절 */
+  border-radius: 50%;
+  margin: 0;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 3px 0 0;
+}
+
+.action-button img {
+  width: 37px;
+  height: 37px;
+  margin: 0;
+}
+
+.goto-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 4px 0 0;
+}
+
+.goto-button img {
+  width: 100px;
+  height: 37px;
+  margin: 0;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  width: 37px; /* 버튼 너비 */
+  height: 37px; /* 버튼 높이 */
+  background-size: cover; /* 배경 이미지가 버튼을 꽉 채우도록 설정 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 제거 */
+  background-position: center; /* 배경 이미지 가운데 정렬 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer; /* 커서가 손가락 모양으로 변경 */
+  background-color: transparent; /* 배경색 제거 */
+  padding: 0; /* 여백 제거 */
+}
+
+.user-id {
+  font-size: 12px;
+  color: #a3aed0;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 100%; /* 14px */
+  letter-spacing: -0.28px;
+}
+
+.cus-down-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.health-status {
+  color: #8f95b5 !important; /* 건강상태 텍스트 색상 */
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  line-height: 24px !important; /* 171.429% */
+  letter-spacing: -0.28px !important;
+}
+
+.registration-date {
+  color: #8f95b5 !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  line-height: 24px !important;
+  letter-spacing: -0.28px !important;
+}
+
+.customer-name {
+  font-weight: 600;
+}
+
+.customer-id {
+  color: #8f95b5 !important; /* 원하는 색상 코드로 변경하세요 */
+  font-weight: 300; /* 필요에 따라 폰트 두께도 설정 가능 */
+}

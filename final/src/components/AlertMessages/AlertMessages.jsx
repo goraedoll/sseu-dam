@@ -32,15 +32,15 @@ const AlertMessages = () => {
 
         const data = response.data;
 
-        const filteredAlerts = data
-          .sort((a, b) => new Date(b.SensedAt) - new Date(a.SensedAt))
+        // 데이터 형식에 맞춰 필드를 매핑하고 필터링 및 정렬 수행
+        const mappedAlerts = data
+          .map((alert) => ({
+            status: alert.AlertType,
+            message: alert.SensingDetails,
+            date: alert.SensedAt,
+          }))
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 7);
-
-        const mappedAlerts = filteredAlerts.map((alert) => ({
-          status: alert.AlertType,
-          message: alert.SensingDetails,
-          date: alert.SensedAt,
-        }));
 
         setAlerts(mappedAlerts);
         setDbError(false);
@@ -60,7 +60,7 @@ const AlertMessages = () => {
       ) : (
         <>
           <div className="alert-header">
-            <h1>실시간 알림 메시지</h1>
+            <h1>알림 현황</h1>
             <button className="refresh-button">
               <img src={threeDot} alt="새로고침" />
             </button>

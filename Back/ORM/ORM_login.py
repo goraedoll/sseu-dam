@@ -6,7 +6,7 @@ Base = declarative_base()
 
 #pr_tb_User테이블
 class User(Base):
-    __tablename__ = 'pr_tb_Users'
+    __tablename__ = 'tb_Users'
 
     UserID = Column(String, primary_key = True)
     UserName = Column(String)
@@ -15,13 +15,11 @@ class User(Base):
     BirthDate = Column(Date)
     Addr = Column(String)
     Phone = Column(String, unique=True, nullable = False)
-    HealthStatus = Column(String)
     EmergencyContact = Column(String)
-    # JoinedAt = Column(TIMESTAMP, server_default=func.current_timestamp(), nullable = False)
     JoinedAt = Column(TIMESTAMP, nullable=True, server_default=func.now())
 
 class pr_tb_SensingAlerts(Base):
-    __tablename__ = 'pr_tb_SensingAlerts'
+    __tablename__ = 'tb_SensingAlerts'
     DeviceIdx = Column(Integer, primary_key=True)
     SensingIdx = Column(Integer, nullable=True)
     SensingType = Column(String(20), nullable=True)

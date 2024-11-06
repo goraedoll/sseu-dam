@@ -5,7 +5,7 @@ from sqlalchemy.sql import func
 Base = declarative_base()
 
 class SensingAlerts_ORM(Base):
-    __tablename__ = "pr_tb_SensingAlerts"
+    __tablename__ = "tb_SensingAlerts"
 
     AlertIdx = Column(Integer, primary_key=True, autoincrement=True)
     DeviceIdx = Column(Integer, nullable=False, index=True)

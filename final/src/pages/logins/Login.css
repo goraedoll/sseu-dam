@@ -9,21 +9,21 @@ body {
   font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
   color: #6b7698; /* 텍스트 색상 */
   cursor: pointer; /* 마우스 커서 포인터 모양으로 변경 */
-  display: inline-flex; /* 아이콘과 텍스트를 한 줄에 배치하기 위해 사용 */
+  display: flex; /* 아이콘과 텍스트를 한 줄에 배치하기 위해 사용 */
   align-items: center; /* 아이콘과 텍스트 수직 가운데 정렬 */
-  padding: 0; /* 왼쪽 여백 없애기 */
-  margin-top: 10px;
-}
-
-.back-button:hover {
-  text-decoration: none; /* 마우스를 올렸을 때 밑줄 추가 */
-  color: #0033aa; /* 마우스를 올렸을  때 색상 변경 */
+  padding-left: 0; /* 왼쪽 여백 없애기 */
+  padding-bottom: 40%;
 }
 
 .back-arrow {
   font-size: 20px; /* 화살표 크기 */
   font-family: "Pretendard";
   margin-right: 10px; /* 화살표와 텍스트 사이 간격 */
+}
+
+.back-button:hover {
+  text-decoration: none; /* 마우스를 올렸을 때 밑줄 추가 */
+  color: #0033aa; /* 마우스를 올렸을 때 색상 변경 */
 }
 
 .login-container {
@@ -35,7 +35,6 @@ body {
   height: 100vh;
   min-height: 900px;
   margin: 0px;
-  background-color: #fff;
 }
 
 .login-form {
@@ -46,7 +45,7 @@ body {
   justify-content: flex-start;
   padding: 1rem;
   box-sizing: border-box;
-  margin: 12%;
+  margin: 10%;
   font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
 }
 
@@ -54,7 +53,7 @@ body {
   font-size: 36px;
   font-weight: bold;
   color: #2569ed;
-  margin: 170px 0 50px 0;
+  margin-bottom: 54px;
   font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
 }
 

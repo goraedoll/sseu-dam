@@ -5,7 +5,7 @@ from sqlalchemy.sql import func
 base = declarative_base()
 
 class to_do_orm(base) :
-    __tablename__ = "pr_tb_todo"
+    __tablename__ = "tb_todolist"
 
     id = Column(Integer, primary_key= True)
     UserID = Column(String, nullable = False)

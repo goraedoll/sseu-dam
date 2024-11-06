@@ -6,45 +6,39 @@ import AlertMessages from "../../components/AlertMessages/AlertMessages";
 import TodoList from "../../components/TodoList/TodoList";
 import CustomCalendar from "../../components/Calendar/CustomCalendar";
 import Notification from "../../components/Notification/Notification";
+import NursingLog from "../../components/NursingLog/NursingLog";
 import axios from "axios";
 
 const Dashboard = () => {
-  const [latestAlerts, setLatestAlerts] = useState([]);
-  const [latestAlertMessage, setLatestAlertMessage] = useState("");
+  const [latestAlert, setLatestAlert] = useState("");
 
   useEffect(() => {
-    const fetchLatestAlerts = async () => {
+    const fetchLatestAlert = async () => {
+      const token = localStorage.getItem("access_token");
+
       try {
-        // JWT 토큰을 localStorage에서 가져오기
-        const token = localStorage.getItem("access_token");
-        
-        // 서버로 인증 요청 보내기
         const response = await axios.get("http://192.168.20.6:1252/main/alert", {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         
         const alertData = response.data;
 
-        // 최신 알림 데이터가 '응급 상황'인지 확인하여 메시지 설정
-        if (alertData && alertData.length > 0 && alertData[0].AlertType === "응급 상황") {
-          setLatestAlertMessage("응급 상황 발생! 주의하세요.");
+        if (alertData && alertData.status === "응급 상황") {
+          setLatestAlert("응급 상황 발생! 주의하세요.");
 
           // 일정 시간 후에 알림 초기화
           setTimeout(() => {
-            setLatestAlertMessage("");
+            setLatestAlert("");
           }, 5000); // 5초 후에 알림 지우기
         }
-
-        setLatestAlerts(alertData);
       } catch (error) {
         console.error("최신 알림 가져오기 실패:", error);
       }
     };
 
-    // 5초마다 최신 알림 가져오기
-    const interval = setInterval(fetchLatestAlerts, 5000);
+    const interval = setInterval(fetchLatestAlert, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -53,11 +47,10 @@ const Dashboard = () => {
       <Workspace pageText="페이지 / 모니터링" mainText="메인 대시보드" />
       <div className="upper-section">
         <div className="left-content">
-          <VideoStream />
+          <VideoStream videoStreamUrl="http://192.168.20.6:5173/main/alert" />
         </div>
         <div className="right-content">
-          {/* AlertMessages 컴포넌트에 최신 알림 데이터 전달 */}
-          <AlertMessages alerts={latestAlerts} />
+          <AlertMessages />
         </div>
       </div>
       <div className="lower-section">
@@ -66,11 +59,12 @@ const Dashboard = () => {
         </div>
         <div className="content-section">
           <CustomCalendar />
+          <NursingLog />
           <TodoList />
         </div>
       </div>
-      <Notification message={latestAlertMessage} />{" "}
-      {/* Notification 컴포넌트에 최신 알림 메시지 전달 */}
+      <Notification message={latestAlert} />{" "}
+      {/* Notification 컴포넌트에 latestAlert 전달 */}
     </div>
   );
 };
