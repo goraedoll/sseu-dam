@@ -4,24 +4,21 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from ORM import ORM_to_do
 from schema import to_do_schema
-from db_session.db_session import get_db, session_store
+from db_session.db_session import get_db
 from sqlalchemy import func
 from datetime import datetime
+from jwt_jp.jwt_jp import verify_jwt_token
 
 router = APIRouter()
 
 orm = ORM_to_do.to_do_orm
 
 # 삽입
-@router.post("/upload", tags=["to_do_list"])
-def send_to_do(request: Request, todo_schema : to_do_schema.to_do_schema,  db:Session=Depends(get_db)):
+@router.post("/", tags=["to_do_list"])
+def send_to_do(todo_schema : to_do_schema.to_do_schema,  db:Session=Depends(get_db), user_id : str = Depends(verify_jwt_token)):
     try:
-        session_id = request.cookies.get("session_id")
-            # session_id를 통해 메모리 내 세션 데이터 조회
-        session = session_store.get(session_id)
-        if not session:
-            raise HTTPException(status_code=403, detail="세션 인증 실패")
-        user_id = session["user_id"]
+        if not db.query(orm).filter(orm.UserID == user_id):
+            HTTPException(status_code=403, detail="인증되지 않음.")
 
         id_increament = db.query(func.max(orm.id)).scalar()
         max_id = (id_increament + 1)
@@ -51,19 +48,12 @@ def send_to_do(request: Request, todo_schema : to_do_schema.to_do_schema,  db:Se
 
 
 # 업데이트
-@router.put("/update", tags=["to_do_list"])
+@router.put("/", tags=["to_do_list"])
 def update_todo(
-    request: Request,
     todo_update: to_do_schema.update_to_do_schema,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id : str = Depends(verify_jwt_token)
 ):
-    # 세션 인증
-    session_id = request.cookies.get("session_id")
-    session = session_store.get(session_id)
-    if not session:
-        raise HTTPException(status_code=403, detail="세션 인증 실패")
-    user_id = session["user_id"]
-
     # 해당 투두 항목 조회
     todo_item = db.query(orm).filter(orm.UserID == user_id,orm.id == todo_update.id).first()
     if not todo_item:
@@ -93,24 +83,15 @@ def update_todo(
 
 
     
-@router.get("/get", tags=["to_do_list"])
-def get_to_do(request: Request, db: Session = Depends(get_db)):
+@router.get("/", tags=["to_do_list"])
+def get_to_do(request: Request, db: Session = Depends(get_db),user_id : str = Depends(verify_jwt_token)):
     try:
-        session_id = request.cookies.get("session_id")
-            # session_id를 통해 메모리 내 세션 데이터 조회
-        session = session_store.get(session_id)
-        if not session:
-            raise HTTPException(status_code=403, detail="세션 인증 실패")
-        user_id = session["user_id"]
 
-        if not user_id:
-            raise HTTPException(status_code=401, detail="인증되지 않은 사용자입니다.")
         
-        user_tasks = db.query(orm).filter(orm.UserID == user_id).order_by(orm.created_at.desc()).limit(6).all()  # 5개만 반환
+        user_tasks = db.query(orm).filter(orm.UserID == user_id).order_by(orm.created_at.desc()).all()  # 5개만 반환
         return [
             {
-                "created_at" : task.created_at,
-                "task_description": task.task_description,
+                "text": task.task_description,
                 "completed": task.completed,
                 "id": task.id
             }
@@ -130,19 +111,12 @@ def get_to_do(request: Request, db: Session = Depends(get_db)):
         raise HTTPException(status_code=500, detail=f"예상치 못한 오류 발생: {str(e)}")
 
 #삭제
-@router.delete("/delete", tags=["to_do_list"])
+@router.delete("/", tags=["to_do_list"])
 def delete_todo(
-    request: Request,
     todo_id: to_do_schema.DeleteToDoSchema,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id : str = Depends(verify_jwt_token)
 ):
-    # 세션 인증
-    session_id = request.cookies.get("session_id")
-    session = session_store.get(session_id)
-    if not session:
-        raise HTTPException(status_code=403, detail="세션 인증 실패")
-    user_id = session["user_id"]
-
     # 해당 투두 항목 조회
     todo_item = db.query(orm).filter(orm.UserID == user_id, orm.id == todo_id.id).first()
     if not todo_item:

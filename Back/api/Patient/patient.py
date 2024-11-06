@@ -32,3 +32,20 @@ def patient_post(request: Request, patient : patient_post, db: Session = Depends
     db.refresh(db_patient)
 
     return {"message": "성공"}
+
+# @router.get("/get", tags=["patient"])
+# def patient_get(request: Request, db:Session=Depends(get_db())):
+#     session_id = request.cookies.get("session_id")
+#     session = session_store.get(session_id)
+#     if not session:
+#         raise HTTPException(status_code=403, detail="세션 인증 실패")
+#     user_id = session["user_id"]
+#     patients = db.query(patient_orm).filter(patient_orm.UserID==user_id).order_by(patient_orm.user_idx.desc()).all()
+
+#     return [
+#         {
+
+#         }
+#     ]
+    
+    

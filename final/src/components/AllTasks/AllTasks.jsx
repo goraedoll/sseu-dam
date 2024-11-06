@@ -1,43 +1,63 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import checkBoxChecked from "../../assets/icons/alltask-check.svg";
 import checkBoxUnchecked from "../../assets/icons/todo-noncheck.svg";
-import correctionIcon from "../../assets/icons/alltask-correction.svg"; // 수정 및 저장 아이콘
-import deleteIcon from "../../assets/icons/alltask-delete.svg"; // 삭제 아이콘
+import correctionIcon from "../../assets/icons/alltask-correction.svg";
+import deleteIcon from "../../assets/icons/alltask-delete.svg";
 import "./AllTasks.css";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [editMode, setEditMode] = useState(null); // 현재 수정 중인 항목의 ID
-  const [editText, setEditText] = useState(""); // 수정할 텍스트 저장
-  const [deleteConfirm, setDeleteConfirm] = useState(null); // 삭제 확인 모달 상태
+  const [editMode, setEditMode] = useState(null);
+  const [editText, setEditText] = useState("");
+  const [deleteConfirm, setDeleteConfirm] = useState(null);
   const tasksPerPage = 9;
+  const navigate = useNavigate();
 
-  const fetchTasks = () => {
-    fetch("http://localhost:3001/api/tasks")
-      .then((response) => response.json())
-      .then((data) => setTasks(data))
-      .catch((error) => console.error("Error fetching tasks:", error));
+  const fetchTasks = async () => {
+    try {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+
+      const response = await fetch("http://192.168.20.6:1252/to_do_list/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
   };
 
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  const indexOfLastTask = currentPage * tasksPerPage;
-  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
-  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
   const toggleTask = async (id, completed) => {
     try {
-      await fetch(`http://localhost:3001/api/tasks/${id}/completed`, {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+
+      await fetch(`http://192.168.20.6:1252/to_do_list/`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ completed: !completed }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ completed: !completed, id: id }),
       });
       fetchTasks();
     } catch (error) {
@@ -52,10 +72,19 @@ const AllTasks = () => {
 
   const editTask = async (id) => {
     try {
-      await fetch(`http://localhost:3001/api/tasks/${id}/text`, {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+
+      await fetch(`http://192.168.20.6:1252/to_do_list/`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: editText }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id: id, task_dscription: editText }),
       });
       setEditMode(null);
       setEditText("");
@@ -67,16 +96,28 @@ const AllTasks = () => {
 
   const deleteTask = async (id) => {
     try {
-      await fetch(`http://localhost:3001/api/tasks/${id}`, {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+
+      await fetch(`http://192.168.20.6:1252/to_do_list/`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      setDeleteConfirm(null); // 삭제 확인 모달 닫기
+      setDeleteConfirm(null);
       fetchTasks();
     } catch (error) {
       console.error("Error deleting task:", error);
     }
   };
 
+  const indexOfLastTask = currentPage * tasksPerPage;
+  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
   const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
   return (
