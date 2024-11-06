@@ -1,35 +1,44 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "./Login.css";
-import logo from "../../assets/images/login-logo.png"; // logo.png를 import
-import { Link } from "react-router-dom";
+import logo from "../../assets/images/login-logo.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [rememberMe, setRememberMe] = useState(false); // 로그인 상태 유지 상태 추가
+  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
+    const payload = {
+      UserID: username,
+      Password: password,
+    };
+
     try {
-      const response = await axios.post(`${API_BASE_URL}/login`, {
-        UserID: username,
-        PasswordHash: password,
+      const response = await fetch("http://192.168.20.6:1252/member/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
-      if (response.data.message === "로그인 성공") {
-        alert("로그인 성공!");
-      }
-    } catch (err) {
-      if (err.response && err.response.status === 400) {
-        const errorDetail = err.response.data.detail;
-        if (errorDetail.includes("아이디")) {
-          setError("아이디가 틀렸습니다.");
-        } else if (errorDetail.includes("비밀번호")) {
-          setError("비밀번호가 틀렸습니다.");
-        }
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("access_token", data.access_token); // 토큰 저장
+        alert(data.message); // 성공 메시지 출력
+        navigate("/dashboard"); // 대시보드로 이동
       } else {
-        setError("로그인 중 오류가 발생했습니다.");
+        const errorData = await response.json();
+        setError(errorData.detail || "로그인 실패");
       }
+    } catch (error) {
+      console.error("로그인 중 오류 발생:", error);
+      setError("서버와의 통신 중 오류가 발생했습니다.");
     }
   };
 
@@ -39,7 +48,7 @@ const Login = () => {
         <button className="back-button">←ㅤ뒤로 돌아가기</button>
         <h2>로그인</h2>
         {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <label htmlFor="username">아이디</label>
           <input
             type="text"
@@ -47,6 +56,8 @@ const Login = () => {
             name="username"
             required
             placeholder="아이디를 입력해주세요."
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
 
           <label htmlFor="password">비밀번호</label>
@@ -56,11 +67,18 @@ const Login = () => {
             name="password"
             required
             placeholder="비밀번호를 입력해 주세요."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <div className="form-options">
             <div className="left-group">
-              <input type="checkbox" id="remember-me" />
+              <input 
+                type="checkbox" 
+                id="remember-me" 
+                checked={rememberMe} 
+                onChange={(e) => setRememberMe(e.target.checked)} 
+              />
               <label htmlFor="remember-me">로그인 상태 유지하기</label>
             </div>
             <Link to="/forgot-password" className="forgot-password-link">
