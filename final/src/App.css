@@ -1,4 +1,43 @@
-html, body, #root, .app-container {
+:root {
+  /* 기본 색상 팔레트 */
+  --color-blue-900: #072182; /* var(--text-blue900) */
+  --color-blue-800: #0231a6; /* var(--text-blue800) */
+  --color-blue-600: #0062e5; /* var(--primary-blue) */
+  --color-blue-gray-1: #a3aed0; /* var(--text-gray1) */
+  --color-blue-gray-2: #8f95b5; /* var(--text-gray2) */
+  --color-blue-gray-3: #6b7698; /* var(--text-gray3) */
+  --color-blue-gray-4: #707eae; /* var(--text-gray4) */
+  --color-blue-gray-5: #2b3674; /* var(--text-gray5) */
+  --color-gray-50: #fafafa; /* var(--button-gray50) */
+  --color-blue-50: #eef7ff; /* var(--button-blue50) */
+  --color-blue-100: #cbe8ff; /* var(--button-blue100) */
+  --color-red-400: #ff5454; /* var(--button-red )*/
+  --color-border-gray: #e0e5f2; /* var(--border-color) */
+  --color-background: #f4f7fe; /* var(--background-color) */
+  --color-white: #ffffff; /* var(--primary-white) */
+
+  /* 역할별 변수 */
+  --text-blue900: var(--color-blue-900);
+  --text-blue800: var(--color-blue-800);
+  --primary-blue: var(--color-blue-600);
+  --primary-white: var(--color-white);
+  --text-gray1: var(--color-blue-gray-1);
+  --text-gray2: var(--color-blue-gray-2);
+  --text-gray3: var(--color-blue-gray-3);
+  --text-gray4: var(--color-blue-gray-4);
+  --text-gray5: var(--color-blue-gray-5);
+  --button-gray50: var(--color-gray-50);
+  --button-blue100: var(--color-blue-100);
+  --button-blue50: var(--color-blue-50);
+  --button-red: var(--color-red-400);
+  --border-color: var(--color-border-gray);
+  --background-color: var(--color-background);
+}
+
+html,
+body,
+#root,
+.app-container {
   height: 100%; /* 전체 높이를 100%로 설정 */
   margin: 0;
   padding: 0;
@@ -16,5 +55,5 @@ html, body, #root, .app-container {
 
 body {
   background-color: #f4f7fe;
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
 }
