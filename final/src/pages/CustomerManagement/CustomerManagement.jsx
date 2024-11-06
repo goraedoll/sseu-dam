@@ -134,7 +134,7 @@ const CustomerManagement = () => {
               {customers.map((customer) => (
                 <tr key={customer.id}>
                   <td className="customer-id">{customer.id}</td>
-                  <td>
+                  <td className="profile-td">
                     <img
                       src={customer.profile}
                       alt={customer.name}

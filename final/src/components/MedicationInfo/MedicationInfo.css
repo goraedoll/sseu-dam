@@ -61,7 +61,7 @@
 }
 
 .medication-info-table tbody td {
-  font-size: 12px; /* 원하는 폰트 크기로 변경 */
+  font-size: 13px; /* 원하는 폰트 크기로 변경 */
   font-weight: 300; /* 원하는 폰트 굵기로 변경 */
   color: #2b3674; /* 원하는 폰트 색상으로 변경 */
   line-height: 1.5;
