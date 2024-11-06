@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Request
-from CORS.cors import cors_middleware
 from api.Login.login import router as login_router
 from api.Alerts.alerts import router as alerts_router
 from api.to_do_list.to_do_list import router as to_do_router

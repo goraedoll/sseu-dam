@@ -55,7 +55,7 @@ def update_todo(
     user_id : str = Depends(verify_jwt_token)
 ):
     # 해당 투두 항목 조회
-    todo_item = db.query(orm).filter(orm.UserID == user_id,orm.id == todo_update.id).first()
+    todo_item = db.query(orm).filter(orm.UserID == user_id,orm.id == todo_update.id).first() 
     if not todo_item:
         raise HTTPException(status_code=404, detail="투두 항목을 찾을 수 없습니다.")
 

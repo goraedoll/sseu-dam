@@ -1,21 +1,18 @@
 from fastapi import FastAPI, APIRouter, Request, Depends, HTTPException
 from schema.patient_schema import patient_post
-from db_session.db_session import session_store, create_session, get_db
+from db_session.db_session import get_db
 from sqlalchemy.orm import Session
 from ORM.ORM_patient import patient_orm
 from sqlalchemy import func
+from jwt_jp.jwt_jp import verify_jwt_token
+
 
 
 
 router = APIRouter()
 
 @router.post("/upload", tags=["patient"])
-def patient_post(request: Request, patient : patient_post, db: Session = Depends(get_db)):
-    session_id = request.cookies.get("session_id")
-    session = session_store.get(session_id)
-    if not session:
-        raise HTTPException(status_code=403, detail="세션 인증 실패")
-    user_id = session["user_id"]
+def patient_post(patient : patient_post, db: Session = Depends(get_db)):
     idx_increament = db.query(func.max(patient_orm.idx)).scalar()
     new_Idx = (idx_increament + 1)
     user_Idx = db.query(patient_orm).filter(patient_orm.UserID == user_id).order_by(patient_orm.user_idx.desc()).first()
@@ -32,20 +29,3 @@ def patient_post(request: Request, patient : patient_post, db: Session = Depends
     db.refresh(db_patient)
 
     return {"message": "성공"}
-
-# @router.get("/get", tags=["patient"])
-# def patient_get(request: Request, db:Session=Depends(get_db())):
-#     session_id = request.cookies.get("session_id")
-#     session = session_store.get(session_id)
-#     if not session:
-#         raise HTTPException(status_code=403, detail="세션 인증 실패")
-#     user_id = session["user_id"]
-#     patients = db.query(patient_orm).filter(patient_orm.UserID==user_id).order_by(patient_orm.user_idx.desc()).all()
-
-#     return [
-#         {
-
-#         }
-#     ]
-    
-    
