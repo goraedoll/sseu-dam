@@ -5,6 +5,8 @@ import correctionIcon from "../../assets/icons/alltask-correction.svg"; // 수�
 import deleteIcon from "../../assets/icons/alltask-delete.svg"; // 삭제 아이콘
 import "./AllTasks.css";
 
+const BASE_URL = "http://192.168.20.6:1252";
+
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,12 +16,11 @@ const AllTasks = () => {
   const tasksPerPage = 9;
 
 
-
   const fetchTasks = async () => {
     const token = localStorage.getItem("access_token");
 
     try {
-      const response = await fetch("http://192.168.20.6:1252/to_do_list/all", {
+      const response = await fetch(`${BASE_URL}/to_do_list/all`, { // BASE_URL 사용
         headers: {
           Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
         },
@@ -40,7 +41,7 @@ const AllTasks = () => {
     fetchTasks();
   }, []);
 
-  const indexOfLastTask = currentPage * tasksPerPage;
+const indexOfLastTask = currentPage * tasksPerPage;
 const indexOfFirstTask = indexOfLastTask - tasksPerPage;
 const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
 
@@ -52,7 +53,7 @@ const toggleTask = async (id, completed) => {
   const token = localStorage.getItem("access_token");
 
   try {
-    await fetch(`http://192.168.20.6:1252/to_do_list/`, {
+    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +76,7 @@ const editTask = async (id) => {
   const token = localStorage.getItem("access_token");
 
   try {
-    await fetch(`http://192.168.20.6:1252/to_do_list/`, {
+    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +96,7 @@ const deleteTask = async (id) => {
   const token = localStorage.getItem("access_token");
 
   try {
-    await fetch(`http://192.168.20.6:1252/to_do_list/`, {
+    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

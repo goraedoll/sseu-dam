@@ -14,6 +14,7 @@ const TodoList = ({ selectedDate }) => {
   useEffect(() => {
     const fetchTasks = async () => {
       const token = localStorage.getItem("access_token");
+      // console.log(selectedDate)
       const formatDate = (date) => {
         if (!date) return '';
         return date.format('YYYY-MM-DD');
