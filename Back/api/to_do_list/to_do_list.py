@@ -132,3 +132,14 @@ def delete_todo(
         raise HTTPException(status_code=500, detail="데이터베이스에서 항목 삭제 실패")
 
     return {"message": "삭제 완료"}
+
+#모든 할 일 조회
+@router.get("/all", tags=["to_do_list"])
+def get_all_todo(user_id : str = Depends(verify_jwt_token) ,db: Session = Depends(get_db)):
+    todo_all = db.query(orm).filter(orm.UserID == user_id).all()
+    return [ {
+        "id": data.id,
+        "text": data.task_description,
+        "completed":data.completed,
+        "createdAt": data.created_at
+    } for data in todo_all ]
