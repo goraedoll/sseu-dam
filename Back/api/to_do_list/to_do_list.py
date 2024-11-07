@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi import Request
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
@@ -84,11 +84,10 @@ def update_todo(
 
     
 @router.get("/", tags=["to_do_list"])
-def get_to_do(request: Request, db: Session = Depends(get_db),user_id : str = Depends(verify_jwt_token)):
+def get_to_do(date: str =Query(...),db: Session = Depends(get_db),user_id : str = Depends(verify_jwt_token)):
+    user_date = datetime.strptime(date, "%Y-%m-%d").date()
     try:
-
-        
-        user_tasks = db.query(orm).filter(orm.UserID == user_id).order_by(orm.created_at.desc()).all()  # 5개만 반환
+        user_tasks = db.query(orm).filter(orm.UserID == user_id).filter(func.date(orm.created_at)==user_date).order_by(orm.created_at.desc()).all()  # 5개만 반환
         return [
             {
                 "text": task.task_description,

@@ -8,9 +8,11 @@ import CustomCalendar from "../../components/Calendar/CustomCalendar";
 import Notification from "../../components/Notification/Notification";
 import NursingLog from "../../components/NursingLog/NursingLog";
 import axios from "axios";
+import dayjs from "dayjs";
 
 const Dashboard = () => {
   const [latestAlert, setLatestAlert] = useState("");
+  const [selectedDate, setSelectedDate] = useState(dayjs());
 
   useEffect(() => {
     const fetchLatestAlert = async () => {
@@ -58,9 +60,9 @@ const Dashboard = () => {
           <h1 className="lower-section-title">간편 일지 관리</h1>
         </div>
         <div className="content-section">
-          <CustomCalendar />
-          <NursingLog />
-          <TodoList />
+        <CustomCalendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+        <NursingLog selectedDate={selectedDate} />
+          <TodoList selectedDate={selectedDate}/>
         </div>
       </div>
       <Notification message={latestAlert} />{" "}

@@ -12,6 +12,7 @@ import Settings from "./pages/SettingPage/Settings";
 import AllTasks from "./pages/AllTasksPage/AllTasksPage";
 import Notification from "./components/Notification/Notification"; // 알림 컴포넌트 import
 import "./App.css";
+import App2 from "./App2";
 
 function App() {
   const [notification, setNotification] = useState("");
@@ -112,6 +113,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+
   );
 }
 

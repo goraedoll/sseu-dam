@@ -6,7 +6,7 @@ import checkBoxChecked from "../../assets/icons/todo-check.svg";
 import checkBoxUnchecked from "../../assets/icons/todo-noncheck.svg";
 import "./TodoList.css";
 
-const TodoList = () => {
+const TodoList = ({ selectedDate }) => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
 
@@ -14,9 +14,15 @@ const TodoList = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       const token = localStorage.getItem("access_token");
+      const formatDate = (date) => {
+        if (!date) return '';
+        return date.format('YYYY-MM-DD');
+      };
 
       try {
-        const response = await fetch("http://192.168.20.6:1252/to_do_list/", {
+        
+        const queryDate = encodeURIComponent(formatDate(selectedDate));
+        const response = await fetch(`http://192.168.20.6:1252/to_do_list/?date=${queryDate}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -35,7 +41,7 @@ const TodoList = () => {
     };
 
     fetchTasks();
-  }, []);
+  }, [selectedDate]);
 
   // Task 완료 상태를 토글하는 함수
   const toggleTask = async (id, completed) => {
@@ -49,6 +55,7 @@ const TodoList = () => {
 
     // 서버에 업데이트 요청 보내기
     try {
+      
       const response = await fetch("http://192.168.20.6:1252/to_do_list/", {
         method: "PUT",
         headers: {

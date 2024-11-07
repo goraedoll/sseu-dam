@@ -1,11 +1,12 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
 from typing import Optional
+import datetime
 
 class to_do_schema(BaseModel):
     task_description: str
     completed : bool
-    created_at : Optional[datetime] = None
+    created_at : Optional[datetime.datetime] = None
     class Config:
         from_attributes = True  # SQLAlchemy 모델을 Pydantic 모델로 변환할 수 있게 해줍니다.
 
@@ -18,3 +19,7 @@ class update_to_do_schema(BaseModel):
 
 class DeleteToDoSchema(BaseModel):
     id: int
+
+# class get_to_do_schema(BaseModel):
+#     date : str
+    
