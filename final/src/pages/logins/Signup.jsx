@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Signup.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { API_BASE_URL } from '../../config.js'; // API_BASE_URL을 직접 import
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    UserID: "",
-    UserName: "",
+    userId: "",
+    userName: "",
     email: "",
     password: "",
-    BirthDate: "",
-    Addr: "",
+    birthDate: "",
+    addr: "",
     phone: "",
-    EmergencyContact: ""
+    healthStatus: "",
+    emergencyContact: ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,21 +27,20 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://192.168.20.6:1252/member/signup', {
-        UserID: formData.UserID,
-        UserName: formData.UserName,
+      const response = await axios.post(`${API_BASE_URL}/signup`, {
+        UserID: formData.userId,
+        UserName: formData.userName,
         email: formData.email,
-        password: formData.password,
-        BirthDate: formData.BirthDate,
-        Addr: formData.Addr,
+        PasswordHash: formData.password,
+        BirthDate: formData.birthDate,
+        Addr: formData.addr,
         Phone: formData.phone,
-
-        EmergencyContact: formData.EmergencyContact
+        HealthStatus: formData.healthStatus,
+        EmergencyContact: formData.emergencyContact,
+        JoinedAt: new Date().toISOString()
       });
       setSuccess(response.data.message);
       setError("");
-      alert(response.data.message); // 성공 메시지 alert로 출력
-      navigate('/'); // /dashboard로 페이지 이동
     } catch (err) {
       if (err.response && err.response.status === 400) {
         setError(err.response.data.detail);
@@ -59,88 +59,32 @@ const Signup = () => {
       {success && <p className="success-message">{success}</p>}
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="UserID">아이디</label>
-        <input
-          type="text"
-          id="UserID"
-          name="UserID"
-          placeholder="아이디를 입력해주세요."
-          required
-          onChange={handleChange}
-        />
+        <label htmlFor="userId">아이디</label>
+        <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요." required onChange={handleChange} />
 
-        <label htmlFor="UserName">이름</label>
-        <input
-          type="text"
-          id="UserName"
-          name="UserName"
-          placeholder="이름을 입력해주세요."
-          required
-          onChange={handleChange}
-        />
+        <label htmlFor="userName">이름</label>
+        <input type="text" id="userName" name="userName" placeholder="이름을 입력해주세요." required onChange={handleChange} />
 
         <label htmlFor="email">이메일</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="이메일을 입력해주세요."
-          required
-          onChange={handleChange}
-        />
+        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요." required onChange={handleChange} />
 
         <label htmlFor="password">비밀번호</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="비밀번호를 입력해주세요."
-          required
-          onChange={handleChange}
-        />
+        <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요." required onChange={handleChange} />
 
-        <label htmlFor="BirthDate">생년월일</label>
-        <input
-          type="date"
-          id="BirthDate"
-          name="BirthDate"
-          required
-          onChange={handleChange}
-        />
+        <label htmlFor="birthDate">생년월일</label>
+        <input type="date" id="birthDate" name="birthDate" required onChange={handleChange} />
 
-        <label htmlFor="Addr">주소</label>
-        <input
-          type="text"
-          id="Addr"
-          name="Addr"
-          placeholder="주소를 입력해주세요."
-          required
-          onChange={handleChange}
-        />
+        <label htmlFor="addr">주소</label>
+        <input type="text" id="addr" name="addr" placeholder="주소를 입력해주세요." required onChange={handleChange} />
 
         <label htmlFor="phone">휴대전화번호</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="010-1234-5678 형식으로 입력해주세요."
-          pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-          required
-          onChange={handleChange}
-        />
+        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678 형식으로 입력해주세요." pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required onChange={handleChange} />
 
+        <label htmlFor="healthStatus">건강상태</label>
+        <textarea id="healthStatus" name="healthStatus" placeholder="건강 상태를 입력해주세요." required onChange={handleChange}></textarea>
 
-
-        <label htmlFor="EmergencyContact">긴급연락망</label>
-        <input
-          type="tel"
-          id="EmergencyContact"
-          name="EmergencyContact"
-          placeholder="010-1234-5678 형식으로 입력해주세요."
-          pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-          required
-          onChange={handleChange}
-        />
+        <label htmlFor="emergencyContact">긴급연락망</label>
+        <input type="tel" id="emergencyContact" name="emergencyContact" placeholder="010-1234-5678 형식으로 입력해주세요." pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required onChange={handleChange} />
 
         <button type="submit" className="signup-button">회원가입</button>
       </form>

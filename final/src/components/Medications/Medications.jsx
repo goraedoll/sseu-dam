@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Medications.css";
 import medicheckedIcon from "../../assets/icons/nurs-medichecked.svg";
 import noncheckIcon from "../../assets/icons/nurs-noncheck.svg";
@@ -30,23 +30,97 @@ const medicationsData = [
   },
 ];
 
-const Medications = () => {
+const Medications = (selectedDate) => {
   const [medications, setMedications] = useState(medicationsData);
-
-  const toggleCheck = (medicationId, index) => {
-    setMedications((prevMedications) =>
-      prevMedications.map((medication) =>
-        medication.id === medicationId
-          ? {
-              ...medication,
-              checked: Array.isArray(medication.checked)
-                ? medication.checked.map((val, i) => (i === index ? !val : val))
-                : !medication.checked,
-            }
-          : medication
-      )
-    );
+  // console.log(selectedDate.selectedDate)
+  const formatDate = (date) => {
+    if (!date) return '';
+    return date.format('YYYY-MM-DD');
   };
+
+  useEffect(() => {
+    const fetchMedications = async () => {
+      const token = localStorage.getItem("access_token");
+      const getdate=formatDate(selectedDate.selectedDate)
+
+      try {
+        // GET 요청을 보내는 부분: selectedDate를 URL의 쿼리 파라미터로 사용
+        const response = await fetch(`http://192.168.20.6:1252/nurselog/?date=${getdate}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // 인증 토큰 헤더 추가
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch medications data");
+        }
+////이게맞나...
+        const data = await response.json();
+        setMedications((prevMedications) =>
+          prevMedications.map((medication, index) => ({
+            ...medication,
+            checked: data[index].checked,
+          }))
+        );
+        // 응답받은 데이터 콘솔에 출력
+      } catch (error) {
+        console.error("Error fetching medications data:", error);
+      }
+    };
+
+    fetchMedications();
+  }, [selectedDate]); // selectedDate가 변경될 때마다 GET 요청을 다시 보냄
+  console.log(medicationsData)
+  //
+
+  const toggleCheck = async (medicationId, index) => {
+    // 업데이트된 체크 상태 설정
+    const updatedMedications = medications.map((medication) =>
+      medication.id === medicationId
+        ? {
+            ...medication,
+            checked: Array.isArray(medication.checked)
+              ? medication.checked.map((val, i) => (i === index ? !val : val))
+              : !medication.checked,
+          }
+        : medication
+    );
+  
+    // 업데이트된 상태를 즉시 적용
+    setMedications(updatedMedications);
+  
+    // PUT 요청을 보내는 부분
+    const token = localStorage.getItem("access_token");
+    const getdate=formatDate(selectedDate.selectedDate)
+  
+    try {
+      const updatedMedication = updatedMedications.find(med => med.id === medicationId);
+  
+      const response = await fetch(`http://192.168.20.6:1252/nurselog/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // 인증 토큰 헤더 추가
+          // x_data: getdate
+        },
+        body: JSON.stringify({
+          id: updatedMedication.id, // id 추가
+          checked: updatedMedication.checked // checked 상태
+        }),
+      });
+      console.log(updatedMedication.id, updatedMedication.checked)
+  
+      if (!response.ok) {
+        throw new Error("Failed to update medication status");
+      }
+  
+      // 요청 성공 시 추가 작업(필요한 경우)
+      console.log("Medication status updated successfully");
+    } catch (error) {
+      console.error("Error updating medication status:", error);
+    }
+  };
+  
 
   return (
     <div className="medications-container">
@@ -84,4 +158,4 @@ const Medications = () => {
   );
 };
 
-export default Medications;
+export default Medications; 
