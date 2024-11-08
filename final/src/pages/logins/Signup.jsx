@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Signup.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -12,11 +12,11 @@ const Signup = () => {
     BirthDate: "",
     Addr: "",
     phone: "",
-    HealthStatus: "",
     EmergencyContact: ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,11 +34,13 @@ const Signup = () => {
         BirthDate: formData.BirthDate,
         Addr: formData.Addr,
         Phone: formData.phone,
-        HealthStatus: formData.HealthStatus,
+
         EmergencyContact: formData.EmergencyContact
       });
       setSuccess(response.data.message);
       setError("");
+      alert(response.data.message); // 성공 메시지 alert로 출력
+      navigate('/'); // /dashboard로 페이지 이동
     } catch (err) {
       if (err.response && err.response.status === 400) {
         setError(err.response.data.detail);
@@ -127,14 +129,7 @@ const Signup = () => {
           onChange={handleChange}
         />
 
-        <label htmlFor="HealthStatus">건강상태</label>
-        <textarea
-          id="HealthStatus"
-          name="HealthStatus"
-          placeholder="건강 상태를 입력해주세요."
-          required
-          onChange={handleChange}
-        ></textarea>
+
 
         <label htmlFor="EmergencyContact">긴급연락망</label>
         <input
