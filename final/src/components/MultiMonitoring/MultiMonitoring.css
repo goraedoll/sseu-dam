@@ -23,6 +23,27 @@
     transition: transform 0.2s;
 }
 
+.monitoring-selection-title {
+    text-align: left;
+    width: 100%; /* 전체 너비 차지 */
+    margin-bottom: 10px;
+    margin-left: 28px;
+    font-size: 24px;
+    color: var(--text-blue800);
+}
+
+.selected-monitoring-title {
+    text-align: left;
+    width: 100%; /* 전체 너비 차지 */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 28px;
+
+    font-size: 24px;
+    color: var(--text-blue800);
+}
+
+
 .monitor:hover {
     transform: scale(1.05);
 }

@@ -5,17 +5,10 @@
   padding: 0 !important;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-<<<<<<< HEAD
   background: var(--button-blue50);
 
   h2 {
     color: var(--text-blue900);
-=======
-  background: #eef7ff;
-
-  h2 {
-    color: #072182;
->>>>>>> origin/BJP
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
@@ -32,11 +25,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-<<<<<<< HEAD
   background-color: var(--primary-white);
-=======
-  background-color: #ffffff;
->>>>>>> origin/BJP
   border-radius: 10px;
   padding: 10px;
   margin-left: 12px;
@@ -58,12 +47,7 @@
 }
 
 .medication-name {
-<<<<<<< HEAD
   color: var(--text-blue900);
-=======
-  color: #072182;
-  font-family: Pretendard;
->>>>>>> origin/BJP
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -72,12 +56,7 @@
 }
 
 .medication-frequency {
-<<<<<<< HEAD
   color: var(--text-gray1);
-=======
-  color: #a3aed0;
-  font-family: Pretendard;
->>>>>>> origin/BJP
   font-size: 10px;
   font-style: normal;
   font-weight: 500;

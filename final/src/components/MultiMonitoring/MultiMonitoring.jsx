@@ -1,7 +1,7 @@
 // src/components/MultiMonitoring/MultiMonitoring.jsx
 
 import React, { useState } from "react";
-import "./multiMonitoring.css";
+import "./MultiMonitoring.css";
 import placeholderImage from "../../assets/images/login-cloud.png"; // 대체 이미지 파일 추가
 
 const MultiMonitoring = () => {
@@ -24,7 +24,8 @@ const MultiMonitoring = () => {
 
     return (
         <div className="multi-monitoring-wrapper">
-            {/* 작은 모니터 4개 */}
+            {/* 작은 모니터 4개 상단 제목 */}
+            <h1 className="monitoring-selection-title">모니터링 선택</h1>
             <div className="multi-monitoring-container">
                 {videoSources.map((src, index) => (
                     <div key={index} className="monitor" onClick={() => handleMonitorClick(src, index)}>
@@ -39,7 +40,8 @@ const MultiMonitoring = () => {
                 ))}
             </div>
 
-            {/* 큰 모니터 */}
+            {/* 큰 모니터 상단 제목 */}
+            <h1 className="selected-monitoring-title">선택한 모니터링</h1>
             <div className="large-monitor">
                 <img 
                     src={selectedVideo}

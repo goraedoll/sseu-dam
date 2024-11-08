@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-body {
-  background-color: var(--background-color);
-  margin: 0;
-  padding: 0;
-}
-
-.app-container {
-  min-height: 100vh; /* 페이지 전체 높이 채우기 */
-}
-=======
 html {
   overflow-y: scroll;
 }
@@ -23,4 +12,3 @@ html {
   flex-direction: column; /* 세로로 배치 */
   gap: 36px; /* 섹션 사이 간격 */
 }
->>>>>>> origin/BJP

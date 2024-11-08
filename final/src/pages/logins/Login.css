@@ -117,13 +117,8 @@ body {
 .login-button {
   background-color: var(--primary-blue);
   height: 54px;
-<<<<<<< HEAD
-  width: 410px;
-  color: var(--primary-white);
-=======
   width: 100%;
   color: white;
->>>>>>> origin/BJP
   padding: 1rem;
   border: none;
   border-radius: 16px;

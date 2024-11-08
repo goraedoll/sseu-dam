@@ -21,16 +21,10 @@ const Medication = () => {
           <h1 className="medication-upper-section-title">간편 일지 관리</h1>
         </div>
         <div className="medication-content-section">
-<<<<<<< HEAD
-          <CustomCalendar />
-          <NursingLog />
-          <TodoList />
-=======
           {/* CustomCalendar에 selectedDate와 setSelectedDate를 props로 전달 */}
           <CustomCalendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
           <NursingLog selectedDate={selectedDate} />
           <TodoList selectedDate={selectedDate}/>
->>>>>>> origin/BJP
         </div>
       </div>
       <div className="medication-lower-section">

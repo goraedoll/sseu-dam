@@ -49,11 +49,7 @@ const Dashboard = () => {
       <Workspace pageText="페이지 / 모니터링" mainText="메인 대시보드" />
       <div className="upper-section">
         <div className="left-content">
-<<<<<<< HEAD
-          <VideoStream videoStreamUrl="http://192.168.21.205:1997/video_feed" />
-=======
           <VideoStream videoStreamUrl="http://192.168.20.6:5173/main/alert" />
->>>>>>> origin/BJP
         </div>
         <div className="right-content">
           <AlertMessages />
@@ -64,15 +60,9 @@ const Dashboard = () => {
           <h1 className="lower-section-title">간편 일지 관리</h1>
         </div>
         <div className="content-section">
-<<<<<<< HEAD
-          <CustomCalendar />
-          <NursingLog />
-          <TodoList />
-=======
         <CustomCalendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
         <NursingLog selectedDate={selectedDate} />
           <TodoList selectedDate={selectedDate}/>
->>>>>>> origin/BJP
         </div>
       </div>
       <Notification message={latestAlert} />{" "}
