@@ -8,16 +8,16 @@ import profileIcon from "../../assets/images/header-profile.png";
 
 const HeaderButtons = () => {
   return (
-    <div className="header-buttons-container">
-      <div className="search-bar">
-        <img src={searchIcon} alt="Search Icon" className="icon search-icon" />
-        <input type="text" placeholder="Search" className="search-input" />
+    <div className="header-buttons">
+      <div className="header-search-bar">
+        <img src={searchIcon} alt="Search Icon" className="header-icon header-search-icon" />
+        <input type="text" placeholder="Search" className="header-search-input" />
       </div>
-      <div className="icon-container">
-        <img src={alarmIcon} alt="Alarm Icon" className="icon" />
-        <img src={darkModeIcon} alt="Dark Mode Icon" className="icon" />
-        <img src={infoIcon} alt="Info Icon" className="icon" />
-        <img src={profileIcon} alt="Profile Icon" className="profile-icon" />
+      <div className="header-icon-group">
+        <img src={alarmIcon} alt="Alarm Icon" className="header-icon" />
+        <img src={darkModeIcon} alt="Dark Mode Icon" className="header-icon" />
+        <img src={infoIcon} alt="Info Icon" className="header-icon" />
+        <img src={profileIcon} alt="Profile Icon" className="header-profile-icon" />
       </div>
     </div>
   );

@@ -46,18 +46,17 @@ def add_member(member : login_schema.Signup_Schema, db:Session=Depends(get_db)):
         raise HTTPException(status_code=400, detail="이미 사용중인 전화번호입니다.")
     
 
-    Hashed_pw = tm.get_password_hash(member.PasswordHash)
+    # Hashed_pw = tm.get_password_hash(member.PasswordHash)
     time_now = datetime.datetime.now()
 
     # db_user = ORM_login.User(**member.dict(exclude_unset=True))
     db_user = ORM_login.User(UserID = member.UserID,
                              UserName = member.UserName,
                              email = member.email,
-                             PasswordHash = Hashed_pw,
+                             PasswordHash = member.PasswordHash,
                              BirthDate = member.BirthDate,
                              Addr = member.Addr,
                              Phone = member.Phone,
-                             HealthStatus = member.HealthStatus,
                              EmergencyContact = member.EmergencyContact,
                              JoinedAt = time_now)
 
@@ -78,6 +77,7 @@ def forgot_password(model : login_schema.forgot_Password , db:Session=Depends(ge
             raise HTTPException(status_code=400, detail="폰 번호 다름")
         raise HTTPException(status_code=400, detail="이메일 다름")
     raise HTTPException(status_code=400, detail="아이디가 틀렸습니다.")
+
 
 
 @router.post("/{UserID}/reset-password", tags=['member'])# 비번 리셋하기

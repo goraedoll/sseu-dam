@@ -1,60 +1,91 @@
 .alltasks-container {
-  margin: 0;
-  height: 660px;
+  width: 1350px;
+  height: 680px;
+  position: relative;
 }
 
-.alltasks-container-title {
-  margin: 0;
-  padding: 28px;
-  font-size: 24px;
-  color: #0231A6;
-}
-
+/* 테이블 스타일 */
 .tasks-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 0px; /* 행 간격 */
 }
 
-.tasks-table th,
-.tasks-table td {
-  padding: 12px;
-  font-size: 14px;
+.add-task-button {
+    display: inline-block;
+    border-radius: 8px !important;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Pretendard';
+    margin-right: 28px;
+}
+
+.tasks-table-head-id,
+.tasks-table-head-complete,
+.tasks-table-head-date,
+.tasks-table-head-tools {
   text-align: center;
-  border-bottom: 1px solid #E9EDF7;
 }
 
-.column-id { width: 50px; }
-.column-text { width: 300px; text-align: left; }
-.column-completed { width: 80px; }
-.column-date { width: 150px; }
-.column-tools { width: 120px; }
-
-/* 헤더 스타일 */
-.tasks-table thead th {
-  font-weight: bold;
-  color: #A3AED0;
+.tasks-table-head-id {
+  width: 100px;
 }
 
-.tasks-tbody .row-id { color: #0231A6; }
-.tasks-tbody .row-text { color: #072182; text-align: left; }
-.tasks-tbody .row-completed { color: #28A745; }
-.tasks-tbody .row-date { color: #072182; }
-.task-item.completed td { background-color: #e0ffe0; }
+.tasks-table-head-complete {
+  width: 80px;
+}
 
-/* 페이지네이션 버튼 스타일 */
-.pagination {
-  margin-top: 24px;
+.tasks-table-head-date {
+  width: 150px;
+}
+
+.tasks-table-head-tools {
+  width: 100px;
+}
+
+/* 테이블 본문 스타일 */
+.tasks-table-body-id,
+.tasks-table-body-date {
+  text-align: center;
+}
+
+.tasks-table-body-complete {
   display: flex;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tasks-table-body-complete img,
+.tool-icon {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}
+
+.tasks-table-body-tools {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
 }
 
 .pagination button {
-  margin: 0 5px;
   padding: 8px 12px;
   border: 1px solid #ddd;
+  border-radius: 5px;
   background-color: #f4f4f4;
   cursor: pointer;
-  border-radius: 4px;
   transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -65,107 +96,98 @@
 }
 
 .pagination button:hover {
-  background-color: #e9edf7;
+  background-color: #329cff;
   transform: scale(1.05);
 }
 
-/* 체크박스 아이콘 스타일 */
-.checkbox-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.checkbox-icon img {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-/* 입력 필드 스타일 */
-.edit-input {
-  width: 100%;
-  padding: 6px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-/* 아이콘 스타일 및 위치 */
-.tool-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.tool-icon {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.tool-icon:hover {
-  transform: scale(1.1); /* 아이콘 호버 시 확대 효과 */
-}
-
-/* 삭제 확인 모달 스타일 */
-.delete-confirm {
+/* 모달 오버레이 스타일 */
+.modal-overlay {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
 
+/* 모달 스타일 */
+.delete-confirm,
+.add-task-modal {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+}
+
+.add-task-modal input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* 버튼 스타일 */
 .confirm-buttons {
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 15px;
+  justify-content: space-around;
+  gap: 6px;
+  margin-top: 20px;
 }
 
-.confirm-icon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.confirm-icon:hover {
-  transform: scale(1.1);
-}
-
-.cancel-button, .confirm-button {
+.confirm-button,
+.cancel-button {
   padding: 8px 14px;
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  transition: background-color 0.3s;
   font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.confirm-button {
+  background-color: #f44;
+  color: white;
+}
+
+.confirm-button:hover {
+  background-color: #d33;
 }
 
 .cancel-button {
-  background-color: #f4f4f4;
+  background-color: #ddd;
   color: #333;
 }
 
 .cancel-button:hover {
-  background-color: #ddd;
+  background-color: #bbb;
 }
 
-.confirm-button {
-  background-color: #f4f4f4;
-  color: #333;
+/* 할일 추가 버튼 스타일 */
+.alltasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
 }
 
-.confirm-button:hover {
-  background-color: #ddd;
+.add-task-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #072182;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-task-button:hover {
+  background-color: #5a74cf;
 }

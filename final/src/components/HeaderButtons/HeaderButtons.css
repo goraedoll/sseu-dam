@@ -1,28 +1,32 @@
-.header-buttons-container {
+.header-buttons {
   display: flex;
   align-items: center;
-  gap: 16px; /* 요소 간 간격 */
+  gap: 16px;
   padding: 10px;
   border-radius: 30px;
+<<<<<<< HEAD
+  background-color: #fff;
+=======
   background-color: #fff; /* 컨테이너의 배경색 */
+>>>>>>> BJP
   margin-right: 14px;
 }
 
-.search-bar {
+.header-search-bar {
   display: flex;
   align-items: center;
-  background-color: #eef7ff; /* 검색 바 배경색 */
+  background-color: #eef7ff;
   border-radius: 30px;
   padding: 10px 12px;
 }
 
-.search-icon {
+.header-search-icon {
   width: 15px !important;
   height: 15px !important;
   margin-right: 11px;
 }
 
-.search-input {
+.header-search-input {
   border: none;
   outline: none;
   background: transparent;
@@ -30,19 +34,19 @@
   color: #6c757d;
 }
 
-.icon-container {
+.header-icon-group {
   display: flex;
   align-items: center;
-  gap: 16px; /* 아이콘 간 간격 */
+  gap: 16px;
 }
 
-.icon {
+.header-icon {
   width: 24px;
   height: 24px;
   cursor: pointer;
 }
 
-.profile-icon {
+.header-profile-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;

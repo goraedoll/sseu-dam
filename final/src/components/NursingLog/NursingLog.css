@@ -1,0 +1,58 @@
+.nursing-log {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 24px 20px 28px 14px;
+  background-color: #fff;
+  width: 567px;
+  height: 294px;
+  margin: 0;
+}
+
+.nursing-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nursing-log-date {
+  color: #072182;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px; /* 214.286% */
+  margin: 0;
+  margin-bottom: 19px;
+  margin-left: 16px;
+}
+
+.components-container {
+  display: flex;
+  gap: 12px;
+}
+
+.components-container > div {
+  flex: 1;
+  background-color: #eef7ff;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.edit-button {
+  background: none; /* 배경 제거 */
+  border: none; /* 테두리 제거 */
+  padding: 0; /* 여백 제거 */
+  cursor: pointer; /* 커서가 손가락 모양으로 변경 */
+  margin: 0;
+}
+
+.edit-button {
+  width: 30px; /* 버튼 너비 */
+  height: 30px; /* 버튼 높이 */
+  background-size: cover; /* 배경 이미지가 버튼을 꽉 채우도록 설정 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 제거 */
+  background-position: center; /* 배경 이미지 가운데 정렬 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer; /* 커서가 손가락 모양으로 변경 */
+  background-color: transparent; /* 배경색 제거 */
+  padding: 0; /* 여백 제거 */
+}

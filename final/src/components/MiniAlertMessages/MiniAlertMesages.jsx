@@ -21,19 +21,38 @@ const MiniAlertMessages = () => {
   const [dbError, setDbError] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/alerts")
-      .then((response) => {
-        setAlerts(response.data);
+    const fetchData = async () => {
+      const token = localStorage.getItem("access_token");
+
+      try {
+        const response = await axios.get("http://192.168.20.6:1252/main/alert", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = response.data;
+
+        // 데이터 형식에 맞춰 필드를 매핑하고 필터링 및 정렬 수행
+        const mappedAlerts = data
+          .map((alert) => ({
+            status: alert.AlertType,
+            message: alert.SensingDetails,
+            date: alert.SensedAt,
+          }))
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 3);
+
+        setAlerts(mappedAlerts);
         setDbError(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Failed to load data:", error);
         setDbError(true);
-      });
-  }, []);
+      }
+    };
 
-  const recentAlerts = alerts.slice(0, 3);
+    fetchData();
+  }, []);
 
   return (
     <div className="mini-alert-container">
@@ -54,8 +73,8 @@ const MiniAlertMessages = () => {
 
           <table className="mini-table">
             <tbody>
-              {recentAlerts.map((alert) => (
-                <tr key={alert.id}>
+              {alerts.map((alert, index) => (
+                <tr key={index}>
                   <td className="mini-status-cell">
                     <img src={getStatusIcon(alert.status)} alt="alert icon" />
                     <span>{alert.status}</span>

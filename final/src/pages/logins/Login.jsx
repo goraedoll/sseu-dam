@@ -74,7 +74,9 @@ const Login = () => {
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">로그인 상태 유지하기</label>
             </div>
-            <a href="/forgot-password">비밀번호 찾기</a>
+            <Link to="/forgot-password" className="forgot-password-link">
+              비밀번호 찾기
+            </Link>
           </div>
 
           <button type="submit" className="login-button">

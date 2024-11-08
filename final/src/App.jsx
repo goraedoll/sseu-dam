@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./pages/Logins/Login";
-import Signup from "./pages/Logins/Signup";
+import Login from "./pages/logins/Login";
+import Signup from "./pages/logins/Signup";
 import ForgotPassword from "./pages/Logins/ForgotPassword";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -10,9 +10,10 @@ import Medication from "./pages/Medication/Medication";
 import CustomerManagement from "./pages/CustomerManagement/CustomerManagement";
 import Settings from "./pages/SettingPage/Settings";
 import AllTasks from "./pages/AllTasksPage/AllTasksPage";
+import MultiMonitoringPage from "./pages/MultiMonitoringPage/MultiMonitoringPage";
 import Notification from "./components/Notification/Notification"; // 알림 컴포넌트 import
 import "./App.css";
-import App2 from "./App2";
+
 
 function App() {
   const [notification, setNotification] = useState("");
@@ -21,7 +22,7 @@ function App() {
   const showNotification = (message) => {
     setNotification(message);
     setTimeout(() => {
-      setNotification(""); // 3초 후 알림 자동 사라짐
+      setNotification(""); // 10초 후 알림 자동 사라짐
     }, 10000);
   };
 
@@ -106,6 +107,18 @@ function App() {
                 <Sidebar />
                 <div className="content">
                   <AllTasks showNotification={showNotification} />
+                </div>
+              </div>
+            }
+          />
+
+          <Route
+            path="/MultiMonitoringPage"
+            element={
+              <div className="layout">
+                <Sidebar />
+                <div className="content">
+                  <MultiMonitoringPage showNotification={showNotification} />
                 </div>
               </div>
             }
