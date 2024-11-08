@@ -5,7 +5,7 @@ import correctionIcon from "../../assets/icons/alltask-correction.svg";
 import deleteIcon from "../../assets/icons/alltask-delete.svg";
 import "./AllTasks.css";
 
-const BASE_URL = "http://192.168.20.164:3001/api";
+const BASE_URL = "localhost:3001/api";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
