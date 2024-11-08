@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import checkBoxChecked from "../../assets/icons/alltask-check.svg";
 import checkBoxUnchecked from "../../assets/icons/todo-noncheck.svg";
-import correctionIcon from "../../assets/icons/alltask-correction.svg"; // 수정 및 저장 아이콘
-import deleteIcon from "../../assets/icons/alltask-delete.svg"; // 삭제 아이콘
+import correctionIcon from "../../assets/icons/alltask-correction.svg";
+import deleteIcon from "../../assets/icons/alltask-delete.svg";
 import "./AllTasks.css";
 
-const BASE_URL = "http://192.168.20.6:1252";
+const BASE_URL = "http://192.168.20.164:3001/api";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -15,20 +15,18 @@ const AllTasks = () => {
   const [deleteConfirm, setDeleteConfirm] = useState(null);
   const tasksPerPage = 9;
 
-
+  // 할일 데이터 가져오기
   const fetchTasks = async () => {
     const token = localStorage.getItem("access_token");
 
     try {
-      const response = await fetch(`${BASE_URL}/to_do_list/all`, { // BASE_URL 사용
+      const response = await fetch(`${BASE_URL}/to_do_list/all`, {
         headers: {
-          Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
+          Authorization: `Bearer ${token}`,
         },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch tasks");
-      }
+      if (!response.ok) throw new Error("Failed to fetch tasks");
 
       const data = await response.json();
       setTasks(data);
@@ -41,76 +39,75 @@ const AllTasks = () => {
     fetchTasks();
   }, []);
 
-const indexOfLastTask = currentPage * tasksPerPage;
-const indexOfFirstTask = indexOfLastTask - tasksPerPage;
-const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
+  const indexOfLastTask = currentPage * tasksPerPage;
+  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
 
-const handlePageChange = (pageNumber) => {
-  setCurrentPage(pageNumber);
-};
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
-const toggleTask = async (id, completed) => {
-  const token = localStorage.getItem("access_token");
+  // 할일 완료 상태 토글
+  const toggleTask = async (id, completed) => {
+    const token = localStorage.getItem("access_token");
 
-  try {
-    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
-      },
-      body: JSON.stringify({id: id, completed: !completed }),
-    });
-    fetchTasks();
-  } catch (error) {
-    console.error("Error updating task:", error);
-  }
-};
+    try {
+      await fetch(`${BASE_URL}/to_do_list/toggle`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id, completed: !completed }),
+      });
+      fetchTasks();
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
+  };
 
-const startEditing = (id, text) => {
-  setEditMode(id);
-  setEditText(text);
-};
+  // 수정 모드 시작
+  const startEditing = (id, text) => {
+    setEditMode(id);
+    setEditText(text);
+  };
 
-const editTask = async (id) => {
-  const token = localStorage.getItem("access_token");
+  // 할일 수정
+  const editTask = async (id) => {
+    const token = localStorage.getItem("access_token");
 
-  try {
-    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
-      },
-      body: JSON.stringify({id:id, task_description: editText }),
-    });
-    setEditMode(null);
-    setEditText("");
-    fetchTasks();
-  } catch (error) {
-    console.error("Error editing task:", error);
-  }
-};
+    try {
+      await fetch(`${BASE_URL}/to_do_list/edit`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id, task_description: editText }),
+      });
+      setEditMode(null);
+      setEditText("");
+      fetchTasks();
+    } catch (error) {
+      console.error("Error editing task:", error);
+    }
+  };
 
-const deleteTask = async (id) => {
-  const token = localStorage.getItem("access_token");
+  // 할일 삭제
+  const deleteTask = async (id) => {
+    const token = localStorage.getItem("access_token");
 
-  try {
-    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
-      },
-      body: JSON.stringify({ id }), // 본문에 id 포함
-    });
-    setDeleteConfirm(null); // 삭제 확인 모달 닫기
-    fetchTasks();
-  } catch (error) {
-    console.error("Error deleting task:", error);
-  }
-};
-
+    try {
+      await fetch(`${BASE_URL}/to_do_list/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setDeleteConfirm(null);
+      fetchTasks();
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
 
   const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
@@ -144,7 +141,7 @@ const deleteTask = async (id) => {
                     className="edit-input"
                   />
                 ) : (
-                  task.text
+                  task.task_description
                 )}
               </td>
               <td className="row-completed">
@@ -177,7 +174,9 @@ const deleteTask = async (id) => {
                     <img
                       src={correctionIcon}
                       alt="수정"
-                      onClick={() => startEditing(task.id, task.text)}
+                      onClick={() =>
+                        startEditing(task.id, task.task_description)
+                      }
                       className="tool-icon"
                     />
                   )}
