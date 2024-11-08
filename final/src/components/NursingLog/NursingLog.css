@@ -2,7 +2,11 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 24px 20px 28px 14px;
+<<<<<<< HEAD
   background-color: var(--primary-white);
+=======
+  background-color: #fff;
+>>>>>>> origin/BJP
   width: 567px;
   height: 294px;
   margin: 0;
@@ -14,7 +18,11 @@
 }
 
 .nursing-log-date {
+<<<<<<< HEAD
   color: var(--text-blue900);
+=======
+  color: #072182;
+>>>>>>> origin/BJP
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -32,7 +40,11 @@
 
 .components-container > div {
   flex: 1;
+<<<<<<< HEAD
   background-color: var(--button-blue50);
+=======
+  background-color: #eef7ff;
+>>>>>>> origin/BJP
   border-radius: 10px;
   padding: 20px;
 }

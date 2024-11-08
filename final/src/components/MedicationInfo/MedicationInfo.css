@@ -69,7 +69,11 @@
 
 .pill-name {
   font-weight: 500 !important;
+<<<<<<< HEAD
   color: var(--text-gray5) !important;
+=======
+  color: #2b3674 !important;
+>>>>>>> origin/BJP
   font-size: 14px !important;
 }
 

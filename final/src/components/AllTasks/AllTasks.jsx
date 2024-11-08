@@ -5,77 +5,112 @@ import correctionIcon from "../../assets/icons/alltask-correction.svg"; // 수�
 import deleteIcon from "../../assets/icons/alltask-delete.svg"; // 삭제 아이콘
 import "./AllTasks.css";
 
+const BASE_URL = "http://192.168.20.6:1252";
+
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [editMode, setEditMode] = useState(null); // 현재 수정 중인 항목의 ID
-  const [editText, setEditText] = useState(""); // 수정할 텍스트 저장
-  const [deleteConfirm, setDeleteConfirm] = useState(null); // 삭제 확인 모달 상태
+  const [editMode, setEditMode] = useState(null);
+  const [editText, setEditText] = useState("");
+  const [deleteConfirm, setDeleteConfirm] = useState(null);
   const tasksPerPage = 9;
 
-  const fetchTasks = () => {
-    fetch("http://localhost:3001/api/tasks")
-      .then((response) => response.json())
-      .then((data) => setTasks(data))
-      .catch((error) => console.error("Error fetching tasks:", error));
+
+  const fetchTasks = async () => {
+    const token = localStorage.getItem("access_token");
+
+    try {
+      const response = await fetch(`${BASE_URL}/to_do_list/all`, { // BASE_URL 사용
+        headers: {
+          Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
+
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
   };
 
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  const indexOfLastTask = currentPage * tasksPerPage;
-  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
-  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
+const indexOfLastTask = currentPage * tasksPerPage;
+const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+const handlePageChange = (pageNumber) => {
+  setCurrentPage(pageNumber);
+};
 
-  const toggleTask = async (id, completed) => {
-    try {
-      await fetch(`http://localhost:3001/api/tasks/${id}/completed`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ completed: !completed }),
-      });
-      fetchTasks();
-    } catch (error) {
-      console.error("Error updating task:", error);
-    }
-  };
+const toggleTask = async (id, completed) => {
+  const token = localStorage.getItem("access_token");
 
-  const startEditing = (id, text) => {
-    setEditMode(id);
-    setEditText(text);
-  };
+  try {
+    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
+      },
+      body: JSON.stringify({id: id, completed: !completed }),
+    });
+    fetchTasks();
+  } catch (error) {
+    console.error("Error updating task:", error);
+  }
+};
 
-  const editTask = async (id) => {
-    try {
-      await fetch(`http://localhost:3001/api/tasks/${id}/text`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: editText }),
-      });
-      setEditMode(null);
-      setEditText("");
-      fetchTasks();
-    } catch (error) {
-      console.error("Error editing task:", error);
-    }
-  };
+const startEditing = (id, text) => {
+  setEditMode(id);
+  setEditText(text);
+};
 
-  const deleteTask = async (id) => {
-    try {
-      await fetch(`http://localhost:3001/api/tasks/${id}`, {
-        method: "DELETE",
-      });
-      setDeleteConfirm(null); // 삭제 확인 모달 닫기
-      fetchTasks();
-    } catch (error) {
-      console.error("Error deleting task:", error);
-    }
-  };
+const editTask = async (id) => {
+  const token = localStorage.getItem("access_token");
+
+  try {
+    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
+      },
+      body: JSON.stringify({id:id, task_description: editText }),
+    });
+    setEditMode(null);
+    setEditText("");
+    fetchTasks();
+  } catch (error) {
+    console.error("Error editing task:", error);
+  }
+};
+
+const deleteTask = async (id) => {
+  const token = localStorage.getItem("access_token");
+
+  try {
+    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
+      },
+      body: JSON.stringify({ id }), // 본문에 id 포함
+    });
+    setDeleteConfirm(null); // 삭제 확인 모달 닫기
+    fetchTasks();
+  } catch (error) {
+    console.error("Error deleting task:", error);
+  }
+};
+
 
   const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
@@ -127,7 +162,7 @@ const AllTasks = () => {
                 </div>
               </td>
               <td className="row-date">
-                {new Date(task.CreatedAt).toLocaleDateString()}
+                {new Date(task.createdAt).toLocaleDateString()}
               </td>
               <td className="row-tools">
                 <div className="tool-icons">

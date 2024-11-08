@@ -1,4 +1,4 @@
-.header-buttons-container {
+.header-buttons {
   display: flex;
   align-items: center;
   gap: 10px; /* 요소 간 간격 */
@@ -9,21 +9,21 @@
   box-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.08);
 }
 
-.search-bar {
+.header-search-bar {
   display: flex;
   align-items: center;
-  background-color: var(--button-blue50); /* 검색 바 배경색 */
+  background-color: var(--button-blue50);
   border-radius: 30px;
   padding: 6px;
 }
 
-.search-icon {
+.header-search-icon {
   width: 15px !important;
   height: 15px !important;
   margin-right: 6px;
 }
 
-.search-input {
+.header-search-input {
   border: none;
   outline: none;
   background: transparent;
@@ -31,20 +31,20 @@
   color: var(--text-gray3);
 }
 
-.icon-container {
+.header-icon-group {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.icon {
+.header-icon {
   width: 24px;
   height: 24px;
   cursor: pointer;
   padding: 6px;
 }
 
-.profile-icon {
+.header-profile-icon {
   width: 45px !important;
   height: 45px !important;
   border-radius: 50%;

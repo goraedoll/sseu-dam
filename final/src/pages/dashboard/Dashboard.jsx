@@ -8,14 +8,23 @@ import CustomCalendar from "../../components/Calendar/CustomCalendar";
 import Notification from "../../components/Notification/Notification";
 import NursingLog from "../../components/NursingLog/NursingLog";
 import axios from "axios";
+import dayjs from "dayjs";
 
 const Dashboard = () => {
   const [latestAlert, setLatestAlert] = useState("");
+  const [selectedDate, setSelectedDate] = useState(dayjs());
 
   useEffect(() => {
     const fetchLatestAlert = async () => {
+      const token = localStorage.getItem("access_token");
+
       try {
-        const response = await axios.get("http://localhost:3001/latest-alert");
+        const response = await axios.get("http://192.168.20.6:1252/main/alert", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
         const alertData = response.data;
 
         if (alertData && alertData.status === "응급 상황") {
@@ -40,7 +49,11 @@ const Dashboard = () => {
       <Workspace pageText="페이지 / 모니터링" mainText="메인 대시보드" />
       <div className="upper-section">
         <div className="left-content">
+<<<<<<< HEAD
           <VideoStream videoStreamUrl="http://192.168.21.205:1997/video_feed" />
+=======
+          <VideoStream videoStreamUrl="http://192.168.20.6:5173/main/alert" />
+>>>>>>> origin/BJP
         </div>
         <div className="right-content">
           <AlertMessages />
@@ -51,9 +64,15 @@ const Dashboard = () => {
           <h1 className="lower-section-title">간편 일지 관리</h1>
         </div>
         <div className="content-section">
+<<<<<<< HEAD
           <CustomCalendar />
           <NursingLog />
           <TodoList />
+=======
+        <CustomCalendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+        <NursingLog selectedDate={selectedDate} />
+          <TodoList selectedDate={selectedDate}/>
+>>>>>>> origin/BJP
         </div>
       </div>
       <Notification message={latestAlert} />{" "}

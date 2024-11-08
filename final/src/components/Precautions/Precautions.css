@@ -1,5 +1,5 @@
 .precautions-container {
-  background-color: var(--primary-white);
+  background-color: #fff;
   border-radius: 20px;
   padding: 20px 25px 0px 30px;
   width: 366px;
@@ -13,7 +13,8 @@
 }
 
 .precautions-title {
-  color: var(--text-blue800);
+  color: #0231a6;
+  font-family: Pretendard;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -30,7 +31,7 @@
 
 .precautions-list li {
   margin-bottom: 24px;
-  color: var(--text-gray5);
+  color: #2b3674;
   font-size: 14px;
   font-style: normal;
   font-weight: 300;

@@ -6,25 +6,48 @@ import checkBoxChecked from "../../assets/icons/todo-check.svg";
 import checkBoxUnchecked from "../../assets/icons/todo-noncheck.svg";
 import "./TodoList.css";
 
-const TodoList = () => {
+const TodoList = ({ selectedDate }) => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
 
   // 서버에서 tasks 데이터를 가져옴
   useEffect(() => {
-    fetch("http://localhost:3001/api/tasks")
-      .then((response) => response.json())
-      .then((data) => {
-        // 데이터를 ID 기준으로 역순 정렬하여 가져옴
+    const fetchTasks = async () => {
+      const token = localStorage.getItem("access_token");
+      // console.log(selectedDate)
+      const formatDate = (date) => {
+        if (!date) return '';
+        return date.format('YYYY-MM-DD');
+      };
+
+      try {
+        
+        const queryDate = encodeURIComponent(formatDate(selectedDate));
+        const response = await fetch(`http://192.168.20.6:1252/to_do_list/?date=${queryDate}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch tasks");
+        }
+
+        const data = await response.json();
         const sortedTasks = data.sort((a, b) => b.id - a.id);
-        // 최근 6개의 데이터만 가져오기
-        setTasks(sortedTasks.slice(0, 6));
-      })
-      .catch((error) => console.error("Error fetching tasks:", error));
-  }, []);
+        setTasks(sortedTasks.slice(0, 6)); // 최근 6개의 데이터만 가져오기
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    fetchTasks();
+  }, [selectedDate]);
 
   // Task 완료 상태를 토글하는 함수
-  const toggleTask = (id, completed) => {
+  const toggleTask = async (id, completed) => {
+    const token = localStorage.getItem("access_token");
+
     // 임시로 상태 업데이트
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, completed: !completed } : task
@@ -32,26 +55,27 @@ const TodoList = () => {
     setTasks(updatedTasks);
 
     // 서버에 업데이트 요청 보내기
-    fetch(`http://localhost:3001/api/tasks/${id}/completed`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ completed: !completed }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Task updated successfully:", data);
-      })
-      .catch((error) => {
-        console.error("Error updating task:", error);
-        setTasks(tasks); // 오류 발생 시 상태 롤백
+    try {
+      
+      const response = await fetch("http://192.168.20.6:1252/to_do_list/", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({id: id, completed: !completed }),
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("Task updated successfully:", data);
+    } catch (error) {
+      console.error("Error updating task:", error);
+      setTasks(tasks); // 오류 발생 시 상태 롤백
+    }
   };
 
   // 'more-options' 클릭 시 페이지 이동

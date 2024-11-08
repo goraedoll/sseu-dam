@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   background-color: var(--background-color);
   margin: 0;
@@ -7,3 +8,19 @@ body {
 .app-container {
   min-height: 100vh; /* 페이지 전체 높이 채우기 */
 }
+=======
+html {
+  overflow-y: scroll;
+}
+
+.settings-container {
+  max-width: 1350px; /* 작업 공간의 최대 너비를 1350px로 설정 */
+  margin: 55px auto 0px auto; /* 위쪽에 55px의 마진, 좌우 중앙 정렬 */
+  padding-left: 320px; /* 내부 여백을 추가할 경우 */
+  padding-right: 70px;
+  background-color: transparent; /* 배경색을 설정할 경우 */
+  display: flex;
+  flex-direction: column; /* 세로로 배치 */
+  gap: 36px; /* 섹션 사이 간격 */
+}
+>>>>>>> origin/BJP

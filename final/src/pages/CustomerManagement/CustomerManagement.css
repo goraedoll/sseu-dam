@@ -81,6 +81,12 @@ body {
   letter-spacing: -0.28px;
 }
 
+.profile-icon {
+  width: 40px; /* 프로필 아이콘의 너비 */
+  height: auto; /* 비율에 따라 높이 조절 */
+  border-radius: 50%;
+}
+
 .profile-td {
   display: flex;
   align-items: center;

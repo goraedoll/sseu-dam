@@ -1,4 +1,3 @@
-// src/components/AlertMessages/AlertMessages.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AlertMessages.css";
@@ -21,23 +20,37 @@ const AlertMessages = () => {
   const [dbError, setDbError] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/alerts")
-      .then((response) => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("access_token");
+
+      try {
+        const response = await axios.get("http://192.168.20.6:1252/main/alert", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         const data = response.data;
 
-        const filteredAlerts = data
-          .filter((alert) => alert.is_deleted === 0)
+        // 데이터 형식에 맞춰 필드를 매핑하고 필터링 및 정렬 수행
+        const mappedAlerts = data
+          .map((alert) => ({
+            status: alert.AlertType,
+            message: alert.SensingDetails,
+            date: alert.SensedAt,
+          }))
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 7);
 
-        setAlerts(filteredAlerts);
+        setAlerts(mappedAlerts);
         setDbError(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Failed to load data:", error);
         setDbError(true);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -62,8 +75,8 @@ const AlertMessages = () => {
             </thead>
 
             <tbody>
-              {alerts.map((alert) => (
-                <tr key={alert.id}>
+              {alerts.map((alert, index) => (
+                <tr key={index}>
                   <td className="status-cell">
                     <img
                       src={getStatusIcon(alert.status, "status")}
