@@ -7,7 +7,7 @@
   margin: 0;
   padding: 28px;
   font-size: 24px;
-  color: #0231A6;
+  color: var(--text-blue800);
 }
 
 .tasks-table {
@@ -20,26 +20,48 @@
   padding: 12px;
   font-size: 14px;
   text-align: center;
-  border-bottom: 1px solid #E9EDF7;
+  border-bottom: 1px solid var(--color-border-gray2);
 }
 
-.column-id { width: 50px; }
-.column-text { width: 300px; text-align: left; }
-.column-completed { width: 80px; }
-.column-date { width: 150px; }
-.column-tools { width: 120px; }
+.column-id {
+  width: 50px;
+}
+.column-text {
+  width: 300px;
+  text-align: left;
+}
+.column-completed {
+  width: 80px;
+}
+.column-date {
+  width: 150px;
+}
+.column-tools {
+  width: 120px;
+}
 
 /* 헤더 스타일 */
 .tasks-table thead th {
   font-weight: bold;
-  color: #A3AED0;
+  color: var(--text-gray1);
 }
 
-.tasks-tbody .row-id { color: #0231A6; }
-.tasks-tbody .row-text { color: #072182; text-align: left; }
-.tasks-tbody .row-completed { color: #28A745; }
-.tasks-tbody .row-date { color: #072182; }
-.task-item.completed td { background-color: #e0ffe0; }
+.tasks-tbody .row-id {
+  color: var(--text-blue800);
+}
+.tasks-tbody .row-text {
+  color: var(--text-blue900);
+  text-align: left;
+}
+.tasks-tbody .row-completed {
+  color: #28a745;
+}
+.tasks-tbody .row-date {
+  color: var(--text-blue900);
+}
+.task-item.completed td {
+  background-color: #e0ffe0;
+}
 
 /* 페이지네이션 버튼 스타일 */
 .pagination {
@@ -116,7 +138,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--primary-white);
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -143,7 +165,8 @@
   transform: scale(1.1);
 }
 
-.cancel-button, .confirm-button {
+.cancel-button,
+.confirm-button {
   padding: 8px 14px;
   cursor: pointer;
   border: none;

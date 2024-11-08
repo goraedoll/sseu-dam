@@ -4,14 +4,14 @@
   gap: 16px; /* 요소 간 간격 */
   padding: 10px;
   border-radius: 30px;
-  background-color: #fff; /* 컨테이너의 배경색 */
+  background-color: var(--primary-white); /* 컨테이너의 배경색 */
   margin-right: 14px;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #eef7ff; /* 검색 바 배경색 */
+  background-color: var(--button-blue50); /* 검색 바 배경색 */
   border-radius: 30px;
   padding: 10px 12px;
 }
@@ -27,7 +27,7 @@
   outline: none;
   background: transparent;
   font-size: 14px;
-  color: #6c757d;
+  color: var(--text-gray3);
 }
 
 .icon-container {

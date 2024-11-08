@@ -2,7 +2,7 @@
   width: 826px;
   height: 692x;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: var(--primary-white);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,8 +19,7 @@
 }
 
 .stream-title {
-  color: #0231a6;
-  font-family: Pretendard;
+  color: var(--text-blue800);
   font-size: 24px;
   font-weight: normal;
   font-weight: 600;
@@ -40,7 +39,7 @@
 
 .stream-mode {
   font-size: 20px;
-  color: #8f95b5;
+  color: var(--text-gray2);
 }
 
 .video-display {
@@ -50,7 +49,7 @@
   width: 770px;
   height: 571px;
   border-radius: 20px;
-  background-color: #cccccc;
+  background-color: var(--background-gray);
   object-fit: cover;
   position: relative;
 }
@@ -69,7 +68,7 @@
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  background-color: #cccccc; /* 신호 없을 때의 배경색 */
-  color: #ffffff; /* 신호 없음 텍스트 색상 */
+  background-color: var(--background-gray); /* 신호 없을 때의 배경색 */
+  color: var(--primary-white); /* 신호 없음 텍스트 색상 */
   font-size: 24px;
 }

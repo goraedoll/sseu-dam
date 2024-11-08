@@ -9,7 +9,7 @@
 .card-button {
   width: 262px;
   height: 400px;
-  background-color: #fff; /* Placeholder color */
+  background-color: var(--primary-white); /* Placeholder color */
   border-radius: 20px; /* Optional: to round the corners */
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@
 
 .card-button h4 {
   margin: 0 30px 40px 30px;
-  color: #a3aed0;
+  color: var(--text-gray1);
   font-weight: 300;
   font-size: 14px;
   line-height: 20px; /* 142.857% */

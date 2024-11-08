@@ -1,6 +1,6 @@
 /* 전체 컨테이너의 스타일 */
 .option-container {
-  background-color: #fff; /* 배경색 */
+  background-color: var(--primary-white); /* 배경색 */
   border-radius: 20px; /* 모서리 둥글게 처리 */
   width: 502px;
   height: 400px;
@@ -22,7 +22,7 @@
   justify-content: space-between; /* 텍스트와 아이콘을 좌우로 정렬 */
   align-items: center; /* 수직 가운데 정렬 */
   padding: 0px 28px;
-  background-color: white; /* 항목 배경색 */
+  background-color: var(--primary-white); /* 항목 배경색 */
   border-radius: 16px; /* 모서리 둥글게 처리 */
   box-shadow: 0px 18px 40px 0px rgba(112, 144, 176, 0.05);
   height: 70px; /* 모든 항목의 높이를 고정 */
@@ -31,7 +31,9 @@
 
 /* option-item에 마우스를 올렸을 때 색상 변경 */
 .option-item:hover {
-  background-color: #eef7ff; /* 마우스를 올리면 하얀색에서 #EEF7FF로 변경 */
+  background-color: var(
+    --button-blue50
+  ); /* 마우스를 올리면 하얀색에서 #EEF7FF로 변경 */
 }
 
 /* 영상 백업과 마지막 백업만 text-content로 그룹화 */
@@ -43,8 +45,7 @@
 
 /* 텍스트 부분 스타일 */
 .option-item h3 {
-  color: var(--blue-900, #072182);
-  font-family: Pretendard;
+  color: var(--text-blue900);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -57,8 +58,7 @@
 
 /* 서브 텍스트 (예: 마지막 백업 날짜) 스타일 */
 .option-item p {
-  color: #a3aed0;
-  font-family: Pretendard;
+  color: var(--text-gray1);
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -82,8 +82,7 @@
 
 /* 긴급 연락망 항목의 스타일 (emergency 클래스 적용 시) */
 .emergency h3 {
-  color: var(--red-400, #ff5454);
-  font-family: Pretendard;
+  color: var(--button-red);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

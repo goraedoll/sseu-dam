@@ -3,10 +3,9 @@ html {
 }
 
 body {
-  background-color: #f4f7fe;
+  background-color: var(--background-color);
   margin: 0;
   padding: 0;
-  font-family: "Pretendard", sans-serif; /* 폰트 설정 */
 }
 
 .Customers-container {
@@ -21,7 +20,7 @@ body {
 
 .Customers-upper-section {
   margin-top: 36px;
-  background-color: #fff;
+  background-color: var(--primary-white);
   padding: 0px 0px 0px 0px;
   border-radius: 20px;
   margin-bottom: 86px;
@@ -38,7 +37,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  color: #0231a6;
+  color: var(--text-blue800);
 
   h2 {
     /* Display Text/Extra-Small/ Bold */
@@ -64,8 +63,8 @@ body {
 }
 
 .customers-table th {
-  border-bottom: 1px solid #e9edf7;
-  color: #a3aed0;
+  border-bottom: 1px solid var(--color-border-gray2);
+  color: var(--text-gray1);
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -74,7 +73,7 @@ body {
 }
 
 .customers-table td {
-  color: #072182;
+  color: var(--text-blue900);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -138,7 +137,7 @@ body {
 
 .user-id {
   font-size: 12px;
-  color: #a3aed0;
+  color: var(--text-gray1);
   font-style: normal;
   font-weight: 300;
   line-height: 100%; /* 14px */
@@ -153,7 +152,7 @@ body {
 }
 
 .health-status {
-  color: #8f95b5 !important; /* 건강상태 텍스트 색상 */
+  color: var(--text-gray2) !important; /* 건강상태 텍스트 색상 */
   font-size: 14px !important;
   font-style: normal !important;
   font-weight: 300 !important;
@@ -162,7 +161,7 @@ body {
 }
 
 .registration-date {
-  color: #8f95b5 !important;
+  color: var(--text-gray2) !important;
   font-size: 14px !important;
   font-style: normal !important;
   font-weight: 300 !important;
@@ -175,6 +174,6 @@ body {
 }
 
 .customer-id {
-  color: #8f95b5 !important; /* 원하는 색상 코드로 변경하세요 */
+  color: var(--text-gray2) !important; /* 원하는 색상 코드로 변경하세요 */
   font-weight: 300; /* 필요에 따라 폰트 두께도 설정 가능 */
 }

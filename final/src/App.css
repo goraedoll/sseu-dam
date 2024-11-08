@@ -11,9 +11,14 @@
   --color-gray-50: #fafafa; /* var(--button-gray50) */
   --color-blue-50: #eef7ff; /* var(--button-blue50) */
   --color-blue-100: #cbe8ff; /* var(--button-blue100) */
-  --color-red-400: #ff5454; /* var(--button-red )*/
+  --color-red-400: #ff5454; /* var(--button-red) */
+  --color-green-400: #05cd99; /* var(--button-green) */
   --color-border-gray: #e0e5f2; /* var(--border-color) */
+  --color-border-gray2: #e9edf7; /* var(--color-border-gray2) */
+  --color-border-gray3: #e6e6e6; /* var(--color-border-gray3) */
   --color-background: #f4f7fe; /* var(--background-color) */
+  --color-background-black: #323232; /* var(--background-black) */
+  --color-background-gray: #ccc; /* var(--background-gray) */
   --color-white: #ffffff; /* var(--primary-white) */
 
   /* 역할별 변수 */
@@ -30,8 +35,13 @@
   --button-blue100: var(--color-blue-100);
   --button-blue50: var(--color-blue-50);
   --button-red: var(--color-red-400);
+  --button-green: var(--color-green-400);
   --border-color: var(--color-border-gray);
+  --border-color2: var(--color-border-gray2);
+  --border-color3: var(--color-border-gray3);
   --background-color: var(--color-background);
+  --background-black: var(--color-background-black);
+  --background-gray: var(--color-background-gray);
 }
 
 html,
