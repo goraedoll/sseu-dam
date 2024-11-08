@@ -47,7 +47,7 @@ def update_medication(listdata: List[nurseSchema.MedicationChecked],
                       db: Session = Depends(get_db),user_id : str = Depends(verify_jwt_token),
                       x_date: str = Header()):
     user_date = datetime.strptime(x_date, "%Y-%m-%d").date()
-    medication_data = db.query(orm).filter(orm.UserID == user_id).filter(func.date(orm.date)==user_date)
+    medication_data = db.query(orm).filter(orm.UserID == user_id).filter(func.date(orm.date)==user_date).first()
     if not medication_data:
         raise HTTPException(status_code=404, detail="날짜에 관한 데이터를 찾을 수 없습니다.")
     
@@ -57,6 +57,7 @@ def update_medication(listdata: List[nurseSchema.MedicationChecked],
     setattr(medication_data, "diabetes_2", listdata[2].checked[1])
     setattr(medication_data, "diabetes_3", listdata[2].checked[2])
     try:
+        print(medication_data)
         db.commit()
         db.refresh(medication_data)
         print("Database update successful")  # 커밋 성공 로그
