@@ -43,7 +43,7 @@ def get_medication(date: str =Query(...),db: Session = Depends(get_db),user_id :
         raise HTTPException(status_code=500, detail=f"예상치 못한 오류 발생: {str(e)}")
     
 @router.put("/", tags=["nurselog"])
-def update_medication(listdata: List[nurseSchema.MedicationChecked],
+def update_medication(listdata: nurseSchema.MedicationChecked,
                       db: Session = Depends(get_db),user_id : str = Depends(verify_jwt_token),
                       x_date: str = Header()):
     user_date = datetime.strptime(x_date, "%Y-%m-%d").date()
@@ -51,11 +51,18 @@ def update_medication(listdata: List[nurseSchema.MedicationChecked],
     if not medication_data:
         raise HTTPException(status_code=404, detail="날짜에 관한 데이터를 찾을 수 없습니다.")
     
-    setattr(medication_data, "vitamin", listdata[0].checked)
-    setattr(medication_data, "lactic", listdata[1].checked)
-    setattr(medication_data, "diabetes_1", listdata[2].checked[0])
-    setattr(medication_data, "diabetes_2", listdata[2].checked[1])
-    setattr(medication_data, "diabetes_3", listdata[2].checked[2])
+    if listdata.id == 1:
+        setattr(medication_data, "vitamin", listdata.checked)
+    elif listdata.id == 2:
+        setattr(medication_data, "lactic", listdata.checked)
+    elif listdata.id == 3:
+        if isinstance(listdata.checked, list):
+            setattr(medication_data, "diabetes_1", listdata.checked[0])
+            setattr(medication_data, "diabetes_2", listdata.checked[1])
+            setattr(medication_data, "diabetes_3", listdata.checked[2])
+    else:
+        raise HTTPException(status_code=400, detail="잘못된 데이터 형식입니다.")
+
     try:
         print(medication_data)
         db.commit()
