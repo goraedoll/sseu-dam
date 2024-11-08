@@ -1,11 +1,12 @@
 .header-buttons-container {
   display: flex;
   align-items: center;
-  gap: 16px; /* 요소 간 간격 */
+  gap: 10px; /* 요소 간 간격 */
   padding: 10px;
   border-radius: 30px;
   background-color: var(--primary-white); /* 컨테이너의 배경색 */
   margin-right: 14px;
+  box-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.08);
 }
 
 .search-bar {
@@ -13,13 +14,13 @@
   align-items: center;
   background-color: var(--button-blue50); /* 검색 바 배경색 */
   border-radius: 30px;
-  padding: 10px 12px;
+  padding: 6px;
 }
 
 .search-icon {
   width: 15px !important;
   height: 15px !important;
-  margin-right: 11px;
+  margin-right: 6px;
 }
 
 .search-input {
@@ -33,18 +34,24 @@
 .icon-container {
   display: flex;
   align-items: center;
-  gap: 16px; /* 아이콘 간 간격 */
+  gap: 4px;
 }
 
 .icon {
   width: 24px;
   height: 24px;
   cursor: pointer;
+  padding: 6px;
 }
 
 .profile-icon {
-  width: 40px;
-  height: 40px;
+  width: 45px !important;
+  height: 45px !important;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.icon:hover {
+  background-color: var(--button-blue50);
+  border-radius: 50%;
 }

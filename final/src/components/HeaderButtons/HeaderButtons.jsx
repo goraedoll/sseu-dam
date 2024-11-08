@@ -17,7 +17,12 @@ const HeaderButtons = () => {
         <img src={alarmIcon} alt="Alarm Icon" className="icon" />
         <img src={darkModeIcon} alt="Dark Mode Icon" className="icon" />
         <img src={infoIcon} alt="Info Icon" className="icon" />
-        <img src={profileIcon} alt="Profile Icon" className="profile-icon" />
+        <img
+          src={profileIcon}
+          alt="Profile Icon"
+          className="profile-icon"
+          style={{ marginLeft: "10px" }}
+        />
       </div>
     </div>
   );
