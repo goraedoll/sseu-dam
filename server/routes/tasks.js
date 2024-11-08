@@ -1,56 +1,59 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const db = require('../db/dbConnection');
+const db = require("../db/dbConnection"); // DB 연결 가져오기
 
-// 모든 tasks를 최신 순으로 가져오는 라우트 (GET 요청)
-router.get('/tasks', (req, res) => {
-  const query = 'SELECT * FROM todo_test ORDER BY CreatedAt DESC'; // 최신 순으로 정렬
+// 전체 할일 목록 가져오기
+router.get("/to_do_list/all", (req, res) => {
+  const query = "SELECT * FROM tb_todolist";
   db.query(query, (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err });
+      console.error("데이터 가져오기 실패:", err);
+      res.status(500).send("데이터베이스 오류");
+      return;
     }
-    res.json(results); // 결과를 JSON으로 반환
+    res.json(results);
   });
 });
 
-// Task의 'completed' 상태를 업데이트하는 라우트 (PUT 요청)
-router.put('/tasks/:id/completed', (req, res) => {
-  const taskId = req.params.id;
-  const { completed } = req.body;
-
-  const query = 'UPDATE todo_test SET completed = ? WHERE id = ?';
-  db.query(query, [completed, taskId], (err) => {
+// 할일 완료 상태 토글
+router.put("/to_do_list/toggle", (req, res) => {
+  const { id, completed } = req.body;
+  const query = "UPDATE tb_todolist SET completed = ? WHERE id = ?";
+  db.query(query, [completed, id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err });
+      console.error("업데이트 실패:", err);
+      res.status(500).send("데이터베이스 오류");
+      return;
     }
-    res.json({ success: true });
+    res.json({ message: "Task updated successfully" });
   });
 });
 
-// Task의 'text'를 업데이트하는 라우트 (PUT 요청)
-router.put('/tasks/:id/text', (req, res) => {
-  const taskId = req.params.id;
-  const { text } = req.body;
-
-  const query = 'UPDATE todo_test SET text = ? WHERE id = ?';
-  db.query(query, [text, taskId], (err) => {
+// 할일 수정
+router.put("/to_do_list/edit", (req, res) => {
+  const { id, task_description } = req.body;
+  const query = "UPDATE tb_todolist SET task_description = ? WHERE id = ?";
+  db.query(query, [task_description, id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err });
+      console.error("수정 실패:", err);
+      res.status(500).send("데이터베이스 오류");
+      return;
     }
-    res.json({ success: true });
+    res.json({ message: "Task updated successfully" });
   });
 });
 
-// Task를 삭제하는 라우트 (DELETE 요청)
-router.delete('/tasks/:id', (req, res) => {
-  const taskId = req.params.id;
-
-  const query = 'DELETE FROM todo_test WHERE id = ?';
-  db.query(query, [taskId], (err) => {
+// 할일 삭제
+router.delete("/to_do_list/delete/:id", (req, res) => {
+  const { id } = req.params;
+  const query = "DELETE FROM tb_todolist WHERE id = ?";
+  db.query(query, [id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err });
+      console.error("삭제 실패:", err);
+      res.status(500).send("데이터베이스 오류");
+      return;
     }
-    res.json({ success: true });
+    res.json({ message: "Task deleted successfully" });
   });
 });
 
