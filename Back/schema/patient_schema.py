@@ -9,3 +9,11 @@ class patient_post(BaseModel):
     phone: Optional[str] = None
     class Config:
         from_attributes = True
+
+class patient_update(BaseModel):
+    id: int
+    address: Optional[str] = None
+    phone: Optional[str] = None
+    HealthStatus: Optional[str] = None
+    class Config:
+        from_attributes = True

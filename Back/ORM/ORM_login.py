@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 
 Base = declarative_base()
 
-#pr_tb_User테이블
+#tb_User테이블
 class User(Base):
     __tablename__ = 'tb_Users'
 

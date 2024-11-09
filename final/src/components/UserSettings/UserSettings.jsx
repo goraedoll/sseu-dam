@@ -1,22 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 import './UserSettings.css';
 import Cus1 from "../../assets/icons/cus-1.svg"; // Default profile image
 
+const BASE_URL = "http://192.168.20.6:1252"; // Replace with your actual API URL
+
 const UserSettings = () => {
   const [formData, setFormData] = useState({
-    userId: "sampleUserID",
-    userName: "sampleUserName",
-    email: "sample@example.com",
+    UserID: "",
+    UserName: "",
+    email: "",
     password: "",
-    birthDate: "1990-01-01",
-    addr: "Sample Address",
-    phone: "010-1234-5678",
-    healthStatus: "Healthy",
-    emergencyContact: "010-8765-4321"
+    BirthDate: "",
+    Addr: "",
+    Phone: "",
+    EmergencyContact: ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [profileImage, setProfileImage] = useState(null); // Profile image state
+  const navigate = useNavigate();
+
+  // Fetch user info from the API
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const token = localStorage.getItem("access_token");
+      try {
+        const response = await axios.get(`${BASE_URL}/user_info/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setFormData({
+          UserID: response.data.UserID,
+          UserName: response.data.UserName,
+          email: response.data.email,
+          password: response.data.password,
+          BirthDate: response.data.BirthDate,
+          Addr: response.data.Addr,
+          Phone: response.data.Phone,
+          EmergencyContact: response.data.EmergencyContact
+        });
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+        setError("사용자 정보를 가져오는데 실패했습니다.");
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,10 +63,33 @@ const UserSettings = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccess("사용자 정보가 성공적으로 수정되었습니다.");
-    setError("");
+    const token = localStorage.getItem("access_token");
+
+    try {
+      const response = await axios.put(`${BASE_URL}/user_info/update`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.data.message === "수정 완료") {
+        alert("수정 완료");
+        setSuccess("사용자 정보가 성공적으로 수정되었습니다.");
+      } else {
+        setError("수정 중 오류가 발생했습니다.");
+      }
+    } catch (error) {
+      console.error("Error updating user info:", error);
+      setError("사용자 정보를 수정하는 데 실패했습니다.");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token"); // Remove token from local storage
+    navigate("/"); // Redirect to login page
   };
 
   return (
@@ -52,11 +108,11 @@ const UserSettings = () => {
             <input type="file" id="fileUpload" onChange={handleImageUpload} style={{ display: 'none' }} />
           </div>
         </div>
-        <h3>{formData.userId}</h3>
-        <p>{formData.userName}</p>
+        <h3>{formData.UserID}</h3>
+        <p>{formData.UserName}</p>
 
         {/* 로그아웃 버튼 추가 */}
-  <button className="logout-button" onClick={() => console.log("로그아웃")}>로그아웃</button>
+        <button className="logout-button" onClick={handleLogout}>로그아웃</button>
       </div>
 
       <div className="user-settings-right">
@@ -64,8 +120,8 @@ const UserSettings = () => {
         {success && <p className="success-message">{success}</p>}
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <label htmlFor="userName">이름</label>
-          <input type="text" id="userName" name="userName" value={formData.userName} onChange={handleChange} />
+          <label htmlFor="UserName">이름</label>
+          <input type="text" id="UserName" name="UserName" value={formData.UserName} onChange={handleChange} />
 
           <label htmlFor="email">이메일</label>
           <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
@@ -73,20 +129,17 @@ const UserSettings = () => {
           <label htmlFor="password">비밀번호</label>
           <input type="password" id="password" name="password" placeholder="변경할 비밀번호를 입력해주세요." onChange={handleChange} />
 
-          <label htmlFor="birthDate">생년월일</label>
-          <input type="date" id="birthDate" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+          <label htmlFor="BirthDate">생년월일</label>
+          <input type="date" id="BirthDate" name="BirthDate" value={formData.BirthDate} onChange={handleChange} />
 
-          <label htmlFor="addr">주소</label>
-          <input type="text" id="addr" name="addr" value={formData.addr} onChange={handleChange} />
+          <label htmlFor="Addr">주소</label>
+          <input type="text" id="Addr" name="Addr" value={formData.Addr} onChange={handleChange} />
 
-          <label htmlFor="phone">휴대전화번호</label>
-          <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+          <label htmlFor="Phone">휴대전화번호</label>
+          <input type="tel" id="Phone" name="Phone" value={formData.Phone} onChange={handleChange} />
 
-          <label htmlFor="healthStatus">건강상태</label>
-          <textarea id="healthStatus" name="healthStatus" value={formData.healthStatus} onChange={handleChange}></textarea>
-
-          <label htmlFor="emergencyContact">긴급연락망</label>
-          <input type="tel" id="emergencyContact" name="emergencyContact" value={formData.emergencyContact} onChange={handleChange} />
+          <label htmlFor="EmergencyContact">긴급연락망</label>
+          <input type="tel" id="EmergencyContact" name="EmergencyContact" value={formData.EmergencyContact} onChange={handleChange} />
 
           <button type="submit" className="save-button">수정하기</button>
         </form>

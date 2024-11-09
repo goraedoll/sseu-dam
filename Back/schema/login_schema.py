@@ -6,7 +6,7 @@ class Signup_Schema(BaseModel):
     UserID: str
     UserName: str
     email : str
-    PasswordHash: str = Field(..., alias="password")
+    PasswordHash: str= Field(..., alias="password")
     BirthDate: date
     Addr: str
     Phone: str
@@ -38,7 +38,7 @@ class pr_schema_SensingAlert(BaseModel):
 class forgot_Password(BaseModel):
     UserID : str
     Phone: str
-    email : Optional[str] = None
+    email : str
 
 class check_Password(BaseModel):
     UserID : str

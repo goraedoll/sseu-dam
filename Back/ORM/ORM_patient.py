@@ -6,7 +6,7 @@ Base = declarative_base()
 
 #pr_tb_User테이블
 class patient_orm(Base):
-    __tablename__ = 'pr_tb_Patient'
+    __tablename__ = 'tb_Patient'
     idx = Column(Integer, primary_key=True, autoincrement=True)  # 기본 키로 자동 증가 설정
     UserID = Column(String, nullable=False)  # 관리인 ID, 필수
     user_idx = Column(Integer, nullable=False)  # 사용자 인덱스
@@ -15,3 +15,6 @@ class patient_orm(Base):
     email = Column(String, unique=True)  # 이메일, 고유 제약 조건
     phone = Column(String, unique=True)  # 전화번호, 고유 제약 조건
     created_at = Column(DateTime, server_default=func.now(), nullable=False)  # 생성 시간, DB에서 자동 설정
+    BirthDate = Column(Date, nullable = True)
+    Gender = Column(String, nullable=True)
+    HealthStatus = Column(String, nullable = True)

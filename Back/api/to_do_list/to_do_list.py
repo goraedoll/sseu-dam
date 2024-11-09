@@ -64,11 +64,6 @@ def update_todo(
     print("Update Data:", update_data)
     for key, value in update_data.items():
         setattr(todo_item, key, value)
-
-    # 수정한 데이터 저장
-
-    # db.commit()
-    # db.refresh(todo_item)
     try:
         db.commit()
         db.refresh(todo_item)
