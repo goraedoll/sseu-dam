@@ -14,15 +14,7 @@ const CustomCalendar = ({ selectedDate, setSelectedDate }) => {
     setSelectedDate(newValue)
  
 
-    // if (typeof setSelectedDate === "function") { // setSelectedDate가 함수인지 확인
-    //   setSelectedDate(newValue);
-    //   setIsModalOpen(true);
 
-
-    //   console.log("선택한 날짜:", newValue.format('YYYY-MM-DD'));
-    // } else {
-    //   console.error("setSelectedDate가 함수가 아닙니다.");
-    // }
   };
 
   const handleCloseModal = () => {

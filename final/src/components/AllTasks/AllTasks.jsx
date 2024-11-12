@@ -5,7 +5,8 @@ import correctionIcon from "../../assets/icons/alltask-correction.svg"; // 수�
 import deleteIcon from "../../assets/icons/alltask-delete.svg"; // 삭제 아이콘
 import "./AllTasks.css";
 
-const BASE_URL = "http://192.168.20.6:1252";
+const serverip = import.meta.env.VITE_SERVER_IP;
+const BASE_URL = `http://${serverip}:1252`;
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);

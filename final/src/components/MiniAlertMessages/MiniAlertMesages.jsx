@@ -16,16 +16,19 @@ const formatDate = (dateString) => {
   return `${year}.${month}.${day} ${hours}:${minutes}`;
 };
 
+
 const MiniAlertMessages = () => {
   const [alerts, setAlerts] = useState([]);
   const [dbError, setDbError] = useState(false);
+  const serverip = import.meta.env.VITE_SERVER_IP;
+
 
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("access_token");
 
       try {
-        const response = await axios.get("http://192.168.20.6:1252/main/alert", {
+        const response = await axios.get(`http://${serverip}:1252/main/alert`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

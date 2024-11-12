@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Import axios
 import './UserSettings.css';
-import Cus1 from "../../assets/icons/cus-1.svg"; // Default profile image
+// import Cus1 from "../../assets/icons/cus-1.svg"; // Default profile image
+import profile_image from "../../assets/images/profile_image.png"; // Default profile image
 
-const BASE_URL = "http://192.168.20.6:1252"; // Replace with your actual API URL
+const serverip = import.meta.env.VITE_SERVER_IP;
+const BASE_URL = `http://${serverip}:1252`; // Replace with your actual API URL
 
 const UserSettings = () => {
   const [formData, setFormData] = useState({
@@ -98,7 +100,7 @@ const UserSettings = () => {
         <div className="profile-image-container">
           <div className="profile-image-wrapper">
             <img
-              src={profileImage || Cus1} // Set default profile image
+              src={profileImage || profile_image} // Set default profile image
               alt="Profile"
               className="profile-image"
             />

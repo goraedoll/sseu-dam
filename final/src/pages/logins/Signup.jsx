@@ -24,11 +24,13 @@ const Signup = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://192.168.20.6:1252/member/signup', {
+      const serverip = import.meta.env.VITE_SERVER_IP;
+      const response = await axios.post(`http://${serverip}:1252/member/signup`, {
         UserID: formData.UserID,
         UserName: formData.UserName,
         email: formData.email,

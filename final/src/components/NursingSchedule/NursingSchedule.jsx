@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
+import axios from "axios";
 import "./NursingSchedule.css";
 import nursCheck from "../../assets/icons/nurs-check.svg";
 import nursWater from "../../assets/icons/nurs-water.svg";
 import nursNoWater from "../../assets/icons/nurs-nowater.svg";
 import nursWhite from "../../assets/icons/nurs-whitebox.svg";
 
-const NursingSchedule = ({ isEditing }) => {
+const NursingSchedule = ({ isEditing, selectedDate}) => {
+  const serverip = import.meta.env.VITE_SERVER_IP;
+
   const [bathroomData, setBathroomData] = useState({
     소변: { 아침: "화장실", 점심: "기저귀", 저녁: "" },
     대변: { 아침: "화장실", 점심: "", 저녁: "" },
@@ -28,20 +31,132 @@ const NursingSchedule = ({ isEditing }) => {
     false,
     false,
   ]);
+  const formatDate = (date) => {
+    if (!date) return '';
+    return date.format('YYYY-MM-DD');
+  };
+  const getdate=formatDate(selectedDate.selectedDate)
+  console.log(getdate)
+  // API 호출 및 데이터 가져오기 - 추가
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("access_token"); // 로컬 저장소에서 토큰 가져오기
+        const response = await axios.get(`http://${serverip}:1252/NurseSchedule/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-date" : getdate, // 날짜를 헤더로 추가
+          },
+        });
 
-  const toggleCheck = (mealTime) => {
+        const data = response.data;
+
+        // API로부터 가져온 데이터로 상태 업데이트 - 추가
+        setBathroomData({
+          소변: data.Urination,
+          대변: data.Defecation,
+        });
+
+        setIsChecked({
+          식사_아침: data.Meal_Morning,
+          식사_점심: data.Meal_Afternoon,
+          식사_저녁: data.Meal_Evening,
+        });
+
+        setWaterIntake(data.WaterIntake);
+      } catch (error) {
+        console.error("데이터를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchData();
+  }, [selectedDate]);
+
+  useEffect(() => {
+    if (!isEditing) {
+      const saveChanges = async () => {
+        try {
+          const token = localStorage.getItem("access_token");
+          await axios.put(
+            `http://${serverip}:1252/NurseSchedule/UD`,
+            {
+              Urination: bathroomData.소변, // 소변 데이터
+              Defecation: bathroomData.대변, // 대변 데이터
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, // 인증 토큰 추가
+                "x-date":getdate,
+              },
+            }
+          );
+          console.log("변경 사항이 성공적으로 저장되었습니다.");
+        } catch (error) {
+          console.error("변경 사항 저장 중 오류 발생:", error);
+        }
+      };
+  
+      saveChanges(); // 변경 사항 저장 함수 호출
+    }
+  }, [isEditing]);
+
+  
+  
+
+  const toggleCheck = async (mealTime) => {
+    const newCheckState = !isChecked[mealTime];
     setIsChecked((prev) => ({
       ...prev,
-      [mealTime]: !prev[mealTime],
+      [mealTime]: newCheckState,
     }));
+
+    // 바로 요청 보내기
+    try {
+      const token = localStorage.getItem("access_token");
+      await axios.put(
+        `http://${serverip}:1252/NurseSchedule/meal`,
+        {
+          MealTime: mealTime,
+          Status: newCheckState,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-date": getdate,
+          },
+        }
+      );
+      console.log(`${mealTime} 업데이트 성공`);
+    } catch (error) {
+      console.error(`${mealTime} 업데이트 중 오류 발생:`, error);
+    }
   };
 
-  const toggleWaterIntake = (index) => {
-    setWaterIntake((prev) => {
-      const newWaterIntake = [...prev];
-      newWaterIntake[index] = !newWaterIntake[index];
-      return newWaterIntake;
-    });
+  const toggleWaterIntake = async (index) => {
+    // 수분 섭취 상태 업데이트
+    const newWaterIntake = [...waterIntake];
+    newWaterIntake[index] = !newWaterIntake[index];
+    setWaterIntake(newWaterIntake);
+  
+    // 서버에 변경된 수분 섭취 상태 전송
+    try {
+      const token = localStorage.getItem("access_token");
+      await axios.put(
+        `http://${serverip}:1252/NurseSchedule/water`,
+        { // 날짜 정보
+          WaterIntake: newWaterIntake, // 변경된 수분 섭취 상태
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // 인증 토큰 추가
+            "x-date": getdate,
+          },
+        }
+      );
+      console.log("수분 섭취 상태가 성공적으로 업데이트되었습니다.");
+    } catch (error) {
+      console.error("수분 섭취 상태 업데이트 중 오류 발생:", error);
+    }
   };
 
   const handleInputChange = (e, type, time) => {

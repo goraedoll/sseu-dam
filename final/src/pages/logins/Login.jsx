@@ -8,6 +8,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,7 +20,8 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("http://192.168.20.6:1252/member/login", {
+      const serverip = import.meta.env.VITE_SERVER_IP;
+      const response = await fetch(`http://${serverip}:1252/member/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

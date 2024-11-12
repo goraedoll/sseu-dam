@@ -13,13 +13,17 @@ import dayjs from "dayjs";
 const Dashboard = () => {
   const [latestAlert, setLatestAlert] = useState("");
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const videoip = import.meta.env.VITE_VIDEO_IP_MAIN;
+  const completeVideoUrl = `http://${videoip}/video_feed`;
 
   useEffect(() => {
     const fetchLatestAlert = async () => {
       const token = localStorage.getItem("access_token");
+      
 
       try {
-        const response = await axios.get("http://192.168.20.6:1252/main/alert", {
+        const serverip = import.meta.env.VITE_SERVER_IP;
+        const response = await axios.get(`http://${serverip}:1252/main/alert`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -49,7 +53,7 @@ const Dashboard = () => {
       <Workspace pageText="페이지 / 모니터링" mainText="메인 대시보드" />
       <div className="upper-section">
         <div className="left-content">
-          <VideoStream videoStreamUrl="http://192.168.20.6:5173/main/alert" />
+          <VideoStream videoStreamUrl={completeVideoUrl} />
         </div>
         <div className="right-content">
           <AlertMessages />

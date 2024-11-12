@@ -3,6 +3,7 @@ import "./MiniVideoStream.css"; // 새로운 스타일 파일 import
 import dashboardIcon from "../../assets/icons/video-help.svg";
 
 const MiniVideoStream = ({ videoStreamUrl }) => {
+  
   return (
     <div className="mini-video-stream-container">
       <div className="video-stream-header">

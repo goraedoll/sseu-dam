@@ -13,7 +13,7 @@ const iconMapper = {
   "낙상 주의": alertIcon1_2,
   "복약 시간": alertIcon1_3,
   "요청 사항": alertIcon1_3,
-  "목욕 주의": alertIcon1_3,
+  "욕창 주의": alertIcon1_2,
   "낙상을 주의하세요": alertIcon2_1,
   "낙상이 발생했습니다": alertIcon2_1,
   "복약 시간입니다": alertIcon2_2,

@@ -22,9 +22,11 @@ const AlertMessages = () => {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("access_token");
+      const serverip = import.meta.env.VITE_SERVER_IP;
+
 
       try {
-        const response = await axios.get("http://192.168.20.6:1252/main/alert", {
+        const response = await axios.get(`http://${serverip}:1252/main/alert`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

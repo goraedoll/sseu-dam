@@ -32,6 +32,8 @@ const medicationsData = [
 
 const Medications = (selectedDate) => {
   const [medications, setMedications] = useState(medicationsData);
+  const serverip = import.meta.env.VITE_SERVER_IP;
+
   // console.log(selectedDate.selectedDate)
   const formatDate = (date) => {
     if (!date) return '';
@@ -43,12 +45,13 @@ const Medications = (selectedDate) => {
       const token = localStorage.getItem("access_token");
       console.log(selectedDate.selectedDate.selectedDate)
       const getdate=formatDate(selectedDate.selectedDate.selectedDate)
+      
 
       
 
       try {
         // GET 요청을 보내는 부분: selectedDate를 URL의 쿼리 파라미터로 사용
-        const response = await fetch(`http://192.168.20.6:1252/nurselog/?date=${getdate}`, {
+        const response = await fetch(`http://${serverip}:1252/nurselog/?date=${getdate}`, {
           headers: {
             Authorization: `Bearer ${token}`, // 인증 토큰 헤더 추가
           },
@@ -99,7 +102,7 @@ const Medications = (selectedDate) => {
     try {
       const updatedMedication = updatedMedications.find(med => med.id === medicationId);
   
-      const response = await fetch(`http://192.168.20.6:1252/nurselog/`, {
+      const response = await fetch(`http://${serverip}:1252/nurselog/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -14,8 +14,8 @@ import CusDelete from "../../assets/icons/cus-delete.svg";
 import CusEdit from "../../assets/icons/cus-edit.svg";
 import CusGoto from "../../assets/icons/cus-goto.svg";
 import CusDown from "../../assets/icons/cus-down.svg";
-
-const BASE_URL = "http://192.168.20.6:1252";
+const serverip = import.meta.env.VITE_SERVER_IP;
+const BASE_URL = `http://${serverip}:1252`;
 
 const CustomerManagement = () => {
   const [patients, setPatients] = useState([]);

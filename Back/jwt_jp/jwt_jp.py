@@ -3,11 +3,14 @@ from datetime import datetime, timedelta
 from fastapi import Depends, HTTPException, Request, Response, status
 from sqlalchemy.orm import Session
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+import json
 
-# JWT 설정
-JWT_SECRET = "your_jwt_secret_key"  # 보안 강화를 위해 환경 변수로 설정하는 것이 좋습니다
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+# Jwt설정
+with open("config.json") as config_file:
+    config = json.load(config_file)
+JWT_SECRET = config["JWT_SECRET"]
+ALGORITHM = config["ALGORITHM"]
+ACCESS_TOKEN_EXPIRE_MINUTES =config["ACCESS_TOKEN_EXPIRE_MINUTES"] 
 
 def create_access_token(data: dict):
     to_encode = data.copy()

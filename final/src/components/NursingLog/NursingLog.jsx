@@ -30,7 +30,7 @@ const NursingLog = (selectedDate) => {
       <div className="components-container">
         <Medications selectedDate={selectedDate}/>
         {/* isEditing 상태를 NursingSchedule에 전달 */}
-        <NursingSchedule isEditing={isEditing} />
+        <NursingSchedule isEditing={isEditing} selectedDate={selectedDate}/>
       </div>
     </div>
   );

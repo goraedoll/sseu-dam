@@ -21,9 +21,10 @@ const TodoList = ({ selectedDate }) => {
       };
 
       try {
-        
+        const serverip = import.meta.env.VITE_SERVER_IP;
+
         const queryDate = encodeURIComponent(formatDate(selectedDate));
-        const response = await fetch(`http://192.168.20.6:1252/to_do_list/?date=${queryDate}`, {
+        const response = await fetch(`http://${serverip}:1252/to_do_list/?date=${queryDate}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -56,8 +57,9 @@ const TodoList = ({ selectedDate }) => {
 
     // 서버에 업데이트 요청 보내기
     try {
-      
-      const response = await fetch("http://192.168.20.6:1252/to_do_list/", {
+      const serverip = import.meta.env.VITE_SERVER_IP;
+
+      const response = await fetch(`http://${serverip}:1252/to_do_list/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

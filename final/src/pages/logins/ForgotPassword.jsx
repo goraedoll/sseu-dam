@@ -18,9 +18,11 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+   
 
     try {
-      const response = await fetch('http://192.168.20.6:1252/member/forgot-password', {
+      const serverip = import.meta.env.VITE_SERVER_IP;
+      const response = await fetch(`http://${serverip}:1252/member/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

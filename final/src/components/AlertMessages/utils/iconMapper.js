@@ -14,7 +14,7 @@ const iconMapper1 = {
   "낙상 주의": alertIcon1_2,
   "복약 시간": alertIcon1_3,
   "요청 사항": alertIcon1_3,
-  "목욕 주의": alertIcon1_3,
+  "욕창 주의": alertIcon1_2,
 };
 
 // 두 번째 맵핑 객체: message-cell 에서 사용할 아이콘 맵핑
@@ -23,6 +23,7 @@ const iconMapper2 = {
   "낙상이 발생했습니다": alertIcon2_1,
   "복약 시간을 지키세요": alertIcon2_2,
   "자세 변경 시간입니다": alertIcon2_3,
+  "자세 변경 시간입니다.": alertIcon2_3,
   "물을 요청합니다": alertIcon2_4,
 };
 

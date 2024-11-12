@@ -5,11 +5,19 @@ import "./multiMonitoring.css";
 import placeholderImage from "../../assets/images/login-cloud.png"; // 대체 이미지 파일 추가
 
 const MultiMonitoring = () => {
+    const serverip = import.meta.env.VITE_SERVER_IP;
+
+    const videoip1 = import.meta.env.VITE_VIDEO_IP_1;
+    const videoip2 =import.meta.env.VITE_VIDEO_IP_2;
+    const videoip3 = import.meta.env.VITE_VIDEO_IP_3;
+    const videoip4 = import.meta.env.VITE_VIDEO_IP_4;
+
+    
     const videoSources = [
-        "http://192.168.21.205:1997/video_feed", // 첫 번째 모니터 URL
-        "http://192.168.21.205:1997/video_feed", // 두 번째 모니터 URL
-        "http://192.168.21.205:1997/video_feed", // 세 번째 모니터 URL
-        "http://192.168.21.205:1997/video_feed", // 네 번째 모니터 URL
+        `http://${videoip1}:1997/video_feed`, // 첫 번째 모니터 URL
+        `http://${videoip2}:1997/video_feed`, // 두 번째 모니터 URL
+        `http://${videoip3}:1997/video_feed`, // 세 번째 모니터 URL
+        `http://${videoip4}:1997/video_feed`, // 네 번째 모니터 URL
     ];
 
     // 큰 모니터에 표시할 비디오의 URL과 인덱스를 저장하는 상태
