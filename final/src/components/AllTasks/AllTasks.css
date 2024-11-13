@@ -2,6 +2,10 @@
   width: 1350px;
   height: 680px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
 /* 테이블 스타일 */
@@ -9,6 +13,12 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 0px; /* 행 간격 */
+  text-align: center; /* 테이블 셀 텍스트 수평 가운데 정렬 */
+
+}
+.tasks-table th,
+.tasks-table td {
+  text-align: center; /* 모든 테이블 셀 텍스트 수평 가운데 정렬 */
 }
 
 .add-task-button {
@@ -190,4 +200,86 @@
 
 .add-task-button:hover {
   background-color: #5a74cf;
+}
+
+/* mmmmmmmmmmmmmmmmmmmmmmmmmmmm*/
+.my-custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* 어두운 배경 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.my-custom-modal {
+  background-color: #ffffff;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 320px;
+  max-width: 90%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.my-custom-modal h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #333;
+}
+
+.my-custom-modal input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.my-custom-modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.my-custom-modal-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.my-custom-save-button {
+  background-color: #5a74cf;
+  color: #fff;
+}
+
+.my-custom-save-button:hover {
+  background-color: #3e56a6;
+}
+
+.my-custom-cancel-button {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.my-custom-cancel-button:hover {
+  background-color: #bcbcbc;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

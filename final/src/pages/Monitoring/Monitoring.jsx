@@ -8,13 +8,16 @@ import WebLink from "../../components/WebLink/WebLink";
 import VideoOption from "../../components/VideoOption/VideoOption";
 
 const Monitoring = () => {
+  const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN;
+  const completeVideoUrl = `http://${video_ip}:1997/video_feed`;
+  
   return (
     <div className="monitoring-container">
       <Workspace pageText="페이지 / 낙상관리" mainText="낙상 관리" />{" "}
       {/* 맨 위에 위치 */}
       <div className="content-section-monitoring">
         <div className="left-section-monitoring">
-          <MiniVideoStream />
+          <MiniVideoStream videoStreamUrl={completeVideoUrl}/>
           <WebLink />
         </div>
         <div className="right-section-monitoring">

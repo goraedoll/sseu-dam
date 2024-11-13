@@ -13,8 +13,10 @@ import dayjs from "dayjs";
 const Dashboard = () => {
   const [latestAlert, setLatestAlert] = useState("");
   const [selectedDate, setSelectedDate] = useState(dayjs());
-  const videoip = import.meta.env.VITE_VIDEO_IP_MAIN;
-  const completeVideoUrl = `http://${videoip}/video_feed`;
+  const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN;
+  const completeVideoUrl = `http://${video_ip}:1997/video_feed`;
+  
+
 
   useEffect(() => {
     const fetchLatestAlert = async () => {
@@ -53,7 +55,7 @@ const Dashboard = () => {
       <Workspace pageText="페이지 / 모니터링" mainText="메인 대시보드" />
       <div className="upper-section">
         <div className="left-content">
-          <VideoStream videoStreamUrl={completeVideoUrl} />
+          <VideoStream videoStreamUrl={completeVideoUrl}/>
         </div>
         <div className="right-content">
           <AlertMessages />

@@ -31,6 +31,13 @@ const NursingSchedule = ({ isEditing, selectedDate}) => {
     false,
     false,
   ]);
+
+
+    // 팝업 창 상태와 편집 중인 필드 정보
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [editingField, setEditingField] = useState({ type: "", time: "" });
+
+
   const formatDate = (date) => {
     if (!date) return '';
     return date.format('YYYY-MM-DD');
@@ -132,6 +139,60 @@ const NursingSchedule = ({ isEditing, selectedDate}) => {
     }
   };
 
+
+  // 팝업 창 열기 함수
+  const openPopup = (type, time) => {
+    setEditingField({ type, time }); // 편집 중인 필드 설정
+    setIsPopupOpen(true); // 팝업 창 열기
+  };
+
+  // 팝업 창에서 선택한 값을 bathroomData에 반영하는 함수
+  const handleSelect = (value) => {
+    // 선택된 값으로 bathroomData 업데이트
+    setBathroomData((prevData) => ({
+      ...prevData,
+      [editingField.type]: {
+        ...prevData[editingField.type],
+        [editingField.time]: value,
+      },
+    }));
+  
+    setIsPopupOpen(false); // 팝업창 닫기
+  };
+  
+  // bathroomData가 변경될 때 PUT 요청 보내기
+  useEffect(() => {
+    const saveChanges = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        await axios.put(
+          `http://${serverip}:1252/NurseSchedule/UD`,
+          {
+            Urination: bathroomData.소변, // 소변 데이터
+            Defecation: bathroomData.대변, // 대변 데이터
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 인증 토큰 추가
+              "x-date": getdate,
+            },
+          }
+        );
+        console.log("변경 사항이 성공적으로 저장되었습니다.");
+      } catch (error) {
+        console.error("변경 사항 저장 중 오류 발생:", error);
+      }
+    };
+  
+    // isPopupOpen이 false일 때만 저장 (팝업 닫힌 경우)
+    if (!isPopupOpen) {
+      saveChanges();
+    }
+  }, [bathroomData, isPopupOpen, serverip, getdate]);
+
+
+
+
   const toggleWaterIntake = async (index) => {
     // 수분 섭취 상태 업데이트
     const newWaterIntake = [...waterIntake];
@@ -172,128 +233,147 @@ const NursingSchedule = ({ isEditing, selectedDate}) => {
 
   return (
     <div className="nursing-schedule">
-      <h2 style={{ marginRight: "12px" }}>간병 일지</h2>
-      <table className="fixed-table">
-        <thead>
-          <tr>
-            <th className="small-cell"></th>
-            <th className="header-cell">아침</th>
-            <th className="header-cell">점심</th>
-            <th className="header-cell">저녁</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="side-cell">식사</td>
-            <td className="large-cell" onClick={() => toggleCheck("식사_아침")}>
-              <img
-                src={isChecked["식사_아침"] ? nursCheck : nursWhite}
-                alt="check"
+    <h2 style={{ marginRight: "12px" }}>간병 일지</h2>
+    <table className="fixed-table">
+      <thead>
+        <tr>
+          <th className="small-cell"></th>
+          <th className="header-cell">아침</th>
+          <th className="header-cell">점심</th>
+          <th className="header-cell">저녁</th>
+        </tr>
+      </thead>
+      <tbody>
+        {/* 식사 상태 */}
+        <tr>
+          <td className="side-cell">식사</td>
+          <td className="large-cell" onClick={() => toggleCheck("식사_아침")}>
+            <img
+              src={isChecked["식사_아침"] ? nursCheck : nursWhite}
+              alt="check"
+            />
+          </td>
+          <td className="large-cell" onClick={() => toggleCheck("식사_점심")}>
+            <img
+              src={isChecked["식사_점심"] ? nursCheck : nursWhite}
+              alt="check"
+            />
+          </td>
+          <td className="large-cell" onClick={() => toggleCheck("식사_저녁")}>
+            <img
+              src={isChecked["식사_저녁"] ? nursCheck : nursWhite}
+              alt="check"
+            />
+          </td>
+        </tr>
+
+        {/* 소변 상태 */}
+        <tr>
+          <td className="side-cell">소변</td>
+          <td className="large-cell" onClick={() => openPopup("소변", "아침")}>
+            {isEditing ? (
+              <input
+                type="text"
+                value={bathroomData.소변.아침}
+                onChange={(e) => handleInputChange(e, "소변", "아침")}
               />
-            </td>
-            <td className="large-cell" onClick={() => toggleCheck("식사_점심")}>
-              <img
-                src={isChecked["식사_점심"] ? nursCheck : nursWhite}
-                alt="check"
+            ) : (
+              bathroomData.소변.아침
+            )}
+          </td>
+          <td className="large-cell" onClick={() => openPopup("소변", "점심")}>
+            {isEditing ? (
+              <input
+                type="text"
+                value={bathroomData.소변.점심}
+                onChange={(e) => handleInputChange(e, "소변", "점심")}
               />
-            </td>
-            <td className="large-cell" onClick={() => toggleCheck("식사_저녁")}>
-              <img
-                src={isChecked["식사_저녁"] ? nursCheck : nursWhite}
-                alt="check"
+            ) : (
+              bathroomData.소변.점심
+            )}
+          </td>
+          <td className="large-cell" onClick={() => openPopup("소변", "저녁")}>
+            {isEditing ? (
+              <input
+                type="text"
+                value={bathroomData.소변.저녁}
+                onChange={(e) => handleInputChange(e, "소변", "저녁")}
               />
-            </td>
-          </tr>
-          <tr>
-            <td className="side-cell">소변</td>
-            <td className="large-cell">
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={bathroomData.소변.아침}
-                  onChange={(e) => handleInputChange(e, "소변", "아침")}
+            ) : (
+              bathroomData.소변.저녁
+            )}
+          </td>
+        </tr>
+
+        {/* 대변 상태 */}
+        <tr>
+          <td className="side-cell">대변</td>
+          <td className="large-cell" onClick={() => openPopup("대변", "아침")}>
+            {isEditing ? (
+              <input
+                type="text"
+                value={bathroomData.대변.아침}
+                onChange={(e) => handleInputChange(e, "대변", "아침")}
+              />
+            ) : (
+              bathroomData.대변.아침
+            )}
+          </td>
+          <td className="large-cell" onClick={() => openPopup("대변", "점심")}>
+            {isEditing ? (
+              <input
+                type="text"
+                value={bathroomData.대변.점심}
+                onChange={(e) => handleInputChange(e, "대변", "점심")}
+              />
+            ) : (
+              bathroomData.대변.점심
+            )}
+          </td>
+          <td className="large-cell" onClick={() => openPopup("대변", "저녁")}>
+            {isEditing ? (
+              <input
+                type="text"
+                value={bathroomData.대변.저녁}
+                onChange={(e) => handleInputChange(e, "대변", "저녁")}
+              />
+            ) : (
+              bathroomData.대변.저녁
+            )}
+          </td>
+        </tr>
+
+        {/* 수분 섭취 상태 */}
+        <tr className="water-intake">
+          <td className="side-cell">수분</td>
+          <td className="large-cell" colSpan="3">
+            <div className="water-intake-container">
+              {waterIntake.map((intake, index) => (
+                <img
+                  key={index}
+                  src={intake ? nursWater : nursNoWater}
+                  alt="water intake"
+                  onClick={() => toggleWaterIntake(index)}
                 />
-              ) : (
-                bathroomData.소변.아침
-              )}
-            </td>
-            <td className="large-cell">
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={bathroomData.소변.점심}
-                  onChange={(e) => handleInputChange(e, "소변", "점심")}
-                />
-              ) : (
-                bathroomData.소변.점심
-              )}
-            </td>
-            <td className="large-cell">
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={bathroomData.소변.저녁}
-                  onChange={(e) => handleInputChange(e, "소변", "저녁")}
-                />
-              ) : (
-                bathroomData.소변.저녁
-              )}
-            </td>
-          </tr>
-          <tr>
-            <td className="side-cell">대변</td>
-            <td className="large-cell">
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={bathroomData.대변.아침}
-                  onChange={(e) => handleInputChange(e, "대변", "아침")}
-                />
-              ) : (
-                bathroomData.대변.아침
-              )}
-            </td>
-            <td className="large-cell">
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={bathroomData.대변.점심}
-                  onChange={(e) => handleInputChange(e, "대변", "점심")}
-                />
-              ) : (
-                bathroomData.대변.점심
-              )}
-            </td>
-            <td className="large-cell">
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={bathroomData.대변.저녁}
-                  onChange={(e) => handleInputChange(e, "대변", "저녁")}
-                />
-              ) : (
-                bathroomData.대변.저녁
-              )}
-            </td>
-          </tr>
-          <tr className="water-intake">
-            <td className="side-cell">수분</td>
-            <td className="large-cell" colSpan="3">
-              <div className="water-intake-container">
-                {waterIntake.map((intake, index) => (
-                  <img
-                    key={index}
-                    src={intake ? nursWater : nursNoWater}
-                    alt="water intake"
-                    onClick={() => toggleWaterIntake(index)}
-                  />
-                ))}
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              ))}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    {/* 팝업 창 */}
+    {isPopupOpen && (
+      <div className="popup-overlay">
+        <div className="popup">
+          <h3>상태 선택</h3>
+          <button onClick={() => handleSelect("화장실")}>화장실</button>
+          <button onClick={() => handleSelect("기저귀")}>기저귀</button>
+          <button onClick={() => setIsPopupOpen(false)}>취소</button>
+        </div>
+      </div>
+    )}
+  </div>
   );
 };
 

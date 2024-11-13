@@ -14,16 +14,16 @@ const AllTasks = () => {
   const [editMode, setEditMode] = useState(null);
   const [editText, setEditText] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // 팝업 창 상태
   const tasksPerPage = 9;
-
 
   const fetchTasks = async () => {
     const token = localStorage.getItem("access_token");
 
     try {
-      const response = await fetch(`${BASE_URL}/to_do_list/all`, { // BASE_URL 사용
+      const response = await fetch(`${BASE_URL}/to_do_list/all`, {
         headers: {
-          Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -42,76 +42,81 @@ const AllTasks = () => {
     fetchTasks();
   }, []);
 
-const indexOfLastTask = currentPage * tasksPerPage;
-const indexOfFirstTask = indexOfLastTask - tasksPerPage;
-const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
+  const indexOfLastTask = currentPage * tasksPerPage;
+  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
 
-const handlePageChange = (pageNumber) => {
-  setCurrentPage(pageNumber);
-};
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-const toggleTask = async (id, completed) => {
-  const token = localStorage.getItem("access_token");
+  const toggleTask = async (id, completed) => {
+    const token = localStorage.getItem("access_token");
 
-  try {
-    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
-      },
-      body: JSON.stringify({id: id, completed: !completed }),
-    });
-    fetchTasks();
-  } catch (error) {
-    console.error("Error updating task:", error);
-  }
-};
+    try {
+      await fetch(`${BASE_URL}/to_do_list/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id: id, completed: !completed }),
+      });
+      fetchTasks();
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
+  };
 
-const startEditing = (id, text) => {
-  setEditMode(id);
-  setEditText(text);
-};
+  const openEditPopup = (id, text) => {
+    setEditMode(id);
+    setEditText(text);
+    setIsPopupOpen(true); // 팝업 창 열기
+  };
 
-const editTask = async (id) => {
-  const token = localStorage.getItem("access_token");
-
-  try {
-    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
-      },
-      body: JSON.stringify({id:id, task_description: editText }),
-    });
+  const closeEditPopup = () => {
     setEditMode(null);
     setEditText("");
-    fetchTasks();
-  } catch (error) {
-    console.error("Error editing task:", error);
-  }
-};
+    setIsPopupOpen(false); // 팝업 창 닫기
+  };
 
-const deleteTask = async (id) => {
-  const token = localStorage.getItem("access_token");
+  const editTask = async () => {
+    const token = localStorage.getItem("access_token");
 
-  try {
-    await fetch(`${BASE_URL}/to_do_list/`, { // BASE_URL 사용
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // 토큰 인증 헤더 추가
-      },
-      body: JSON.stringify({ id }), // 본문에 id 포함
-    });
-    setDeleteConfirm(null); // 삭제 확인 모달 닫기
-    fetchTasks();
-  } catch (error) {
-    console.error("Error deleting task:", error);
-  }
-};
+    try {
+      await fetch(`${BASE_URL}/to_do_list/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id: editMode, task_description: editText }),
+      });
+      closeEditPopup();
+      fetchTasks();
+    } catch (error) {
+      console.error("Error editing task:", error);
+    }
+  };
 
+  const deleteTask = async (id) => {
+    const token = localStorage.getItem("access_token");
+
+    try {
+      await fetch(`${BASE_URL}/to_do_list/`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id }),
+      });
+      setDeleteConfirm(null);
+      fetchTasks();
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
 
   const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
@@ -135,19 +140,7 @@ const deleteTask = async (id) => {
               className={`task-item ${task.completed ? "completed" : ""}`}
             >
               <td className="row-id">{task.id}</td>
-              <td className="row-text">
-                {editMode === task.id ? (
-                  <input
-                    type="text"
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
-                    placeholder="새 텍스트 입력"
-                    className="edit-input"
-                  />
-                ) : (
-                  task.text
-                )}
-              </td>
+              <td className="row-text">{task.text}</td>
               <td className="row-completed">
                 <div
                   className="checkbox-icon"
@@ -167,21 +160,12 @@ const deleteTask = async (id) => {
               </td>
               <td className="row-tools">
                 <div className="tool-icons">
-                  {editMode === task.id ? (
-                    <img
-                      src={correctionIcon}
-                      alt="저장"
-                      onClick={() => editTask(task.id)}
-                      className="tool-icon"
-                    />
-                  ) : (
-                    <img
-                      src={correctionIcon}
-                      alt="수정"
-                      onClick={() => startEditing(task.id, task.text)}
-                      className="tool-icon"
-                    />
-                  )}
+                  <img
+                    src={correctionIcon}
+                    alt="수정"
+                    onClick={() => openEditPopup(task.id, task.text)}
+                    className="tool-icon"
+                  />
                   <img
                     src={deleteIcon}
                     alt="삭제"
@@ -223,6 +207,29 @@ const deleteTask = async (id) => {
             >
               취소
             </button>
+          </div>
+        </div>
+      )}
+{/* 수정 팝업 창 */}
+      {isPopupOpen && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <h3>할일 수정</h3>
+            <input
+              type="text"
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              placeholder="새 텍스트 입력"
+              className="my-custom-modal-input"
+            />
+            <div className="my-custom-modal-buttons"> {/* 수정된 버튼 컨테이너 클래스 */}
+        <button onClick={editTask} className="my-custom-modal-button my-custom-save-button">
+          저장
+        </button>
+        <button onClick={closeEditPopup} className="my-custom-modal-button my-custom-cancel-button">
+          취소
+        </button>
+            </div>
           </div>
         </div>
       )}

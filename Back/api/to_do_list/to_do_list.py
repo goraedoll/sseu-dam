@@ -82,7 +82,7 @@ def update_todo(
 def get_to_do(date: str =Query(...),db: Session = Depends(get_db),user_id : str = Depends(verify_jwt_token)):
     user_date = datetime.strptime(date, "%Y-%m-%d").date()
     try:
-        user_tasks = db.query(orm).filter(orm.UserID == user_id).filter(func.date(orm.created_at)==user_date).order_by(orm.created_at.desc()).all()  # 5개만 반환
+        user_tasks = db.query(orm).filter(orm.UserID == user_id).filter(func.date(orm.created_at)==user_date).order_by(orm.created_at.desc()).limit(6).all()  # 5개만 반환
         return [
             {
                 "text": task.task_description,

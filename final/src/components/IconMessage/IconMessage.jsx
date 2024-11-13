@@ -13,7 +13,8 @@ const IconMessage = () => {
   useEffect(() => {
     // WebSocket 설정
     const serverip = import.meta.env.VITE_SERVER_IP;
-    const ws = new WebSocket(`ws://${serverip}:1252/main/ws/alert`);
+    const token = localStorage.getItem("access_token");
+    const ws = new WebSocket(`ws://${serverip}:1252/main/ws/alert?token=${token}`);
 
     ws.onopen = () => {
       console.log("WebSocket connection established");

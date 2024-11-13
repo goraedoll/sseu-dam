@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Request
+# from fastapi import APIRouter, Request
 
-router = APIRouter()
+# router = APIRouter()
 
-@router.get("/icon")
-def icon(request: Request):
+# @router.get("/icon")
+# def icon(request: Request):
