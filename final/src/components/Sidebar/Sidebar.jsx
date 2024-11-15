@@ -38,25 +38,7 @@ const Sidebar = () => {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <img src={monitoringIcon} alt="Monitoring Icon" />
-              낙상 관리
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/medication"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <img src={medicineIcon} alt="Medicine Icon" />
-              복약 안내
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/all-tasks"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <img src={approveIcon} alt="Approve Icon" />
-              전체 할일
+              AI 모니터링
             </NavLink>
           </li>
           <li>
@@ -66,6 +48,24 @@ const Sidebar = () => {
             >
               <img src={multiMonitorIcon} alt="Multi Monitoring Icon" />
               멀티 모니터링
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/medication"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <img src={medicineIcon} alt="Medicine Icon" />
+              돌봄 일지
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/all-tasks"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <img src={approveIcon} alt="Approve Icon" />
+              할일 목록
             </NavLink>
           </li>
         </ul>
@@ -79,7 +79,7 @@ const Sidebar = () => {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <img src={usersIcon} alt="Customer Management Icon" />
-              고객 관리
+              돌봄 대상자
             </NavLink>
           </li>
           <li>
@@ -88,7 +88,7 @@ const Sidebar = () => {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <img src={settingsIcon} alt="Settings Icon" />
-              설정
+              프로필 관리
             </NavLink>
           </li>
         </ul>

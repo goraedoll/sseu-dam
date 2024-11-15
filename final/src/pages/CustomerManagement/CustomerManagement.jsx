@@ -84,7 +84,9 @@ const CustomerManagement = () => {
           ...patient,
           profile: profiles[index % profiles.length],
           birthDate: patient.BirthDate.replace(/-/g, ". "),
-          registrationDate: patient.createdAt.substring(0, 10).replace(/-/g, ". "),
+          registrationDate: patient.createdAt
+            .substring(0, 10)
+            .replace(/-/g, ". "),
         }));
         setPatients(data);
       } catch (error) {
@@ -126,7 +128,7 @@ const CustomerManagement = () => {
 
   return (
     <div className="Customers-container">
-      <Workspace pageText="페이지 / 고객 관리" mainText="고객 관리" />
+      <Workspace pageText="페이지 / 돌봄 대상자" mainText="돌봄 대상자" />
       <div className="Customers-upper-section">
         <div className="inner-container">
           <div className="Customers-table-header">
@@ -141,16 +143,19 @@ const CustomerManagement = () => {
                 <th>#</th>
                 <th>프로필</th>
                 <th>
-                  이름 <img src={CusDown} alt="정렬" className="cus-down-icon" />
+                  이름{" "}
+                  <img src={CusDown} alt="정렬" className="cus-down-icon" />
                 </th>
                 <th>
-                  생년월일 <img src={CusDown} alt="정렬" className="cus-down-icon" />
+                  생년월일{" "}
+                  <img src={CusDown} alt="정렬" className="cus-down-icon" />
                 </th>
                 <th>주소</th>
                 <th>전화번호</th>
                 <th>건강상태</th>
                 <th>
-                  등록날짜 <img src={CusDown} alt="정렬" className="cus-down-icon" />
+                  등록날짜{" "}
+                  <img src={CusDown} alt="정렬" className="cus-down-icon" />
                 </th>
                 <th>작업</th>
               </tr>
@@ -160,7 +165,11 @@ const CustomerManagement = () => {
                 <tr key={patient.id}>
                   <td className="customer-id">{patient.id}</td>
                   <td className="profile-td">
-                    <img src={patient.profile} alt={patient.name} className="profile-icon" />
+                    <img
+                      src={patient.profile}
+                      alt={patient.name}
+                      className="profile-icon"
+                    />
                   </td>
                   <td>
                     <span className="customer-name">{patient.name}</span>
@@ -204,7 +213,10 @@ const CustomerManagement = () => {
                   </td>
                   <td>{patient.registrationDate}</td>
                   <td>
-                    <button className="goto-button" onClick={() => handleGoTo(patient.id)}>
+                    <button
+                      className="goto-button"
+                      onClick={() => handleGoTo(patient.id)}
+                    >
                       <img src={CusGoto} alt="바로가기" />
                     </button>
                     {editMode === patient.id ? (
@@ -230,10 +242,16 @@ const CustomerManagement = () => {
         <div className="delete-confirm">
           <p>정말 삭제하시겠습니까?</p>
           <div className="confirm-buttons">
-            <button onClick={() => handleDelete(deleteConfirm)} className="confirm-button">
+            <button
+              onClick={() => handleDelete(deleteConfirm)}
+              className="confirm-button"
+            >
               확인
             </button>
-            <button onClick={() => setDeleteConfirm(null)} className="cancel-button">
+            <button
+              onClick={() => setDeleteConfirm(null)}
+              className="cancel-button"
+            >
               취소
             </button>
           </div>

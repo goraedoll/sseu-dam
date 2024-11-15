@@ -122,7 +122,7 @@ const AllTasks = () => {
 
   return (
     <div className="alltasks-container">
-      <h1 className="alltasks-container-title">할일 목록</h1>
+      <h1 className="alltasks-container-title">전체 할일</h1>
       <table className="tasks-table">
         <thead>
           <tr>
@@ -210,7 +210,7 @@ const AllTasks = () => {
           </div>
         </div>
       )}
-{/* 수정 팝업 창 */}
+      {/* 수정 팝업 창 */}
       {isPopupOpen && (
         <div className="popup-overlay">
           <div className="popup">
@@ -222,13 +222,21 @@ const AllTasks = () => {
               placeholder="새 텍스트 입력"
               className="my-custom-modal-input"
             />
-            <div className="my-custom-modal-buttons"> {/* 수정된 버튼 컨테이너 클래스 */}
-        <button onClick={editTask} className="my-custom-modal-button my-custom-save-button">
-          저장
-        </button>
-        <button onClick={closeEditPopup} className="my-custom-modal-button my-custom-cancel-button">
-          취소
-        </button>
+            <div className="my-custom-modal-buttons">
+              {" "}
+              {/* 수정된 버튼 컨테이너 클래스 */}
+              <button
+                onClick={editTask}
+                className="my-custom-modal-button my-custom-save-button"
+              >
+                저장
+              </button>
+              <button
+                onClick={closeEditPopup}
+                className="my-custom-modal-button my-custom-cancel-button"
+              >
+                취소
+              </button>
             </div>
           </div>
         </div>
