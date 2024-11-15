@@ -6,8 +6,9 @@ import ORM.ORM_login as ORM_login
 from db_session.db_session import get_db
 from fastapi.security import HTTPBasic
 from api.Login.tokenize import token_modules as tm
-import datetime
+import datetime, hashlib
 from jwt_jp import jwt_jp
+
 
 security = HTTPBasic()
 
@@ -18,13 +19,16 @@ ORU = ORM_login.User
 
 
 
+
 @router.post("/login", tags=["member"])
 def select_login(login: login_schema.LoginSchema, db: Session = Depends(get_db)):
     # 사용자 조회
     db_user = db.query(ORU).filter(ORU.UserID == login.UserID).first()
+    hash_pw = hashlib.sha3_256(login.PasswordHash.encode()).hexdigest() #sha3사용
+
     if db_user is None:
         raise HTTPException(status_code=400, detail="아이디 틀림")
-    if db_user.PasswordHash != login.PasswordHash:
+    if db_user.PasswordHash != hash_pw:
         raise HTTPException(status_code=400, detail="비밀번호 틀림")
     
 
@@ -45,14 +49,17 @@ def add_member(member : login_schema.Signup_Schema, db:Session=Depends(get_db)):
         raise HTTPException(status_code=400, detail="이미 사용중인 전화번호입니다.")
     
 
-    Hashed_pw = tm.get_password_hash(member.PasswordHash)
+    hash_pw = hashlib.sha3_256(member.PasswordHash.encode()).hexdigest() #sha3사용
+    
+    
+    
     time_now = datetime.datetime.now()
 
     # db_user = ORM_login.User(**member.dict(exclude_unset=True))
     db_user = ORM_login.User(UserID = member.UserID,
                              UserName = member.UserName,
                              email = member.email,
-                             PasswordHash = Hashed_pw,
+                             PasswordHash = hash_pw,
                              BirthDate = member.BirthDate,
                              Addr = member.Addr,
                              Phone = member.Phone,

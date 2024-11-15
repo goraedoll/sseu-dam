@@ -74,3 +74,24 @@ def update_medication(listdata: nurseSchema.MedicationChecked,
     return {"message": "수정 완료"}
 
 
+@router.put("/remote", tags=["nurselog"])
+def update_medication(listdata: nurseSchema.remote_schema,
+                      db: Session = Depends(get_db)):
+    # user_date = datetime.strptime(listdata.date, "%Y-%m-%d").date()
+    medication_data = db.query(orm).filter(orm.UserID == listdata.UserID).filter(func.date(orm.date)==listdata.date).first()
+    if not medication_data:
+        raise HTTPException(status_code=404, detail="날짜에 관한 데이터를 찾을 수 없습니다.")
+    
+    if listdata.id == 1:
+        setattr(medication_data, "vitamin", listdata.checked)
+    try:
+        print(medication_data)
+        db.commit()
+        db.refresh(medication_data)
+        print("Database update successful")  # 커밋 성공 로그
+    except Exception as e:
+        db.rollback()
+        print("Commit Error:", e)  # 커밋 오류 확인
+        raise HTTPException(status_code=500, detail="데이터베이스 업데이트 실패")
+
+    return {"message": "수정 완료"}

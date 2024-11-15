@@ -18,3 +18,9 @@ class BathroomUpdateSchema(BaseModel):
 
 class water_update_schema(BaseModel):
     WaterIntake:  List[bool]
+
+class remote_schema(BaseModel):
+    date : date
+    UserID : str
+    id : int
+    checked: bool

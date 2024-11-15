@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from api.Login.login import router as login_router
 from api.Alerts.alerts import router as alerts_router
 from api.to_do_list.to_do_list import router as to_do_router
@@ -8,7 +8,8 @@ from api.user_info.user_info import router as user_info_router
 from api.NurseLog.NurseSchedule import router as NurseSchedule_router
 from starlette.middleware.sessions import SessionMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-import os, json
+from DB_connect import engine
+import json
 
 with open("config.json") as config_file:
     config = json.load(config_file)
