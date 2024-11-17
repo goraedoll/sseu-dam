@@ -123,14 +123,17 @@ const AllTasks = () => {
   return (
     <div className="alltasks-container">
       <h1 className="alltasks-container-title">전체 할일</h1>
+      <button className="alltasks-button" onClick={() => setIsAddTaskOpen(true)}>
+        +
+      </button>
       <table className="tasks-table">
         <thead>
           <tr>
-            <th className="column-id">#</th>
-            <th className="column-text">내용</th>
-            <th className="column-completed">완료</th>
-            <th className="column-date">작성일</th>
-            <th className="column-tools">도구</th>
+            <th className="alltasks-column-id">#</th>
+            <th className="alltasks-column-text">내용</th>
+            <th className="alltasks-column-completed">완료</th>
+            <th className="alltasks-column-date">작성일</th>
+            <th className="alltasks-column-tools">도구</th>
           </tr>
         </thead>
         <tbody className="tasks-tbody">
@@ -179,7 +182,8 @@ const AllTasks = () => {
         </tbody>
       </table>
 
-      <div className="pagination">
+      {/* Pagination 바로 테이블 아래에 위치 */}
+      <div className="pagination tasks-pagination">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
