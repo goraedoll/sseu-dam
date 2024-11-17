@@ -11,7 +11,12 @@
   --color-gray-50: #fafafa; /* var(--button-gray50) */
   --color-blue-50: #eef7ff; /* var(--button-blue50) */
   --color-blue-100: #cbe8ff; /* var(--button-blue100) */
+  --color-blue-200: #a7d9ff; /* var(--button-blue200) */
+  --color-blue-300: #68bbff; /* var(--button-blue300) */
+  --color-blue-400: #329cff; /* var(--button-blue400) */
+  --color-blue-500: #067dfd; /* var(--button-blue500) */
   --color-red-400: #ff5454; /* var(--button-red) */
+  --color-red-500: #ef2b2a; /* var(--button-redhover) */
   --color-green-400: #05cd99; /* var(--button-green) */
   --color-border-gray: #e0e5f2; /* var(--border-color) */
   --color-border-gray2: #e9edf7; /* var(--color-border-gray2) */
@@ -32,9 +37,14 @@
   --text-gray4: var(--color-blue-gray-4);
   --text-gray5: var(--color-blue-gray-5);
   --button-gray50: var(--color-gray-50);
-  --button-blue100: var(--color-blue-100);
   --button-blue50: var(--color-blue-50);
+  --button-blue100: var(--color-blue-100);
+  --button-blue200: var(--color-blue-200);
+  --button-blue300: var(--color-blue-300);
+  --button-blue400: var(--color-blue-400);
+  --button-blue500: var(--color-blue-500);
   --button-red: var(--color-red-400);
+  --button-redhover: var(--color-red-500);
   --button-green: var(--color-green-400);
   --border-color: var(--color-border-gray);
   --border-color2: var(--color-border-gray2);

@@ -1,7 +1,6 @@
-
 .user-settings {
   display: flex;
-  background-color: #fff;
+  background-color: var(--primary-white);
   max-width: 1350px;
   margin: 20px auto;
   border-radius: 20px;
@@ -15,9 +14,9 @@
   align-items: center;
   padding: 20px;
   padding-top: 100px;
-  background-color: #fff;
+  background-color: var(--primary-white);
   gap: 20px;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid var(--color-border-gray2);
 }
 
 .profile-image-container {
@@ -45,9 +44,9 @@
 }
 
 .upload-button {
-  background-color: #68bbff;
+  background-color: var(--button-blue300);
   font-size: 18px;
-  color: #fff;
+  color: var(--primary-white);
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
@@ -57,7 +56,7 @@
 }
 
 .upload-button:hover {
-  background-color: #0062e5;
+  background-color: var(--button-blue500);
 }
 
 .user-settings-right {
@@ -69,8 +68,8 @@
 }
 
 .user-settings-right h2 {
-  color: #072182;
-  font-size: 42px;
+  color: var(--text-blue800);
+  font-size: 30px;
   margin-bottom: 20px;
   padding: 0px;
   margin-top: 40px;
@@ -80,16 +79,15 @@
   margin-top: 10px;
   padding: 8px 16px;
   font-size: 18px;
-  background-color: #f44336;
-  color: white;
+  background-color: var(--button-red);
+  color: var(--primary-white);
   border: none;
   border-radius: 8px;
   cursor: pointer;
 }
 .logout-button:hover {
-  background-color: #d32f2f;
+  background-color: var(--button-redhover);
 }
-
 
 .user-settings-right form label {
   font-weight: 500;
@@ -108,7 +106,7 @@
   padding: 8px;
   margin-top: 5px;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
 }
 
 .user-settings-right textarea {
@@ -117,14 +115,14 @@
   height: 100px;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   resize: none;
 }
 
 .save-button {
-  background-color: #4a90e2;
-  color: #fff;
+  background-color: var(--button-blue400);
+  color: var(--primary-white);
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -134,15 +132,15 @@
 }
 
 .save-button:hover {
-  background-color: #357abd;
+  background-color: var(--button-blue500);
 }
 
 .success-message {
-  color: green;
+  color: var(--button-green);
   margin-bottom: 10px;
 }
 
 .error-message {
-  color: red;
+  color: var(--button-red);
   margin-bottom: 10px;
 }

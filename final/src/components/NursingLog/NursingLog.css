@@ -2,7 +2,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 24px 20px 28px 14px;
-  background-color: #fff;
+  background-color: var(--primary-white);
   width: 567px;
   height: 294px;
   margin: 0;
@@ -14,7 +14,7 @@
 }
 
 .nursing-log-date {
-  color: #072182;
+  color: var(--text-blue900);
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -32,7 +32,7 @@
 
 .components-container > div {
   flex: 1;
-  background-color: #eef7ff;
+  background-color: var(--button-blue50);
   border-radius: 10px;
   padding: 20px;
 }

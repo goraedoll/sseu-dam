@@ -15,14 +15,14 @@
 }
 
 .page-text {
-  color: #707eae; /* 텍스트 색상 */
+  color: var(--text-gray4); /* 텍스트 색상 */
   font-size: 14px; /* 폰트 크기 */
   font-weight: 500; /* font-weight: medium */
   margin: 0;
 }
 
 .main-dashboard {
-  color: #072182; /* 텍스트 색상 */
+  color: var(--text-blue900); /* 텍스트 색상 */
   font-size: 34px; /* 폰트 크기 */
   font-weight: bold; /* font-weight: bold */
   margin: 2px 0 0 0; /* 위쪽 약간의 간격 */

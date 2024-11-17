@@ -3,12 +3,12 @@
 }
 
 .Mui-selected {
-  background-color: #0231A6 !important; /* 선택된 날짜 색상 */
-  color: white;
+  background-color: var(--text-blue800) !important; /* 선택된 날짜 색상 */
+  color: var(--primary-white);
 }
 
 .MuiPickersDay-root:hover {
-  background-color: #accbff; /* 호버 시 색상 */
+  background-color: var(--button-blue100); /* 호버 시 색상 */
 }
 
 /* 모달 스타일 */
@@ -17,7 +17,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: var(--primary-white);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);

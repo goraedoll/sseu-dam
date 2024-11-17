@@ -9,7 +9,7 @@
 .medication-info-title {
   font-size: 24px;
   font-weight: 600;
-  color: #0231a6;
+  color: var(--text-blue800);
   margin: 25px 0 25px 31px;
   padding: 0;
   text-align: left;
@@ -30,7 +30,7 @@
 .medication-info-table th {
   /* border-bottom: 1px solid #e9edf7; */
   font-size: 14px;
-  color: #a3aed0;
+  color: var(--text-gray1);
   font-weight: 300;
   padding-bottom: 15px;
   white-space: nowrap; /* 줄바꿈 방지 */
@@ -63,13 +63,13 @@
 .medication-info-table tbody td {
   font-size: 13px; /* 원하는 폰트 크기로 변경 */
   font-weight: 300; /* 원하는 폰트 굵기로 변경 */
-  color: #2b3674; /* 원하는 폰트 색상으로 변경 */
+  color: var(--text-gray5); /* 원하는 폰트 색상으로 변경 */
   line-height: 1.5;
 }
 
 .pill-name {
   font-weight: 500 !important;
-  color: #2b3674 !important;
+  color: var(--text-gray5) !important;
   font-size: 14px !important;
 }
 
