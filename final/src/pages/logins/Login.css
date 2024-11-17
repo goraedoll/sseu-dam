@@ -7,12 +7,13 @@ body {
   border: none; /* 테두리 없애기 */
   font-size: 16px; /* 폰트 크기 설정 */
   font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
-  color: #6b7698; /* 텍스트 색상 */
+  color: var(--text-gray3); /* 텍스트 색상 */
   cursor: pointer; /* 마우스 커서 포인터 모양으로 변경 */
-  display: flex; /* 아이콘과 텍스트를 한 줄에 배치하기 위해 사용 */
+  display: inline; /* 아이콘과 텍스트를 한 줄에 배치하기 위해 사용 */
   align-items: center; /* 아이콘과 텍스트 수직 가운데 정렬 */
-  padding-left: 0; /* 왼쪽 여백 없애기 */
-  padding-bottom: 40%;
+  text-align: left;
+  padding: 0; /* 왼쪽 여백 없애기 */
+  margin-bottom: 40%;
 }
 
 .back-arrow {
@@ -23,7 +24,7 @@ body {
 
 .back-button:hover {
   text-decoration: none; /* 마우스를 올렸을 때 밑줄 추가 */
-  color: #0033aa; /* 마우스를 올렸을 때 색상 변경 */
+  color: var(--text-blue800); /* 마우스를 올렸을 때 색상 변경 */
 }
 
 .login-container {
@@ -53,7 +54,7 @@ body {
 .login-form h2 {
   font-size: 36px;
   font-weight: bold;
-  color: #2569ed;
+  color: var(--primary-blue);
   margin-bottom: 54px;
   font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
 }
@@ -64,7 +65,7 @@ body {
   display: block;
   margin-bottom: 0.8rem;
   font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
-  color: #2b3674;
+  color: var(--text-gray5);
 }
 
 .login-form input[type="text"],
@@ -74,10 +75,8 @@ body {
   padding: 0.75rem;
   margin-bottom: 2rem;
   border-radius: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   box-sizing: border-box;
-  font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
-  border-color: #e0e5f2; /* 원하는 테두리 색상으로 변경하세요 */
   padding-left: 24px; /* 플레이스홀더를 오른쪽으로 살짝 이동 */
 }
 
@@ -111,40 +110,37 @@ body {
 
 .form-options a {
   text-decoration: none; /* 필요에 따라 밑줄 제거 */
-  color: #2569ed; /* 링크 색상 설정 */
+  color: var(--primary-blue); /* 링크 색상 설정 */
 }
 
 .login-button {
-  background-color: #2569ed;
+  background-color: var(--primary-blue);
   height: 54px;
   width: 100%;
-  color: white;
+  color: var(--primary-white);
   padding: 1rem;
   border: none;
   border-radius: 16px;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
-  font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
 }
 
 .login-button:hover {
-  background-color: #0033aa;
+  background-color: var(--text-blue800);
 }
 
 .signup-prompt {
   margin-top: 2rem;
   font-size: 14px;
   text-align: left;
-  font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
 }
 
 .signup-prompt a {
-  color: #2569ed;
+  color: var(--primary-blue);
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
-  font-family: "Pretendard"; /* 폰트 설정 */
 }
 
 .login-image {
@@ -173,7 +169,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* 그림자 효과 */
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: var(--primary-white);
   cursor: pointer;
   z-index: 1; /* 버튼을 이미지 위에 표시 */
 }
@@ -210,17 +206,17 @@ body {
   font-family: "Pretendard", Arial, sans-serif; /* 폰트 설정 */
   text-align: center; /* 텍스트를 가운데 정렬 */
   margin-top: 520px; /* 위쪽 간격 설정 */
-  color: #fff; /* 원하는 색상 설정 */
+  color: var(--primary-white); /* 원하는 색상 설정 */
   text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* input의 placeholder 색상 변경 */
 input::placeholder {
-  color: #a3aed0; /* 원하는 색상으로 변경하세요 */
+  color: var(--text-gray1); /* 원하는 색상으로 변경하세요 */
 }
 
 .signup-prompt {
-  color: #2b3674; /* 원하는 색상으로 변경하세요 */
+  color: var(--text-gray5); /* 원하는 색상으로 변경하세요 */
 }
 
 .signup-prompt a {

@@ -43,7 +43,7 @@ html {
 
 .lower-section {
   display: flex;
-  background-color: #fff;
+  background-color: var(--primary-white);
   border-radius: 20px;
   flex-direction: column; /* 위에서 아래로 정렬 */
   width: 1348px;
