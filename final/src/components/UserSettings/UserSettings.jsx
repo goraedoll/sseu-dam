@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import axios
-import './UserSettings.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios
+import "./UserSettings.css";
 // import Cus1 from "../../assets/icons/cus-1.svg"; // Default profile image
-import profile_image from "../../assets/images/profile_image.png"; // Default profile image
+import profile_image from "../../assets/icons/set-profile.svg"; // Default profile image
 
 const serverip = import.meta.env.VITE_SERVER_IP;
 const BASE_URL = `http://${serverip}:1252`; // Replace with your actual API URL
@@ -17,7 +17,7 @@ const UserSettings = () => {
     BirthDate: "",
     Addr: "",
     Phone: "",
-    EmergencyContact: ""
+    EmergencyContact: "",
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -42,7 +42,7 @@ const UserSettings = () => {
           BirthDate: response.data.BirthDate,
           Addr: response.data.Addr,
           Phone: response.data.Phone,
-          EmergencyContact: response.data.EmergencyContact
+          EmergencyContact: response.data.EmergencyContact,
         });
       } catch (error) {
         console.error("Error fetching user info:", error);
@@ -70,12 +70,16 @@ const UserSettings = () => {
     const token = localStorage.getItem("access_token");
 
     try {
-      const response = await axios.put(`${BASE_URL}/user_info/update`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.put(
+        `${BASE_URL}/user_info/update`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.data.message === "수정 완료") {
         alert("수정 완료");
@@ -106,15 +110,24 @@ const UserSettings = () => {
             />
           </div>
           <div className="upload-button-wrapper">
-            <label htmlFor="fileUpload" className="upload-button">프로필 이미지 업로드</label>
-            <input type="file" id="fileUpload" onChange={handleImageUpload} style={{ display: 'none' }} />
+            <label htmlFor="fileUpload" className="upload-button">
+              프로필 이미지 업로드
+            </label>
+            <input
+              type="file"
+              id="fileUpload"
+              onChange={handleImageUpload}
+              style={{ display: "none" }}
+            />
           </div>
         </div>
         <h3>{formData.UserID}</h3>
         <p>{formData.UserName}</p>
 
         {/* 로그아웃 버튼 추가 */}
-        <button className="logout-button" onClick={handleLogout}>로그아웃</button>
+        <button className="logout-button" onClick={handleLogout}>
+          로그아웃
+        </button>
       </div>
 
       <div className="user-settings-right">
@@ -123,27 +136,71 @@ const UserSettings = () => {
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="UserName">이름</label>
-          <input type="text" id="UserName" name="UserName" value={formData.UserName} onChange={handleChange} />
+          <input
+            type="text"
+            id="UserName"
+            name="UserName"
+            value={formData.UserName}
+            onChange={handleChange}
+          />
 
           <label htmlFor="email">이메일</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
 
           <label htmlFor="password">비밀번호</label>
-          <input type="password" id="password" name="password" placeholder="변경할 비밀번호를 입력해주세요." onChange={handleChange} />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="변경할 비밀번호를 입력해주세요."
+            onChange={handleChange}
+          />
 
           <label htmlFor="BirthDate">생년월일</label>
-          <input type="date" id="BirthDate" name="BirthDate" value={formData.BirthDate} onChange={handleChange} />
+          <input
+            type="date"
+            id="BirthDate"
+            name="BirthDate"
+            value={formData.BirthDate}
+            onChange={handleChange}
+          />
 
           <label htmlFor="Addr">주소</label>
-          <input type="text" id="Addr" name="Addr" value={formData.Addr} onChange={handleChange} />
+          <input
+            type="text"
+            id="Addr"
+            name="Addr"
+            value={formData.Addr}
+            onChange={handleChange}
+          />
 
           <label htmlFor="Phone">휴대전화번호</label>
-          <input type="tel" id="Phone" name="Phone" value={formData.Phone} onChange={handleChange} />
+          <input
+            type="tel"
+            id="Phone"
+            name="Phone"
+            value={formData.Phone}
+            onChange={handleChange}
+          />
 
           <label htmlFor="EmergencyContact">긴급연락망</label>
-          <input type="tel" id="EmergencyContact" name="EmergencyContact" value={formData.EmergencyContact} onChange={handleChange} />
+          <input
+            type="tel"
+            id="EmergencyContact"
+            name="EmergencyContact"
+            value={formData.EmergencyContact}
+            onChange={handleChange}
+          />
 
-          <button type="submit" className="save-button">수정하기</button>
+          <button type="submit" className="save-button">
+            수정하기
+          </button>
         </form>
       </div>
     </div>
