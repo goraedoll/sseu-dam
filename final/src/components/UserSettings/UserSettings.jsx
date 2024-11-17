@@ -121,8 +121,8 @@ const UserSettings = () => {
             />
           </div>
         </div>
-        <h3>{formData.UserID}</h3>
-        <p>{formData.UserName}</p>
+        <h2 className="user-name">{formData.UserName}</h2>
+        <h3 className="user-id">@{formData.UserID}</h3>
 
         {/* 로그아웃 버튼 추가 */}
         <button className="logout-button" onClick={handleLogout}>
@@ -132,8 +132,6 @@ const UserSettings = () => {
 
       <div className="user-settings-right">
         <h2>회원 정보 수정</h2>
-        {success && <p className="success-message">{success}</p>}
-        {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="UserName">이름</label>
           <input
@@ -201,6 +199,8 @@ const UserSettings = () => {
           <button type="submit" className="save-button">
             수정하기
           </button>
+          {success && <p className="success-message">{success}</p>}
+          {error && <p className="error-message">{error}</p>}
         </form>
       </div>
     </div>
