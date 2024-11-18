@@ -4,8 +4,14 @@ import dashboardIcon from "../../assets/icons/video-help.svg";
 
 const MiniVideoStream = ({ videoStreamUrl }) => {
   // 모드 리스트와 현재 모드를 위한 상태 설정
-  const modes = ["일반모드", "흐림모드", "다크모드"];
+  const modes = ["일반 모드", "흐림 모드", "비식별화 모드"];
   const [currentModeIndex, setCurrentModeIndex] = useState(0);
+
+  const tooltips = [
+    "일반모드입니다.",
+    "흐림모드입니다. 돌봄 대상자가 흐리게 보입니다.",
+    "비식별화모드입니다. 돌봄 대상자의 사생활을 보호합니다.",
+  ];
 
   // 모드 변경 함수
   const handleModeChange = () => {
@@ -46,11 +52,13 @@ const MiniVideoStream = ({ videoStreamUrl }) => {
       <div className="video-stream-header">
         <p className="stream-title">실시간 돌봄 관리</p>
         <div className="mode-container">
-          {/* 버튼으로 모드 변경 */}
           <button className="stream-mode" onClick={handleModeChange}>
-            {modes[currentModeIndex]} {/* 현재 모드를 표시 */}
+            {modes[currentModeIndex]}
           </button>
-          <img src={dashboardIcon} alt="모든 아이콘" className="mode-icon" />
+          <div className="mode-icon-container">
+            <img src={dashboardIcon} alt="모드 아이콘" className="mode-icon" />
+            <span className="tooltip">{tooltips[currentModeIndex]}</span>
+          </div>
         </div>
       </div>
 

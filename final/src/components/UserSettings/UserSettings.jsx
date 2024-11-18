@@ -178,7 +178,7 @@ const UserSettings = () => {
             onChange={handleChange}
           />
 
-          <label htmlFor="Phone">휴대전화번호</label>
+          <label htmlFor="Phone">휴대전화</label>
           <input
             type="tel"
             id="Phone"

@@ -81,12 +81,6 @@ body {
   letter-spacing: -0.28px;
 }
 
-.profile-icon {
-  width: 40px; /* 프로필 아이콘의 너비 */
-  height: auto; /* 비율에 따라 높이 조절 */
-  border-radius: 50%;
-}
-
 .profile-td {
   display: flex;
   align-items: center;
@@ -141,15 +135,6 @@ body {
   padding: 0; /* 여백 제거 */
 }
 
-.user-id {
-  font-size: 12px;
-  color: var(--text-gray1);
-  font-style: normal;
-  font-weight: 300;
-  line-height: 100%; /* 14px */
-  letter-spacing: -0.28px;
-}
-
 .cus-down-icon {
   width: 20px;
   height: 20px;
@@ -186,4 +171,9 @@ body {
 
 .edit-input {
   width: 100px; /* 너비를 원하는 값으로 조정 */
+}
+
+.action-cell {
+  display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
 }

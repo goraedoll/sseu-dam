@@ -1,7 +1,7 @@
 {
   "DATABASE_URL": "mysql+pymysql://Insa5_IOT_final_2:aischool2@project-db-stu3.smhrd.com:3307/Insa5_IOT_final_2",
   "DATABASE_PW": "aischool2",
-  "CORS_Client_1": "http://192.168.20.72:5173",
+  "CORS_Client_1": "http://192.168.20.224:5173",
   "CORS_Client_2": "http://192.168.20.6:5173",
   "CORS_Client_3": "http://192.168.20.6:5173",
 

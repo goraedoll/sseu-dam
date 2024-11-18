@@ -38,6 +38,50 @@
   height: 24px;
   margin-left: 8px;
 }
+
+/* 툴팁 컨테이너 */
+.mode-icon-container {
+  position: relative; /* 툴팁의 위치를 아이콘 기준으로 설정 */
+  display: inline-block;
+}
+
+/* 툴팁 스타일 */
+.tooltip {
+  visibility: hidden; /* 기본적으로 숨김 */
+  background-color: var(--text-blue800, #333);
+  color: var(--primary-white, #fff);
+  text-align: center;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  position: absolute;
+  z-index: 10;
+  bottom: 120%; /* 아이콘 위에 나타나도록 설정 */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0; /* 기본적으로 투명 */
+  transition: opacity 0.3s ease; /* 애니메이션 효과 */
+  white-space: nowrap; /* 툴팁이 한 줄로 표시되도록 설정 */
+}
+
+/* 툴팁 화살표 */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* 툴팁 아래에 화살표 추가 */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--text-blue800, #333) transparent transparent transparent;
+}
+
+/* 마우스를 올리면 툴팁 보이기 */
+.mode-icon-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .stream-mode {
   font-size: 20px;
   color: var(--text-gray2); /* 예시 색상 */

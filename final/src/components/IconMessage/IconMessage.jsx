@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./IconMessage.css";
 import threeDot from "../../assets/icons/alert-threeDot.svg";
-import cautionSign from "../../assets/images/state-caution.png";
-import goodSign from "../../assets/images/state-good.png";
-import noticeSign from "../../assets/images/state-notice.png";
-import faker from "../../assets/images/faker.png";
+import cautionSign from "../../assets/icons/icon-caution.svg";
+import checkSign from "../../assets/icons/icon-check.svg";
+import clockSign from "../../assets/icons/icon-clock.svg";
+import bulbSign from "../../assets/icons/icon-bulb.svg";
+import noticeSign from "../../assets/icons/icon-notice.svg";
 
 const IconMessage = () => {
   const [alert, setAlert] = useState({});
@@ -14,7 +15,9 @@ const IconMessage = () => {
     // WebSocket 설정
     const serverip = import.meta.env.VITE_SERVER_IP;
     const token = localStorage.getItem("access_token");
-    const ws = new WebSocket(`ws://${serverip}:1252/main/ws/alert?token=${token}`);
+    const ws = new WebSocket(
+      `ws://${serverip}:1252/main/ws/alert?token=${token}`
+    );
 
     ws.onopen = () => {
       console.log("WebSocket connection established");
@@ -55,14 +58,18 @@ const IconMessage = () => {
 
   // AlertType에 따른 이미지 선택 함수
   const getImageForAlertType = (alertType) => {
-    if (alertType === "낙상 사고") {
-      return noticeSign;
-    } else if (alertType === "낙상 주의" || alertType === "욕창 주의") {
-      return cautionSign;
-    } else if (alertType === "요청 사항" || alertType === "복약 시간") {
-      return goodSign;
-    } else {
-      return faker; // 기본 이미지
+    switch (alertType) {
+      case "낙상 사고":
+        return noticeSign;
+      case "낙상 주의":
+      case "욕창 주의":
+        return cautionSign;
+      case "요청 사항":
+        return bulbSign;
+      case "복약 시간":
+        return clockSign;
+      default:
+        return checkSign; // 기본 이미지
     }
   };
 

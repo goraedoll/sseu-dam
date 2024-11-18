@@ -11,7 +11,7 @@ source venv/bin/activate # 가상환경 접속
 #pip install -r requirements.txt (안해도되는데 혹시 초기화되거나 가상환경 날려야되면 )
 
 cd Back (백폴더가서)
-uvicorn main:app --host 192.168.20.83 --port 1252 --reload
+uvicorn main:app --host 192.168.20.224 --port 1252 --reload
 
 (final 폴더 가서)
-npm run dev -- --host 192.168.20.83
+npm run dev -- --host 192.168.20.224
