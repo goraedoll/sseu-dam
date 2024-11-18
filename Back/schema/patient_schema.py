@@ -17,3 +17,13 @@ class patient_update(BaseModel):
     HealthStatus: Optional[str] = None
     class Config:
         from_attributes = True
+
+class patient_create(BaseModel):
+    name : str
+    BirthDate: str
+    address : str
+    phone : str
+    HealthStatus : str
+    Gender : str
+    class Config:
+        from_attributes = True

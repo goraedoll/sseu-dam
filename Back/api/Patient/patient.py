@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
-from schema.patient_schema import patient_post, patient_update
-from db_session.db_session import  get_db
+from schema.patient_schema import patient_create, patient_update
+from db_session.db_session import  get_db, get_async_db
 from sqlalchemy.orm import Session
 from ORM.ORM_patient import patient_orm
 from sqlalchemy import func
 from jwt_jp.jwt_jp import verify_jwt_token
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 router = APIRouter()
@@ -79,3 +80,32 @@ def delete_patient(id: int, db: Session = Depends(get_db), user_id: str = Depend
         db.rollback()
         print("Error deleting patient:", e)
         raise HTTPException(status_code=500, detail="데이터베이스 삭제 실패")
+    
+    
+@router.post("/create", tags=['patient'])
+def create_patient(create: patient_create, db: Session = Depends(get_db), user_id: str = Depends(verify_jwt_token)):
+    try:
+        id_increament = db.query(func.max(patient_orm.idx)).scalar()
+        max_id = (id_increament + 1)
+
+        id_increament_patient = db.query(func.max(patient_orm.idx)).filter(patient_orm.UserID==user_id).scalar()
+        max_id_patient = (id_increament_patient + 1)
+
+        db_patient = patient_orm(
+            idx = max_id,
+            UserID = user_id,
+            user_idx = max_id_patient,
+            name = create.name,
+            address = create.address,
+            phone = create.phone,
+            HealthStatus = create.HealthStatus,
+            Gender = create.Gender,
+            BirthDate = create.BirthDate
+        )
+        db.add(db_patient)
+        db.commit()
+        db.refresh(db_patient)
+        return {"message":"수신 완료"}
+    except Exception as e:
+        db.rollback()  # 비동기 롤백
+        raise HTTPException(status_code=500, detail=f"오류 발생: {str(e)}")
