@@ -42,3 +42,14 @@ def get_db(): #Session 초기화 의존성 // 요청처리가 끝난 후 자동�
 #         "expires_at": expires_at
 #     }
 #     return session_id
+
+
+# from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+# from sqlalchemy.orm import sessionmaker
+
+# async_engine = create_async_engine("mysql+aiomysql://user:password@host/dbname")
+# AsyncSessionLocal = sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False)
+
+# async def get_async_db():
+#     async with AsyncSessionLocal() as session:
+#         yield session
