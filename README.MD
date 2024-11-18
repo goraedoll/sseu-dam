@@ -15,3 +15,7 @@ uvicorn main:app --host 192.168.20.83 --port 1252 --reload
 
 (final 폴더 가서)
 npm run dev -- --host 192.168.20.83
+
+
+ID : user1
+PasswordHash = 'dd2781f4c51bccdbe23e4d398b8a82261f585c278dbb4b84989fea70e76723a9'
