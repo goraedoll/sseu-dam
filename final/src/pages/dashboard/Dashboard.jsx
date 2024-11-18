@@ -14,13 +14,14 @@ const Dashboard = () => {
   const [latestAlert, setLatestAlert] = useState("");
   const [selectedDate, setSelectedDate] = useState(dayjs());
   const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN;
-  const completeVideoUrl = `http://${video_ip}:1997/video_feed`;
+  const completeVideoUrl = {video_ip};
   
 
 
   useEffect(() => {
     const fetchLatestAlert = async () => {
       const token = localStorage.getItem("access_token");
+      
       
 
       try {
@@ -49,6 +50,7 @@ const Dashboard = () => {
     const interval = setInterval(fetchLatestAlert, 5000);
     return () => clearInterval(interval);
   }, []);
+  console.log(completeVideoUrl);
 
   return (
     <div className="dashboard-container">

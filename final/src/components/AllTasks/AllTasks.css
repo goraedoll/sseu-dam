@@ -16,8 +16,7 @@
   font-weight: bold; /* 제목 강조 */
   text-align: left;
   width: 100%;
-  margin-bottom: 20px; /* 제목과 테이블 간격 */
-  padding-left: 10px; /* 왼쪽 여백 */
+  padding: 10px 0px 10px 10px;
   box-sizing: border-box;
 }
 
@@ -74,10 +73,17 @@
 
 /* 체크박스 아이콘 */
 .checkbox-icon {
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer; /* 클릭 가능 표시 */
+}
+
+.checkbox-icon img {
+  margin: 0; /* 모든 마진 제거 */
+  padding: 0; /* 혹시 남아있는 패딩 제거 */
+  display: block; /* 이미지의 기본 inline-block 성격 제거 */
 }
 
 /* 버튼 스타일 */

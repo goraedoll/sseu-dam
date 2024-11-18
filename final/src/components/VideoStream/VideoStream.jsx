@@ -42,6 +42,7 @@ const VideoStream = ({ videoStreamUrl }) => {
         console.error("요청 실패:", error);
       });
   };
+  console.log(videoStreamUrl);
 
   return (
     <div className="video-stream-container">
@@ -61,7 +62,7 @@ const VideoStream = ({ videoStreamUrl }) => {
       <div className="video-display">
         {videoStreamUrl ? (
           <img
-            src={videoStreamUrl}
+            src= {videoStreamUrl.video_ip}
             alt="Video Stream"
             className="video-image"
           />
