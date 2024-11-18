@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from schema.patient_schema import patient_create, patient_update
-from db_session.db_session import  get_db, get_async_db
+from db_session.db_session import  get_db
 from sqlalchemy.orm import Session
 from ORM.ORM_patient import patient_orm
 from sqlalchemy import func
