@@ -177,3 +177,130 @@ body {
   display: flex;
   align-items: center; /* 수직 가운데 정렬 */
 }
+
+/* 각 테이블 헤더(th) 클래스 추가 및 퍼센트 기반 폭 고정 */
+.id-column {
+  width: 5%;
+}
+
+.profile-column {
+  width: 8%;
+}
+
+.name-column {
+  width: 8%;
+}
+
+.dob-column {
+  width: 10%;
+}
+
+.address-column {
+  width: 15%;
+}
+
+.phone-column {
+  width: 10%;
+}
+
+.health-column {
+  width: 8%;
+}
+
+.registration-column {
+  width: 8%;
+}
+
+.action-column {
+  width: 15%;
+}
+
+/* 페이지네이션 위치 고정 */
+.pagination {
+  position: absolute; /* inner-container 내부에서 고정 */
+  bottom: 20px; /* 하단 20px 위치 */
+  left: 50%; /* 중앙 정렬 */
+  transform: translateX(-50%); /* 가운데 정렬 보정 */
+  display: flex;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.pagination button.active {
+  background-color: #072182;
+  color: #fff;
+  border-color: #072182;
+}
+
+.pagination button:hover {
+  background-color: #072182;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* 팝업 창 전체 오버레이 스타일 */
+.my-custom-modal-overlay {
+  position: fixed; /* 화면에 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  z-index: 9999; /* 다른 요소 위에 표시 */
+}
+
+/* 모달 창 스타일 */
+.my-custom-modal {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px; /* 적당한 크기 설정 */
+  text-align: center;
+}
+
+.my-custom-modal h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.confirm-buttons {
+  display: flex;               /* 플렉스박스를 사용하여 버튼들을 정렬 */
+  justify-content: center;     /* 버튼들을 가로로 중앙 정렬 */
+  gap: 12px;                   /* 버튼들 사이의 간격을 12px로 설정 */
+}
+
+
+.confirm-button,
+.cancel-button {
+  background-color: #072182;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover,
+.cancel-button:hover {
+  background-color: #054080; /* 버튼 호버 시 색상 변경 */
+}
+
+.cancel-button {
+  background-color: #ccc;
+}
+
+.cancel-button:hover {
+  background-color: #999; /* 취소 버튼 호버 색상 */
+}

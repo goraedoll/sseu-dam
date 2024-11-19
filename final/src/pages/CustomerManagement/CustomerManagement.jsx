@@ -26,6 +26,19 @@ const CustomerManagement = () => {
 
   const profiles = [Cus1, Cus2, Cus3, Cus4, Cus5, Cus6];
 
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const itemsPerPage = 6; // 한 페이지에 표시할 항목 수
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPatients = patients.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(patients.length / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   // 편집 모드를 시작하는 함수
   const startEditing = (id) => {
     const patient = patients.find((p) => p.id === id);
@@ -140,28 +153,28 @@ const CustomerManagement = () => {
           <table className="customers-table">
             <thead>
               <tr>
-                <th>#</th>
-                <th>프로필</th>
-                <th>
+                <th className="id-column">#</th>
+                <th className="profile-column">프로필</th>
+                <th className="name-column">
                   이름{" "}
                   <img src={CusDown} alt="정렬" className="cus-down-icon" />
                 </th>
-                <th>
+                <th className="dob-column">
                   생년월일{" "}
                   <img src={CusDown} alt="정렬" className="cus-down-icon" />
                 </th>
-                <th>주소</th>
-                <th>전화번호</th>
-                <th>건강상태</th>
-                <th>
+                <th className="address-column">주소</th>
+                <th className="phone-column">전화번호</th>
+                <th className="health-column">건강상태</th>
+                <th className="registration-column">
                   등록날짜{" "}
                   <img src={CusDown} alt="정렬" className="cus-down-icon" />
                 </th>
-                <th>작업</th>
+                <th className="action-column">작업</th>
               </tr>
             </thead>
             <tbody>
-              {patients.map((patient) => (
+              {currentPatients.map((patient) => (
                 <tr key={patient.id}>
                   <td className="customer-id">{patient.id}</td>
                   <td className="profile-td">
@@ -171,9 +184,7 @@ const CustomerManagement = () => {
                       className="profile-icon"
                     />
                   </td>
-                  <td>
-                    <span className="customer-name">{patient.name}</span>
-                  </td>
+                  <td>{patient.name}</td>
                   <td>{patient.birthDate}</td>
                   <td>
                     {editMode === patient.id ? (
@@ -244,29 +255,45 @@ const CustomerManagement = () => {
               ))}
             </tbody>
           </table>
+
+          {/* 페이지네이션 버튼 */}
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={currentPage === index + 1 ? "active" : ""}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* 삭제 확인 모달 */}
       {deleteConfirm && (
-        <div className="delete-confirm">
-          <p>정말 삭제하시겠습니까?</p>
-          <div className="confirm-buttons">
-            <button
-              onClick={() => handleDelete(deleteConfirm)}
-              className="confirm-button"
-            >
-              확인
-            </button>
-            <button
-              onClick={() => setDeleteConfirm(null)}
-              className="cancel-button"
-            >
-              취소
-            </button>
+        <div className="my-custom-modal-overlay">
+          <div className="my-custom-modal">
+            <h3>정말 삭제하시겠습니까?</h3>
+            <div className="confirm-buttons">
+              <button
+                onClick={() => handleDelete(deleteConfirm)}
+                className="confirm-button"
+              >
+                확인
+              </button>
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="cancel-button"
+              >
+                취소
+              </button>
+            </div>
           </div>
         </div>
       )}
+
     </div>
   );
 };
