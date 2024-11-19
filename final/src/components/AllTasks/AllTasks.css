@@ -99,6 +99,10 @@
   width: 10%; /* 도구 열 너비 */
 }
 
+.alltasks-column-tools img{
+  width: 30px; /* 도구 열 너비 */
+  height: 30px;
+}
 .alltasks-column-id,
 .alltasks-column-completed,
 .alltasks-column-date,

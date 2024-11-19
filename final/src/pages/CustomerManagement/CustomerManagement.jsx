@@ -174,86 +174,86 @@ const CustomerManagement = () => {
               </tr>
             </thead>
             <tbody>
-              {currentPatients.map((patient) => (
-                <tr key={patient.id}>
-                  <td className="customer-id">{patient.id}</td>
-                  <td className="profile-td">
-                    <img
-                      src={patient.profile}
-                      alt={patient.name}
-                      className="profile-icon"
+            {currentPatients.map((patient) => (
+              <tr key={patient.id}>
+                <td className="customer-id">{patient.id}</td>
+                <td className="profile-td">
+                  <img
+                    src={patient.profile}
+                    alt={patient.name}
+                    className="profile-icon"
+                  />
+                </td>
+                <td>{patient.name}</td>
+                <td>{patient.birthDate}</td>
+                <td className="address-column">
+                  {editMode === patient.id ? (
+                    <input
+                      name="address"
+                      value={editPatient.address}
+                      onChange={handleChange}
+                      className="edit-input"
                     />
-                  </td>
-                  <td>{patient.name}</td>
-                  <td>{patient.birthDate}</td>
-                  <td>
-                    {editMode === patient.id ? (
-                      <input
-                        name="address"
-                        value={editPatient.address}
-                        onChange={handleChange}
-                        className="edit-input"
-                      />
-                    ) : (
-                      patient.address
-                    )}
-                  </td>
-                  <td>
-                    {editMode === patient.id ? (
-                      <input
-                        name="phone"
-                        value={editPatient.phone}
-                        onChange={handleChange}
-                        className="edit-input"
-                      />
-                    ) : (
-                      patient.phone
-                    )}
-                  </td>
-                  <td>
-                    {editMode === patient.id ? (
-                      <input
-                        name="HealthStatus"
-                        value={editPatient.HealthStatus}
-                        onChange={handleChange}
-                        className="edit-input"
-                      />
-                    ) : (
-                      <span className="health-status">
-                        {patient.HealthStatus}
-                      </span>
-                    )}
-                  </td>
-                  <td className="registration-date">
-                    {patient.registrationDate}
-                  </td>
-                  <td className="action-cell">
-                    <button
-                      className="goto-button"
-                      onClick={() => handleGoTo(patient.id)}
-                    >
-                      <img src={CusGoto} alt="바로가기" />
-                    </button>
-                    {editMode === patient.id ? (
-                      <button onClick={editTask}>저장</button>
-                    ) : (
-                      <button
-                        className="action-button"
-                        onClick={() => startEditing(patient.id)}
-                      >
-                        <img src={CusEdit} alt="편집" />
-                      </button>
-                    )}
+                  ) : (
+                    patient.address
+                  )}
+                </td>
+                <td>
+                  {editMode === patient.id ? (
+                    <input
+                      name="phone"
+                      value={editPatient.phone}
+                      onChange={handleChange}
+                      className="edit-input"
+                    />
+                  ) : (
+                    patient.phone
+                  )}
+                </td>
+                <td className="healthstatus-column">
+                  {editMode === patient.id ? (
+                    <input
+                      name="HealthStatus"
+                      value={editPatient.HealthStatus}
+                      onChange={handleChange}
+                      className="edit-input"
+                    />
+                  ) : (
+                    <span className="health-status">
+                      {patient.HealthStatus}
+                    </span>
+                  )}
+                </td>
+                <td className="registration-date">
+                  {patient.registrationDate}
+                </td>
+                <td className="action-cell">
+                  <button
+                    className="goto-button"
+                    onClick={() => handleGoTo(patient.id)}
+                  >
+                    <img src={CusGoto} alt="바로가기" />
+                  </button>
+                  {editMode === patient.id ? (
+                    <button onClick={editTask}>저장</button>
+                  ) : (
                     <button
                       className="action-button"
-                      onClick={() => confirmDelete(patient.id)}
+                      onClick={() => startEditing(patient.id)}
                     >
-                      <img src={CusDelete} alt="삭제" />
+                      <img src={CusEdit} alt="편집" />
                     </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+                  )}
+                  <button
+                    className="action-button"
+                    onClick={() => confirmDelete(patient.id)}
+                  >
+                    <img src={CusDelete} alt="삭제" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
           </table>
 
           {/* 페이지네이션 버튼 */}
@@ -293,7 +293,6 @@ const CustomerManagement = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };

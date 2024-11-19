@@ -43,7 +43,6 @@ const MultiMonitoring = () => {
                     </div>
                 ))}
             </div>
-
             {/* 큰 모니터 */}
             <div className="large-monitor">
                 <img 
