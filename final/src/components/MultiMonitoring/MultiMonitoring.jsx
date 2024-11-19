@@ -6,14 +6,15 @@ import placeholderImage from "../../assets/images/login-cloud.png"; // 대체 �
 
 const MultiMonitoring = () => {
     const serverip = import.meta.env.VITE_SERVER_IP;
-
+    const video_ip_j1 = import.meta.env.VITE_VIDEO_IP_J1;
+    const video_ip_j2 = import.meta.env.VITE_VIDEO_IP_J2;
     const videoip = import.meta.env.VITE_VIDEO_IP_MAIN;
 
     
     const videoSources = [
         `http://${videoip}:1997/video_feed`, // 첫 번째 모니터 URL
-        `http://${videoip}:1997/video_feed`, // 두 번째 모니터 URL
-        `http://${videoip}:1997/video_feed`, // 세 번째 모니터 URL
+        `http://${video_ip_j1}:1997/video_feed`, // 두 번째 모니터 URL
+        `http://${video_ip_j2}:1997/video_feed`, // 세 번째 모니터 URL
         `http://${videoip}:1997/video_feed`, // 네 번째 모니터 URL
     ];
 
@@ -25,6 +26,7 @@ const MultiMonitoring = () => {
     const handleMonitorClick = (src, index) => {
         setSelectedVideo(src);
         setSelectedVideoIndex(index);
+        console.log(src);
     };
 
     return (

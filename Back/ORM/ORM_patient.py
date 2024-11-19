@@ -12,7 +12,6 @@ class patient_orm(Base):
     user_idx = Column(Integer, nullable=False)  # 사용자 인덱스
     name = Column(String, nullable=False)  # 환자의 이름, 필수
     address = Column(String)  # 주소
-    email = Column(String, unique=True)  # 이메일, 고유 제약 조건
     phone = Column(String, unique=True)  # 전화번호, 고유 제약 조건
     created_at = Column(DateTime, server_default=func.now(), nullable=False)  # 생성 시간, DB에서 자동 설정
     BirthDate = Column(Date, nullable = True)
