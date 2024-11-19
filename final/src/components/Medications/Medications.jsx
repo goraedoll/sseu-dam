@@ -9,14 +9,14 @@ import pill3Icon from "../../assets/icons/nurs-pill3.svg";
 const medicationsData = [
   {
     id: 1,
-    name: "비타민 C",
+    name: "고지혈증약",
     frequency: "매일 1회",
     icon: pill1Icon,
     checked: true,
   },
   {
     id: 2,
-    name: "유산균",
+    name: "혈압약",
     frequency: "매일 1회",
     icon: pill2Icon,
     checked: false,
