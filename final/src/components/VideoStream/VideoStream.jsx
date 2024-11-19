@@ -4,7 +4,7 @@ import helpIcon from "../../assets/icons/video-help.svg";
 
 const VideoStream = ({ videoStreamUrl }) => {
   // 모드 리스트와 현재 모드를 위한 상태 설정
-  const modes = ["일반모드", "흐림모드", "다크모드"];
+  const modes = ["일반 모드", "흐림 모드", "비식별화 모드"];
   const [currentModeIndex, setCurrentModeIndex] = useState(0);
 
   const tooltips = [
