@@ -116,9 +116,8 @@ body {
 
 .login-button {
   background-color: var(--primary-blue);
-  height: 50px;
+  height: 54px;
   width: 100%;
-  box-sizing: border-box;
   color: var(--primary-white);
   padding: 1rem;
   border: none;

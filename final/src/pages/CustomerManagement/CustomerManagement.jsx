@@ -208,11 +208,15 @@ const CustomerManagement = () => {
                         className="edit-input"
                       />
                     ) : (
-                      patient.HealthStatus
+                      <span className="health-status">
+                        {patient.HealthStatus}
+                      </span>
                     )}
                   </td>
-                  <td>{patient.registrationDate}</td>
-                  <td>
+                  <td className="registration-date">
+                    {patient.registrationDate}
+                  </td>
+                  <td className="action-cell">
                     <button
                       className="goto-button"
                       onClick={() => handleGoTo(patient.id)}
@@ -222,11 +226,17 @@ const CustomerManagement = () => {
                     {editMode === patient.id ? (
                       <button onClick={editTask}>저장</button>
                     ) : (
-                      <button onClick={() => startEditing(patient.id)}>
+                      <button
+                        className="action-button"
+                        onClick={() => startEditing(patient.id)}
+                      >
                         <img src={CusEdit} alt="편집" />
                       </button>
                     )}
-                    <button onClick={() => confirmDelete(patient.id)}>
+                    <button
+                      className="action-button"
+                      onClick={() => confirmDelete(patient.id)}
+                    >
                       <img src={CusDelete} alt="삭제" />
                     </button>
                   </td>

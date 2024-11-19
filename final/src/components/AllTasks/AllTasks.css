@@ -1,102 +1,204 @@
 .alltasks-container {
-  width: 100%; /* 화면 크기에 맞춤 */
-  max-width: 1350px; /* 최대 너비 설정 */
-  height: 720px; /* 고정 높이 */
+  width: 1350px;
+  height: 680px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto; /* 가운데 정렬 */
-  padding: 20px; /* 전체 여백 추가 */
-  box-sizing: border-box; /* 패딩 포함 박스 크기 계산 */
-  position: relative; /* 하단에 고정될 요소를 기준으로 위치 지정 */
 }
 
 .alltasks-container-title {
-  font-size: 24px; /* 제목 크기 조정 */
-  font-weight: bold; /* 제목 강조 */
+  padding: 27px 0 35px 31px; /* 좌우 여백을 적절히 설정 */
   text-align: left;
-  width: 100%;
-  padding: 10px 0px 10px 10px;
-  box-sizing: border-box;
+  width: 100%; /* 제목이 부모의 너비를 채우도록 설정 */
+  box-sizing: border-box; /* padding을 width에 포함시켜서 삐져나오는 현상 방지 */
 }
 
 /* 테이블 스타일 */
-.alltasks-table {
+.tasks-table {
   width: 100%;
-  border-collapse: collapse; /* 테이블 셀 경계 제거 */
-  text-align: center;
-  margin-bottom: 20px; /* 테이블과 페이지네이션 간격 */
+  border-collapse: separate;
+  border-spacing: 0 0px; /* 행 간격 */
+  text-align: center; /* 테이블 셀 텍스트 수평 가운데 정렬 */
+}
+.tasks-table th,
+.tasks-table td {
+  text-align: center; /* 모든 테이블 셀 텍스트 수평 가운데 정렬 */
 }
 
-.alltasks-table th,
-.alltasks-table td {
-  padding: 12px; /* 셀 안쪽 여백 */
-  border: 1px solid #ccc; /* 셀 경계선 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; /* 길면 말줄임 표시 */
+.add-task-button {
+  display: inline-block;
+  border-radius: 8px !important;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Pretendard";
+  margin-right: 28px;
 }
 
-.alltasks-table th {
-  background-color: #f8f8f8; /* 헤더 배경색 */
-  font-weight: bold; /* 헤더 텍스트 강조 */
-  color: #333; /* 헤더 텍스트 색상 */
-}
-
-.alltasks-column-id {
-  width: 5%; /* ID 열 너비 */
-}
-
-.alltasks-column-text {
-  width: 50%; /* 내용 열 너비 */
-}
-
-.alltasks-column-completed {
-  width: 10%; /* 완료 열 너비 */
-}
-
-.alltasks-column-date {
-  width: 15%; /* 작성일 열 너비 */
-}
-
-.alltasks-column-tools {
-  width: 10%; /* 도구 열 너비 */
-}
-
-/* td 정렬 */
-.row-id,
-.row-completed,
-.row-date,
-.row-tools {
+.tasks-table-head-id,
+.tasks-table-head-complete,
+.tasks-table-head-date,
+.tasks-table-head-tools {
   text-align: center;
 }
 
-/* 체크박스 아이콘 */
-.checkbox-icon {
-  margin: 0;
+.tasks-table-head-id {
+  width: 100px;
+}
+
+.tasks-table-head-complete {
+  width: 80px;
+}
+
+.tasks-table-head-date {
+  width: 150px;
+}
+
+.tasks-table-head-tools {
+  width: 100px;
+}
+
+/* 테이블 본문 스타일 */
+.tasks-table-body-id,
+.tasks-table-body-date {
+  text-align: center;
+}
+
+.tasks-table-body-complete {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* 클릭 가능 표시 */
+  cursor: pointer;
 }
 
-.checkbox-icon img {
-  margin: 0; /* 모든 마진 제거 */
-  padding: 0; /* 혹시 남아있는 패딩 제거 */
-  display: block; /* 이미지의 기본 inline-block 성격 제거 */
+.tasks-table-body-complete img,
+.tool-icon {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}
+
+.tasks-table-body-tools {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border-gray3);
+  border-radius: 5px;
+  background-color: var(--button-gray50);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.pagination button.active {
+  background-color: var(--text-blue800);
+  color: var(--primary-white);
+  border-color: var(--text-blue800);
+}
+
+.pagination button:hover {
+  background-color: var(--button-blue100);
+  transform: scale(1.05);
+}
+
+/* 모달 오버레이 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 모달 스타일 */
+.delete-confirm,
+.add-task-modal {
+  background-color: var(--primary-white);
+  padding: 20px 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+}
+
+.add-task-modal input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 /* 버튼 스타일 */
-.add-task-button {
-  display: inline-block;
+.confirm-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.confirm-button,
+.cancel-button {
+  padding: 8px 14px;
+  cursor: pointer;
+  border: none;
   border-radius: 8px;
-  font-size: 16px; /* 글꼴 크기 조정 */
-  font-weight: 500;
-  font-family: "Pretendard";
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.confirm-button {
+  background-color: var(--button-red);
+  color: var(--primary-white);
+}
+
+.confirm-button:hover {
+  background-color: #d33;
+}
+
+.cancel-button {
+  background-color: #ddd;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
+}
+
+/* 할일 추가 버튼 스타일 */
+.alltasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.add-task-button {
   padding: 8px 16px;
   border: none;
+  border-radius: 5px;
   background-color: #072182;
-  color: #fff; /* 명확한 흰색 */
+  color: var(--primary-white);
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -105,51 +207,22 @@
   background-color: #5a74cf;
 }
 
-/* 페이지네이션 */
-.pagination {
-  position: absolute; /* 컨테이너 내부의 하단에 고정 */
-  bottom: 20px; /* 컨테이너 하단에서 20px 간격 */
-  left: 50%; /* 가로 중앙 정렬 */
-  transform: translateX(-50%); /* 가운데 정렬 보정 */
-  display: flex;
-  gap: 8px;
-}
-
-.pagination button {
-  padding: 8px 12px;
-  border: 1px solid #ccc; /* 경계선 색상 */
-  border-radius: 5px;
-  background-color: #f0f0f0; /* 기본 배경색 */
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.pagination button.active {
-  background-color: #072182; /* 활성화된 버튼 색상 */
-  color: #fff;
-  border-color: #072182;
-}
-
-.pagination button:hover {
-  background-color: #5a74cf;
-  transform: scale(1.05);
-}
-/* 팝업 모달 */
+/* mmmmmmmmmmmmmmmmmmmmmmmmmmmm*/
 .my-custom-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6); /* 어두운 배경 */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* 모달 위로 올리기 */
+  z-index: 1000;
 }
 
 .my-custom-modal {
-  background-color: #fff;
+  background-color: var(--primary-white);
   padding: 25px 35px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -160,43 +233,58 @@
 }
 
 .my-custom-modal h3 {
-  margin-bottom: 20px; /* 제목과 입력 필드 간격 */
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #333;
 }
 
-.my-custom-modal-input {
+.my-custom-modal input {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 16px; /* 입력 필드와 버튼 간격 */
+  padding: 10px;
+  margin-top: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .my-custom-modal-buttons {
   display: flex;
-  justify-content: space-around; /* 버튼 사이 간격 균일 */
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .my-custom-modal-button {
-  padding: 8px 16px;
+  padding: 10px 18px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .my-custom-save-button {
-  background-color: #072182;
-  color: #fff;
+  background-color: #5a74cf;
+  color: var(--primary-white);
 }
 
 .my-custom-save-button:hover {
-  background-color: #5a74cf;
+  background-color: #3e56a6;
 }
 
 .my-custom-cancel-button {
-  background-color: #f0f0f0;
+  background-color: #e0e0e0;
   color: #333;
 }
 
 .my-custom-cancel-button:hover {
-  background-color: #ccc;
+  background-color: #bcbcbc;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

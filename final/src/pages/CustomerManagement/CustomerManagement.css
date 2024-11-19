@@ -81,12 +81,6 @@ body {
   letter-spacing: -0.28px;
 }
 
-.profile-icon {
-  width: 40px; /* 프로필 아이콘의 너비 */
-  height: auto; /* 비율에 따라 높이 조절 */
-  border-radius: 50%;
-}
-
 .profile-td {
   display: flex;
   align-items: center;
@@ -98,19 +92,6 @@ body {
   border-radius: 50%;
   margin: 0;
 }
-
-button {
-  all: unset; /* 모든 기본 스타일 초기화 */
-  cursor: pointer; /* 클릭 가능한 상태를 나타내기 위해 커서를 손 모양으로 설정 */
-  display: inline-flex; /* 플렉스 컨테이너로 설정하여 정렬 지원 */
-  align-items: center; /* 세로 중앙 정렬 */
-  justify-content: center; /* 가로 중앙 정렬 */
-}
-
-button img {
-  display: block; /* 이미지의 여백 제거 */
-}
-
 
 .action-button {
   background: none;
@@ -154,15 +135,6 @@ button img {
   padding: 0; /* 여백 제거 */
 }
 
-.user-id {
-  font-size: 12px;
-  color: var(--text-gray1);
-  font-style: normal;
-  font-weight: 300;
-  line-height: 100%; /* 14px */
-  letter-spacing: -0.28px;
-}
-
 .cus-down-icon {
   width: 20px;
   height: 20px;
@@ -201,41 +173,7 @@ button img {
   width: 100px; /* 너비를 원하는 값으로 조정 */
 }
 
-.delete-confirm {
-  position: fixed; /* 화면에 고정 */
-  top: 50%; /* 화면의 세로 중앙 */
-  left: 50%; /* 화면의 가로 중앙 */
-  transform: translate(-50%, -50%); /* 중앙 정렬을 위해 위치 보정 */
-  background-color: var(--primary-white); /* 모달 배경색 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-  border-radius: 8px; /* 모서리 둥글게 */
-  padding: 20px; /* 내부 여백 */
-  z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
-  max-width: 400px; /* 최대 너비 */
-  width: 100%; /* 작은 화면에서는 100%로 설정 */
-  text-align: center; /* 내용 중앙 정렬 */
-}
-
-.confirm-buttons {
-  display: flex; /* 버튼 정렬 */
-  justify-content: space-around; /* 버튼 간격 조정 */
-  margin-top: 15px; /* 위쪽 여백 */
-}
-
-.confirm-button,
-.cancel-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.confirm-button {
-  background-color: var(--button-red);
-  color: var(--primary-white);
-}
-
-.cancel-button {
-  background-color: var(--text-gray2);
-  color: var(--primary-white);
+.action-cell {
+  display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
 }

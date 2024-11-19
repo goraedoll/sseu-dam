@@ -24,7 +24,6 @@ const AlertMessages = () => {
       const token = localStorage.getItem("access_token");
       const serverip = import.meta.env.VITE_SERVER_IP;
 
-
       try {
         const response = await axios.get(`http://${serverip}:1252/main/alert`, {
           headers: {
@@ -86,12 +85,13 @@ const AlertMessages = () => {
                     />
                     <span>{alert.status}</span>
                   </td>
-                  <td>
+                  <td className="content-container">
                     <img
                       src={getStatusIcon(alert.message, "message")}
                       alt="alert icon"
+                      className="content-img"
                     />
-                    <span>{alert.message}</span>
+                    <span className="content-text">{alert.message}</span>
                   </td>
                   <td>{formatDate(alert.date)}</td>
                 </tr>

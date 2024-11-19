@@ -1,29 +1,93 @@
 :root {
-  font-family: "Pretendard", sans-serif; /* 전역 폰트 */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
   font-weight: 400;
+
   color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-html, body, #root, .app-container {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
 }
 
-body {
-  background-color: var(--background-color); /* App.css에서 지정한 색상 사용 */
-  font-family: inherit; /* :root에서 설정된 폰트 상속 */
-  min-width: 320px;
+html, body {
+  height: 100%; /* html과 body의 높이를 100%로 설정 */
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', sans-serif; /* 폰트 변경 */
+}
+
+#root, .app-container {
+  height: 100%;
+  display: flex; /* 부모 컨테이너의 전체 높이 설정 */
+  flex-direction: column;
 }
 
 .layout {
   display: flex;
-  min-height: 100vh; /* 레이아웃이 화면 전체를 차지 */
+  min-height: 100vh; /* 레이아웃이 전체 화면을 차지하도록 설정 */
+}
+
+.sidebar {
+  min-height: 100vh; /* 사이드바의 최소 높이를 전체 화면으로 설정 */
+  flex-shrink: 0;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f4f7fe; /* 백그라운드 색상 */
 }
 
 .content {
-  flex-grow: 1; /* 콘텐츠 영역 확장 */
+  flex-grow: 1; /* 콘텐츠 영역이 나머지 공간을 차지하도록 설정 */
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }

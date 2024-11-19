@@ -7,13 +7,18 @@ const VideoStream = ({ videoStreamUrl }) => {
   const modes = ["일반모드", "흐림모드", "다크모드"];
   const [currentModeIndex, setCurrentModeIndex] = useState(0);
 
+  const tooltips = [
+    "일반모드입니다.",
+    "흐림모드입니다. 돌봄 대상자가 흐리게 보입니다.",
+    "비식별화모드입니다. 돌봄 대상자의 사생활을 보호합니다.",
+  ];
+
   // 모드 변경 함수
   const handleModeChange = () => {
     // 다음 모드로 변경 (현재 모드 인덱스를 1 증가)
     const nextModeIndex = (currentModeIndex + 1) % modes.length;
     setCurrentModeIndex(nextModeIndex);
     const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN;
-    
 
     // 해당 모드에 따라 URL 요청 보내기
     let url = "";
@@ -42,7 +47,6 @@ const VideoStream = ({ videoStreamUrl }) => {
         console.error("요청 실패:", error);
       });
   };
-  console.log(videoStreamUrl);
 
   return (
     <div className="video-stream-container">
@@ -54,7 +58,10 @@ const VideoStream = ({ videoStreamUrl }) => {
           <button className="stream-mode" onClick={handleModeChange}>
             {modes[currentModeIndex]} {/* 현재 모드를 표시 */}
           </button>
-          <img src={helpIcon} alt="모든 아이콘" className="mode-icon" />
+          <div className="mode-icon-container">
+            <img src={helpIcon} alt="모드 아이콘" className="mode-icon" />
+            <span className="tooltip">{tooltips[currentModeIndex]}</span>
+          </div>
         </div>
       </div>
 
@@ -62,7 +69,7 @@ const VideoStream = ({ videoStreamUrl }) => {
       <div className="video-display">
         {videoStreamUrl ? (
           <img
-            src= {videoStreamUrl.video_ip}
+            src={videoStreamUrl}
             alt="Video Stream"
             className="video-image"
           />

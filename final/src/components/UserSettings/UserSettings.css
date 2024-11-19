@@ -2,7 +2,7 @@
   display: flex;
   background-color: var(--primary-white);
   max-width: 1350px;
-  margin: 20px auto;
+  margin: 0 auto 86px;
   border-radius: 20px;
   overflow: hidden;
 }
@@ -15,7 +15,7 @@
   padding: 20px;
   padding-top: 100px;
   background-color: var(--primary-white);
-  gap: 20px;
+  /* gap: 12px; */
   border-right: 1px solid var(--color-border-gray2);
 }
 
@@ -40,7 +40,7 @@
 }
 
 .upload-button-wrapper {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .upload-button {
@@ -59,6 +59,22 @@
   background-color: var(--button-blue500);
 }
 
+.user-name {
+  margin: 0;
+  margin-top: 30px;
+  font-weight: 700;
+  color: var(--text-gray5);
+}
+
+.user-id {
+  margin: 0;
+  margin-top: 4px;
+  margin-bottom: 30px;
+  color: var(--text-gray1);
+  font-size: 20px;
+  font-weight: 400;
+}
+
 .user-settings-right {
   width: 60%;
   padding: 30px;
@@ -70,9 +86,9 @@
 .user-settings-right h2 {
   color: var(--text-blue800);
   font-size: 30px;
-  margin-bottom: 20px;
   padding: 0px;
-  margin-top: 40px;
+  margin: 0;
+  margin-top: 12px;
 }
 
 .logout-button {
@@ -91,9 +107,10 @@
 
 .user-settings-right form label {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 15px;
   display: block;
+  color: var(--text-gray5);
 }
 
 /* UserSettings에서만 적용되는 input 스타일 */
