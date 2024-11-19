@@ -291,8 +291,8 @@ const AllTasks = () => {
 
       {/* 수정 모달창 */}
       {isPopupOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="my-custom-modal-overlay">
+          <div className="my-custom-modal">
             <h3>할 일 수정</h3>
             <input
               type="text"
@@ -300,7 +300,7 @@ const AllTasks = () => {
               onChange={(e) => setEditText(e.target.value)}
               placeholder="할 일 입력"
             />
-            <div className="modal-buttons">
+            <div>
               <button onClick={editTask}>수정</button>
               <button onClick={closeEditPopup}>취소</button>
             </div>

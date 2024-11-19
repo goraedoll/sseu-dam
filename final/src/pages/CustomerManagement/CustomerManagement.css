@@ -29,7 +29,9 @@ body {
 }
 
 .inner-container {
+  position: relative;
   padding: 30px;
+  height: 93%;
 }
 
 .Customers-table-header {
@@ -53,7 +55,7 @@ body {
 .customers-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 15px; /* 각 행 사이의 간격을 40px로 설정 */
+  border-spacing: 0 12px; /* 각 행 사이의 간격을 40px로 설정 */
 }
 
 .customers-table th,
@@ -215,7 +217,8 @@ body {
   width: 15%;
 }
 
-/* 페이지네이션 위치 고정 */
+
+/* 페이지네이션 버튼 */
 .pagination {
   position: absolute; /* inner-container 내부에서 고정 */
   bottom: 20px; /* 하단 20px 위치 */
@@ -245,7 +248,6 @@ body {
   color: #fff;
   transform: scale(1.05);
 }
-
 /* 팝업 창 전체 오버레이 스타일 */
 .my-custom-modal-overlay {
   position: fixed; /* 화면에 고정 */
