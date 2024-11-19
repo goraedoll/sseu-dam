@@ -24,6 +24,7 @@
   --color-background: #f4f7fe; /* var(--background-color) */
   --color-background-black: #323232; /* var(--background-black) */
   --color-background-gray: #ccc; /* var(--background-gray) */
+  --color-ring-gray: #e1e4e8; /* var(--ring-gray) */
   --color-white: #ffffff; /* var(--primary-white) */
 
   /* 역할별 변수 */
@@ -52,6 +53,7 @@
   --background-color: var(--color-background);
   --background-black: var(--color-background-black);
   --background-gray: var(--color-background-gray);
+  --ring-gray: var(--color-ring-gray);
 }
 
 html,

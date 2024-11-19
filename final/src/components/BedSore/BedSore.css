@@ -1,0 +1,188 @@
+/* 전체 컨테이너 스타일 */
+.bedsore-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-white);
+    width: 502px;
+    height: 270px;
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+  
+  /* 헤더 섹션 */
+  .bedsore-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0 10px 28px;
+  
+    h2 {
+      color: var(--text-blue800);
+      font-family: Pretendard;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px; /* 133.333% */
+      letter-spacing: -0.48px;
+      margin: 0;
+    }
+  }
+  
+  .bedsore-toggle-icon {
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    margin-right: 25px;
+    margin-top: 3px;
+  }
+  
+  /* 타이머 컨테이너 */
+  .bedsore-timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    /* margin-top: 20px; */
+    gap: 30px;
+    height: 176px;
+  }
+  
+  .bedsore-timer-container.ai-mode {
+    justify-content: center;
+  }
+  
+  .bedsore-timer-container.manual-mode {
+    justify-content: flex-start;
+  }
+  
+  /* 타이머 스타일 */
+  .bedsore-timer {
+    text-align: center;
+    margin-right: 20px;
+  }
+  
+  .bedsore-timer span {
+    display: block;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .bedsore-timer h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 버튼 컨트롤 */
+  .bedsore-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .bedsore-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 18px 40px 0px rgba(112, 144, 176, 0.2);
+    border-radius: 15px;
+    width: 156px;
+    height: 48px;
+    padding: 14px 13px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bedsore-button span {
+    color: var(--text-gray5);
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 160% */
+    letter-spacing: -0.3px;
+  }
+  
+  .bedsore-button img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .bedsore-button:hover {
+    background-color: var(--button-blue50);
+  }
+  
+  /* 원형 프로그래스 바 스타일 */
+  .bedsore-progress {
+    position: relative;
+    width: 176px;
+    height: 176px;
+  }
+  
+  .bedsore-progress-ring {
+    transform: rotate(-90deg); /* 상단부터 시작하도록 회전 */
+    /* width: 100%;
+    height: 100%; */
+    transform-origin: center;
+  }
+  
+  .bedsore-progress-ring-bg {
+    fill: none;
+    stroke: var(--ring-gray); /* 배경 원의 색상 */
+    stroke-width: 24px;
+    width: 100%;
+    height: 100%;
+    /* 💖position: absolute;
+    top: 0;
+    left: 0; */
+  }
+  
+  .bedsore-progress-ring-fill {
+    fill: none;
+    stroke: var(--button-blue500); /* 진행 중인 원의 색상 */
+    stroke-width: 24px;
+    stroke-linecap: round; /* 둥근 끝 */
+    transition: stroke-dashoffset 0.3s ease-in-out;
+    /* width: 100%;
+    height: 100%; */
+    /* 💖position: absolute;
+    top: 0;
+    left: 0; */
+  }
+  
+  .bedsore-timer-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .bedsore-timer-text h1 {
+    color: var(--text-gray5);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 29px;
+    font-weight: 600;
+    line-height: 120%; /* 28.8px */
+    letter-spacing: -0.48px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .bedsore-timer-text span {
+    display: block;
+    color: var(--text-gray1);
+    font-family: Pretendard;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.22px;
+  }
+  
+  /* .bedsore-timer-text h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #333;
+    } */

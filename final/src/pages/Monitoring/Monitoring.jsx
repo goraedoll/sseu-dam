@@ -6,6 +6,7 @@ import IconMessage from "../../components/IconMessage/IconMessage";
 import MiniAlertMessages from "../../components/MiniAlertMessages/MiniAlertMesages";
 import WebLink from "../../components/WebLink/WebLink";
 import VideoOption from "../../components/VideoOption/VideoOption";
+import BedSore from "../../components/BedSore/BedSore"
 
 const Monitoring = () => {
   const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN;
@@ -22,7 +23,8 @@ const Monitoring = () => {
         </div>
         <div className="right-section-monitoring">
           <IconMessage />
-          <MiniAlertMessages />
+          {/*<MiniAlertMessages />*/}
+          <BedSore />
           <VideoOption />
         </div>
       </div>
