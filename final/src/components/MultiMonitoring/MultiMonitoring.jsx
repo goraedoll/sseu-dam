@@ -13,8 +13,8 @@ const MultiMonitoring = () => {
     
     const videoSources = [
         `http://${videoip}:1997/video_feed`, // 첫 번째 모니터 URL
-        `http://${video_ip_j1}:1997/video_feed`, // 두 번째 모니터 URL
-        `http://${video_ip_j2}:1997/video_feed`, // 세 번째 모니터 URL
+        `http://${video_ip_j1}:5000/video_feed`, // 두 번째 모니터 URL
+        `http://${video_ip_j2}:5000/video_feed`, // 세 번째 모니터 URL
         `http://${videoip}:1997/video_feed`, // 네 번째 모니터 URL
     ];
 

@@ -13,7 +13,8 @@ import dayjs from "dayjs";
 const Dashboard = () => {
   const [latestAlert, setLatestAlert] = useState(""); // 알림 상태
   const [selectedDate, setSelectedDate] = useState(dayjs()); // 선택한 날짜
-  const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN; // 환경 변수에서 가져온 비디오 IP
+  const video_ip = import.meta.env.VITE_VIDEO_IP_MAIN; // 환경 변수에서 가져온 비디오 IP
+  console.log(video_ip);
   const completeVideoUrl = `http://${video_ip}:1997/video_feed`; // 비디오 URL
 
   useEffect(() => {

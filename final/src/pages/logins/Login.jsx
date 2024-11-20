@@ -21,6 +21,7 @@ const Login = () => {
 
     try {
       const serverip = import.meta.env.VITE_SERVER_IP;
+      console.log(serverip);
       const response = await fetch(`http://${serverip}:1252/member/login`, {
         method: "POST",
         headers: {

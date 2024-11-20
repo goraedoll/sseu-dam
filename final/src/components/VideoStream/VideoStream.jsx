@@ -18,7 +18,7 @@ const VideoStream = ({ videoStreamUrl }) => {
     // 다음 모드로 변경 (현재 모드 인덱스를 1 증가)
     const nextModeIndex = (currentModeIndex + 1) % modes.length;
     setCurrentModeIndex(nextModeIndex);
-    const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN;
+    const video_ip = import.meta.env.VITE_VIDEO_IP_MAIN;
 
     // 해당 모드에 따라 URL 요청 보내기
     let url = "";

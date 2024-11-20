@@ -9,8 +9,9 @@ import VideoOption from "../../components/VideoOption/VideoOption";
 import BedSore from "../../components/BedSore/BedSore"
 
 const Monitoring = () => {
-  const video_ip = import.meta.env.VITE_VIEDEO_IP_MAIN;
-  const completeVideoUrl = `http://${video_ip}:1997/video_feed`;
+  const video_ip = import.meta.env.VITE_VIDEO_IP_MAIN;
+  const completeVideoUrl = `http://${video_ip}:1997`;
+  // console.log(video_ip);
 
   return (
     <div className="monitoring-container">

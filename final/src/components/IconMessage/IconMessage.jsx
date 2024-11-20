@@ -52,16 +52,16 @@ const IconMessage = () => {
         setWsConnected(false); // WebSocket 연결 상태 업데이트
       };
 
-      ws.onclose = () => {
-        console.log("WebSocket connection closed");
-        setWsConnected(false); // WebSocket 연결 상태 업데이트
+      // ws.onclose = () => {
+      //   console.log("WebSocket connection closed");
+      //   setWsConnected(false); // WebSocket 연결 상태 업데이트
 
-        // WebSocket이 닫힌 경우 5초 후 재연결 시도
-        reconnectInterval = setInterval(() => {
-          console.log("Attempting to reconnect WebSocket...");
-          connectWebSocket();
-        }, 5000);
-      };
+      //   // WebSocket이 닫힌 경우 5초 후 재연결 시도
+      //   reconnectInterval = setInterval(() => {
+      //     console.log("Attempting to reconnect WebSocket...");
+      //     connectWebSocket();
+      //   }, 5000);
+      // };
     };
 
     connectWebSocket(); // WebSocket 연결 시작

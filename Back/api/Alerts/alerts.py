@@ -9,6 +9,13 @@ from jwt_jp.jwt_jp import verify_jwt_token, verify_jwt_token_socket
 from db_session.db_session import get_db
 router = APIRouter()
 import asyncio
+import sys, os, json
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
+sys.path.append(project_root)
+
+from src.lib import message
+
 
 ### 낙상 여부 데이터 삽입
 @router.post("/alert", tags=['Alert'])
@@ -25,6 +32,19 @@ def upload_fall(AlertData: SA_schema.SensingAlertsSchema, db:Session=Depends(get
     if AlertData.AlertType == "낙상 사고" :
         SensingType_opt = "낙상"
         Sensingdetails_opt = "낙상이 발생했습니다"
+        data = {
+        'messages': [
+            {
+                'to': '01043442019',
+                'from': '01029505968',
+                'text': '위급 상황 : 지금 당장 보호자의 도움이 필요합니다. 확인 부탁드립니다! '
+            }
+            # ...
+            # 1만건까지 추가 가능
+        ]
+    }
+        res = message.send_many(data)
+        print(json.dumps(res.json(), indent=2, ensure_ascii=False))
     elif AlertData.AlertType == "낙상 주의":
         SensingType_opt = "낙상"
         Sensingdetails_opt = "낙상을 주의하세요"
@@ -47,6 +67,14 @@ def upload_fall(AlertData: SA_schema.SensingAlertsSchema, db:Session=Depends(get
     db.add(new_fall_allert)
     db.commit()
     db.refresh(new_fall_allert)
+
+
+
+
+    # 한번 요청으로 1만건의 메시지 발송이 가능합니다.
+
+
+
     return {"message":"수신 완료"}
 
 
