@@ -54,6 +54,9 @@ def upload_fall(AlertData: SA_schema.SensingAlertsSchema, db:Session=Depends(get
     elif AlertData.AlertType == "요청 사항":
         SensingType_opt = "요청"
         Sensingdetails_opt = "물을 요청합니다"
+    elif AlertData.AlertType == "복약 시간":
+        SensingType_opt = "복약"
+        Sensingdetails_opt = "복약 시간을 지키세요"
 
 
     new_fall_allert = SA_orm(DeviceIdx = AlertData.DeviceIdx, UserID = AlertData.UserID,
