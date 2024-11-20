@@ -175,6 +175,11 @@ body {
   z-index: 1; /* 버튼을 이미지 위에 표시 */
 }
 
+.info-link {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit;
+}
+
 .first {
   font-size: 18px;
   font-family: "Pretendard", Arial, sans-serif;
