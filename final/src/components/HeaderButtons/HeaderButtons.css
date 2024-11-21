@@ -48,3 +48,14 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.header-icon-group a {
+  text-decoration: none; /* 링크 밑줄 제거 */
+  display: inline-flex; /* <a> 태그가 <img>와 동일하게 inline-flex로 동작하도록 설정 */
+  align-items: center; /* 세로 가운데 정렬 */
+  justify-content: center; /* 가로 가운데 정렬 */
+}
+
+.header-icon-group a img {
+  display: block; /* 이미지 정렬 문제를 방지 */
+}

@@ -8,8 +8,6 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
-
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -94,8 +92,15 @@ const Login = () => {
         <img src={logo} alt="Logo" className="logo-image" />
         <p className="service-text">돌봄 서비스</p>
         <button className="info-button">
-          <p className="first">지금 바로 사용법 배우기</p>
-          <p className="second">sseu-dam.com</p>
+          <a
+            href="https://hill-hose-a0d.notion.site/14475dc105c78070b4bdde4e5c7ba283"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="info-link"
+          >
+            <p className="first">지금 바로 사용법 배우기</p>
+            <p className="second">sseu-dam.com</p>
+          </a>
         </button>
       </div>
     </div>
