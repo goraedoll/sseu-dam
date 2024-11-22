@@ -5,10 +5,18 @@
 AI와 엣지 컴퓨팅을 활용하여 취약계층의 안전을 보장하는 맞춤형 돌봄 서비스입니다. 실시간 자세 분석, 위험 감지, 사생활 보호 기능과 더불어 낙상, 욕창 등 위험 상황에 신속히 대응할 수 있습니다.
 
 ## 데모
-- 주요 기능 소개 영상과 시연 화면:
-  - [시연 영상 링크](#) (추후 추가)
-  - 주요 기능 GIF 및 이미지:
-    ![데모](assets/demo.gif)
+- 주요 기능 이미지:
+
+<table>
+  <tr>
+    <td align="center"><img src="./gitImages/sampleImage_1.png" alt="샘플 이미지 1" width="250"/></td>
+    <td align="center"><img src="./gitImages/sampleImage_2.png" alt="샘플 이미지 2" width="250"/></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="./gitImages/sampleImage_3.png" alt="샘플 이미지 3" width="250"/></td>
+    <td align="center"><img src="./gitImages/sampleImage_4.png" alt="샘플 이미지 4" width="250"/></td>
+  </tr>
+</table>
 
 ## 주요 기능 (Features)
 - **실시간 자세 분석**: Yolo v8을 활용하여 사용자의 자세와 동작 변화를 실시간으로 감지.
