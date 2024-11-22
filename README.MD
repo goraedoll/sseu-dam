@@ -1,3 +1,9 @@
+![프로젝트 로고](gitImages/mainScreen.png)
+
+
+
+
+
 cmd에서 ifconfig 해서 뜨는 IP -> en0 inet
 
 .env( final 안에) 그리고 Back의 config.json
