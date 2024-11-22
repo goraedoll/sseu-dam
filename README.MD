@@ -33,7 +33,7 @@ AI와 엣지 컴퓨팅을 활용하여 취약계층의 안전을 보장하는 �
 3. **백엔드 실행**:
       ```bash
       cd back
-      uvicorn main:app --host 192.168.20.83 --port 1252 --reload
+      uvicorn main:app --host 'your_ip' --port 1252 --reload
       ```
 
 ## 기술 스택 (Tech Stack)
